@@ -38,11 +38,11 @@
                     selectedIds.push(selection.id);
                 });
                 this.$post({
-                    action: 'qpefw_admin_ajax',
+                    action: 'wpcipe_admin_ajax',
                     route: 'maybe_delete_details',
                     details_ids: selectedIds,
                     action_type: type,
-                    nonce: window.QuickProductEnquiryAdminVars.nonce
+                    nonce: window.WPCreativeIdeaProductEnquiryAdminVars.nonce
                 })
                     .then(response => {
                         this.$notify({

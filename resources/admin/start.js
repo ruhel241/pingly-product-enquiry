@@ -1,18 +1,18 @@
 import routes from './Bits/routes';
-const vueRouter = new window.QPEFWPlugin.Router({
-    routes: window.QPEFWPlugin.applyFilters('qpefw_global_routes', routes)
+const vueRouter = new window.WPCIPEPlugin.Router({
+    routes: window.WPCIPEPlugin.applyFilters('wpcipe_global_routes', routes)
 });
 
-window.QPEFWPlugin.Vue.prototype.$get  = window.QPEFWPlugin.$get;
-window.QPEFWPlugin.Vue.prototype.$post = window.QPEFWPlugin.$post;
-window.QPEFWPlugin.Vue.prototype.$put  = window.QPEFWPlugin.$put;
-window.QPEFWPlugin.Vue.prototype.$del  = window.QPEFWPlugin.$del;
+window.WPCIPEPlugin.Vue.prototype.$get  = window.WPCIPEPlugin.$get;
+window.WPCIPEPlugin.Vue.prototype.$post = window.WPCIPEPlugin.$post;
+window.WPCIPEPlugin.Vue.prototype.$put  = window.WPCIPEPlugin.$put;
+window.WPCIPEPlugin.Vue.prototype.$del  = window.WPCIPEPlugin.$del;
 
-window.QPEFWPlugin.Vue.prototype.$bus = new window.QPEFWPlugin.Vue();
+window.WPCIPEPlugin.Vue.prototype.$bus = new window.WPCIPEPlugin.Vue();
 
 document.addEventListener('DOMContentLoaded', () => {
-    new window.QPEFWPlugin.Vue({
-        el: '#wp_qpefw_settings_app',
+    new window.WPCIPEPlugin.Vue({
+        el: '#wp_wpcipe_settings_app',
         render: h => h(require('./Application').default),
         router: vueRouter,
         mounted() {

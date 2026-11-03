@@ -1,8 +1,8 @@
-body.qpefw-modal-open {
+body.wpcipe-modal-open {
     overflow: hidden;
 }
 
-.qpefw-button {
+.wpcipe-button {
     background-color: #046bd2;
     color: #ffffff !important;
     padding: 10px 20px !important;
@@ -11,11 +11,11 @@ body.qpefw-modal-open {
 }
 
 // when add to cart button then use
-// .cart .qpefw-button {
+// .cart .wpcipe-button {
 //     margin-left: 10px;
 // }
 
-.qpefw-modal-wrapper {
+.wpcipe-modal-wrapper {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -27,7 +27,7 @@ body.qpefw-modal-open {
     height: 100%;
     // overflow: auto;
     background-color: rgba(0, 0, 0, 0.5);
-    .qpefw-modal-content {
+    .wpcipe-modal-content {
         position: relative;
         top: 15px;
         background-color: #fefefe;
@@ -38,10 +38,10 @@ body.qpefw-modal-open {
         border-top-left-radius: 20px;
         border-bottom-right-radius: 10px;
         border-bottom-left-radius: 10px;
-        .qpefw-form-container {
+        .wpcipe-form-container {
             width: 100%;
             border-radius: 10px;
-            .qpefw-header {
+            .wpcipe-header {
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
@@ -50,7 +50,7 @@ body.qpefw-modal-open {
                 border-top-right-radius: 19px;
                 border-top-left-radius: 19px;
                 padding: 0px 20px;
-                .qpefw-title {
+                .wpcipe-title {
                     text-align: center;
                     margin: 0px;
                     color: #ffffff;
@@ -58,7 +58,7 @@ body.qpefw-modal-open {
                     flex: 1;
                     font-weight: 600;
                 }
-                .qpefw-view-close {
+                .wpcipe-view-close {
                     font-size: 22px;
                     font-weight: bold;
                     color: #fff;
@@ -74,7 +74,7 @@ body.qpefw-modal-open {
                     transition: all 0.3s;
                 } 
             }
-            .qpefw-form {
+            .wpcipe-form {
                 display: block;
                 // padding: 30px;
                 label {
@@ -98,11 +98,11 @@ body.qpefw-modal-open {
                 }
             }
             /* Tabs */
-            .qpefw-tabs {
+            .wpcipe-tabs {
                 display: flex;
                 border-bottom: 1px solid #e5e5e5;
                 background: #fff;
-                .qpefw-tab {
+                .wpcipe-tab {
                     // flex: 1;
                     // padding: 14px 10px;
                     // border: none;
@@ -138,17 +138,17 @@ body.qpefw-modal-open {
                 }
             }
             /* Tab Content */
-            .qpefw-tab-content {
+            .wpcipe-tab-content {
                 display: none;
                 padding: 30px;
                 &.active {
                     display: block;
                 }
-                .qpefw-social-numbers {
+                .wpcipe-social-numbers {
                     display: flex;
                     flex-direction: column;
                     gap: 20px;
-                    .qpefw-social-number {
+                    .wpcipe-social-number {
                         display: flex;
                         justify-content: center;
                         align-items: center;
@@ -157,7 +157,7 @@ body.qpefw-modal-open {
                             margin: 0px;
                             flex: 1;
                         }
-                        .qpefw-action-btn {
+                        .wpcipe-action-btn {
                             display: inline-block;
                             padding: 8px 20px;
                             border-radius: 6px;
@@ -220,7 +220,7 @@ body.qpefw-modal-open {
                     }
                 }
             }
-            .qpefw-submit {
+            .wpcipe-submit {
                 width: 100%;
                 padding: 12px;
                 background: #2196f3;
@@ -231,11 +231,11 @@ body.qpefw-modal-open {
                 cursor: pointer;
                 font-weight: 600;
             }
-            .qpefw-submit:hover {
+            .wpcipe-submit:hover {
                 background: #0d8ae0;
             }
         }
-        #qpefw-loading-view {
+        #wpcipe-loading-view {
             //border: solid #dddddd;
             //opacity: 0.6;
             position: absolute; /* Positions the overlay relative to its parent container */
@@ -250,14 +250,14 @@ body.qpefw-modal-open {
             flex-direction: column;
             color: white; /* Optional: for styling overlay content */
             //height: 850px;
-            .qpefw-loading-title {
+            .wpcipe-loading-title {
                 font-size: 15px; /* Slightly larger */
                 color: #fff;
                 text-align: center;
                 margin-top: 15px;
                 font-weight: 500;
             }
-            .qpefw-loading-spinner {
+            .wpcipe-loading-spinner {
                 width: 35px; /* Fixed width instead of percentage */
                 height: 35px; /* Fixed height instead of percentage */
                 img {
@@ -267,9 +267,9 @@ body.qpefw-modal-open {
                 }
             }
         }
-        .qpefw-notice {
+        .wpcipe-notice {
             display: none;
-            .qpefw-response-message {
+            .wpcipe-response-message {
                 background: #fff;
                 padding: 12px 15px;
                 margin: 0px 0px 20px 0px;
@@ -280,8 +280,8 @@ body.qpefw-modal-open {
            
         }
     }
-    .qpefw-form {
-        .qpefw-phone-number {
+    .wpcipe-form {
+        .wpcipe-phone-number {
             display: flex;
             align-items: center;
             gap: 8px;
@@ -311,7 +311,7 @@ body.qpefw-modal-open {
             color: red;
             margin-left: 3px;
         }
-        .qpefw-subscribe-field {
+        .wpcipe-subscribe-field {
             display: flex;
             justify-content: flex-start;
             align-items: center;
@@ -320,7 +320,7 @@ body.qpefw-modal-open {
                 width: 5% !important;
                 margin: 0px !important;
             }
-            .qpefw-label-subscribe {
+            .wpcipe-label-subscribe {
                 margin: 0px !important;
                 padding: 0px !important;
             }
@@ -329,7 +329,7 @@ body.qpefw-modal-open {
 }
 
 // shop page buttons wrapper
-.qpefw-add-to-cart-wrapper {
+.wpcipe-add-to-cart-wrapper {
     display: flex;
     flex-wrap: wrap;
     gap: 8px;
@@ -364,19 +364,19 @@ body.qpefw-modal-open {
             font-size: 14px;
         }
     }
-    .qpefw-button {    
+    .wpcipe-button {    
         order: 4;
     }
 }
 
 // Button in cart product row
-.qpefw-cart-product-row {
+.wpcipe-cart-product-row {
     display: flex;
     align-items: center;
     gap: 12px;
     margin-bottom: 6px;
     flex-wrap: wrap;
-    .qpefw-cart-page-btn {
+    .wpcipe-cart-page-btn {
         background-color: #5467f8;
         padding: 6px 14px;
         font-size: 13px;
@@ -384,29 +384,29 @@ body.qpefw-modal-open {
         white-space: nowrap;
     }
 }
-.qpefw-shortcode-btn  {
+.wpcipe-shortcode-btn  {
     background-color: #5467f8;
     color: #ffffff !important;
     padding: 10px 20px !important;
     text-decoration: none !important;
 }
 
-/* Hide only the label (&nbsp;:) for QuickEnquiry button row */
-.wc-block-components-product-details__name:has(+ .wc-block-components-product-details__value .qpefw-button) {
+/* Hide only the label (&nbsp;:) for Enquiry button row */
+.wc-block-components-product-details__name:has(+ .wc-block-components-product-details__value .wpcipe-button) {
     display: none !important;
 }
 
 
-/* Hide QuickEnquiry button label in classic cart shortcode */
-dt.variation-nbsp:has(+ dd .qpefw-button){
+/* Hide Enquiry button label in classic cart shortcode */
+dt.variation-nbsp:has(+ dd .wpcipe-button){
     display: none !important;
 }
 
-.qpefw-cart-page-btn {
+.wpcipe-cart-page-btn {
     margin: 5px 0px 5px 0px !important;
 }
 
-.qpefw-order-summary-btn {
+.wpcipe-order-summary-btn {
     margin: 5px 0px 5px 0px !important;
 }
 
@@ -418,21 +418,21 @@ dt.variation-nbsp:has(+ dd .qpefw-button){
 }
 
 @media only screen and (max-width: 600px) {
-    .qpefw-modal-wrapper {
-        .qpefw-modal-content {
+    .wpcipe-modal-wrapper {
+        .wpcipe-modal-content {
             width: 95%;
-            .qpefw-form-container {
-                .qpefw-tabs {
+            .wpcipe-form-container {
+                .wpcipe-tabs {
                     flex-direction: column;
-                    .qpefw-tab {
+                    .wpcipe-tab {
                         width: 100%;
                         &.active {
                             border-bottom-color: transparent;
                         }
                     }
                 }
-                .qpefw-form {
-                    .qpefw-subscribe-field {
+                .wpcipe-form {
+                    .wpcipe-subscribe-field {
                         gap: 10px;
                         margin-bottom: 10px;
                     }

@@ -1,12 +1,12 @@
 <template>
-  <div class="qpefw-main-navigation">
+  <div class="wpcipe-main-navigation">
     <div class="logo">
-      <h1>Quick Product Enquiry</h1>
+      <h1>Product Enquiry</h1>
     </div>
     <el-menu
         :router="true"
         mode="horizontal"
-        class="qpefw-navbar"
+        class="wpcipe-navbar"
         :default-active="active"
         @select="handleSelect"
     >
@@ -28,13 +28,13 @@ export default {
   props: [''],
   data() {
     return {
-      active: localStorage.getItem('qpefw_active_menu') || '/',
+      active: localStorage.getItem('wpcipe_active_menu') || '/',
       allMenuItems: []
     };
   },
   computed: {
     visibleItems() {
-        const hasPro = !!window.QuickProductEnquiryAdminVars?.has_pro;
+        const hasPro = !!window.WPCreativeIdeaProductEnquiryAdminVars?.has_pro;
 
         return this.allMenuItems.filter((item) => {
             // License menu only for Pro version
@@ -78,12 +78,12 @@ export default {
     
     setMenus() {
       // Get all menu items with filters applied
-      this.allMenuItems = this.applyFilters('qpefw_top_menus', this.defaultRoutes() );
+      this.allMenuItems = this.applyFilters('wpcipe_top_menus', this.defaultRoutes() );
     },
 
     handleSelect(key) {
       this.active = key;
-      localStorage.setItem('qpefw_active_menu', this.active)
+      localStorage.setItem('wpcipe_active_menu', this.active)
     },
   },
   mounted() {

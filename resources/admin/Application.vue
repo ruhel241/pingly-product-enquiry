@@ -1,12 +1,12 @@
 <template>
-  <div class="qpefw-app-wrapper">
+  <div class="wpcipe-app-wrapper">
     <el-row>
       <el-col :span="4">
         <Navigation/>
       </el-col>
       <el-col :span="20">
-        <div class="qpefw-header"></div>
-        <div class="qpefw-body">
+        <div class="wpcipe-header"></div>
+        <div class="wpcipe-body">
           <router-view :key="$route.fullPath"></router-view>
         </div>
       </el-col>

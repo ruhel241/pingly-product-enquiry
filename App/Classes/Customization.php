@@ -1,12 +1,12 @@
 <?php
 
-namespace Ruhel241\QuickProductEnquiry\Classes;
+namespace WPCreativeIdeaProductEnquiry\Classes;
 
 class Customization 
 {
-    public static function quickProductEnquiryAddSettings($settings)
+    public static function WPCreativeIdeaProductEnquiryAddSettings($settings)
     {
-        $settings[] = include_once QPEFW_PLUGIN_DIR_PATH . 'App/Classes/QuickProductEnquirySettings.php';
+        $settings[] = include_once WPCIPE_PLUGIN_DIR_PATH . 'App/Classes/WPCreativeIdeaProductEnquirySettings.php';
 
         return $settings ;
     }

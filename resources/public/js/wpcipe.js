@@ -1,28 +1,28 @@
 jQuery(document).ready(function ($) {
-    var QuickProductEnquiryPublicVarsSettings = QuickProductEnquiryPublicVars.qpefw_settings.settings;
+    var WPCreativeIdeaProductEnquiryPublicVarsSettings = WPCreativeIdeaProductEnquiryPublicVars.wpcipe_settings.settings;
 
     var isLoading = false;
     function showLoading() {
         isLoading = true;
-        $('#qpefw-loading-view').show();
+        $('#wpcipe-loading-view').show();
     }
     function hideLoading() {
         isLoading = false;
         setTimeout(function () {
             if (!isLoading) {
-                $('#qpefw-loading-view').hide();
+                $('#wpcipe-loading-view').hide();
             }
         }, 700);
     }
 
-    var qpefwQuickProductEnquiry = {
+    var wpcipeWPCreativeIdeaProductEnquiry = {
        // Modal open
-        qpefwQuickProductEnquiryInit: function () {
+        wpcipeWPCreativeIdeaProductEnquiryInit: function () {
             let that = this;
 
-            $('body').addClass('qpefw-addons-wrapper-home');
+            $('body').addClass('wpcipe-addons-wrapper-home');
             
-            $('.qpefw-addons-wrapper-home .products .product').each(function() {
+            $('.wpcipe-addons-wrapper-home .products .product').each(function() {
                 let $parentProduct      = $(this);
                 // Detect Add to cart button
                 let $addToCart = $parentProduct.find(
@@ -35,7 +35,7 @@ jQuery(document).ready(function ($) {
                 setTimeout(() => {
                     let $qvpuWrapper      = $parentProduct.find('.qvpu-add-to-cart-wrapper');
                     let $quickCheckoutBtn = $parentProduct.find('.qdc-direct-checkout-button');
-                    let $enquiryShopBtn   = $parentProduct.find('.qpefw-button');
+                    let $enquiryShopBtn   = $parentProduct.find('.wpcipe-button');
 
                     /** ---------------------------------------------
                      * CASE 1: Wrapper already exists quick view
@@ -62,7 +62,7 @@ jQuery(document).ready(function ($) {
                      * CASE 3: Create new wrapper
                      * --------------------------------------------- */
     
-                    let $newWrapper = $('<div class="qpefw-add-to-cart-wrapper"></div>');
+                    let $newWrapper = $('<div class="wpcipe-add-to-cart-wrapper"></div>');
 
                     if ($addToCart.length) {
                         $addToCart.add($enquiryShopBtn).wrapAll($newWrapper);
@@ -77,11 +77,11 @@ jQuery(document).ready(function ($) {
 
 
             // Click Open modal
-            $(document).on('click', '.qpefw-button', function (e) {
+            $(document).on('click', '.wpcipe-button', function (e) {
                 e.preventDefault();
 
-                $("body").addClass("qpefw-modal-open");
-                $('.qpefw-modal-wrapper').fadeIn();
+                $("body").addClass("wpcipe-modal-open");
+                $('.wpcipe-modal-wrapper').fadeIn();
 
                 let $btn = $(this);
                 let productId = $btn.data('product-id');
@@ -94,35 +94,35 @@ jQuery(document).ready(function ($) {
             });
 
             // Tabs handler
-            $(document).on('click', '.qpefw-tab', function () {
+            $(document).on('click', '.wpcipe-tab', function () {
                 const tab = $(this).data('tab');
-                const container = $(this).closest('.qpefw-form-container');
+                const container = $(this).closest('.wpcipe-form-container');
                 // Tabs UI
-                container.find('.qpefw-tab').removeClass('active');
+                container.find('.wpcipe-tab').removeClass('active');
                 $(this).addClass('active');
 
-                container.find('.qpefw-tab-content').removeClass('active');
-                container.find('#qpefw-tab-' + tab).addClass('active');
+                container.find('.wpcipe-tab-content').removeClass('active');
+                container.find('#wpcipe-tab-' + tab).addClass('active');
             });
 
             // Trigger default state
-            $('.qpefw-tab.active').trigger('click');
+            $('.wpcipe-tab.active').trigger('click');
         },
 
         enquirUsForm: function (productId, productSlug) {
             showLoading();
 
-            $.post('/?wc-ajax=qpefw_ajax_actions', {
-                route: 'qpefw_form',
-                nonce: window.QuickProductEnquiryPublicVars.nonce,
+            $.post('/?wc-ajax=wpcipe_ajax_actions', {
+                route: 'wpcipe_form',
+                nonce: window.WPCreativeIdeaProductEnquiryPublicVars.nonce,
                 product_id: productId,
                 product_slug: productSlug
             })
             .success(function (response) {
                 if (response.success && response.data.fragments) {
                     // update form HTML from PHP
-                    $('.qpefw-form-container').replaceWith(
-                        response.data.fragments['.qpefw-form-container']
+                    $('.wpcipe-form-container').replaceWith(
+                        response.data.fragments['.wpcipe-form-container']
                     );
                 }
             })
@@ -134,24 +134,24 @@ jQuery(document).ready(function ($) {
         // Modal close
         closeModal: function () {
             // Close button
-            $(document).on('click', '.qpefw-view-close', function () {
-                $('.qpefw-modal-wrapper').fadeOut();
-                $("body").removeClass("qpefw-modal-open");
+            $(document).on('click', '.wpcipe-view-close', function () {
+                $('.wpcipe-modal-wrapper').fadeOut();
+                $("body").removeClass("wpcipe-modal-open");
             });
 
             // Click outside to close
-            $(document).on('click', '.qpefw-modal-wrapper', function (e) {
-                if ($(e.target).hasClass('qpefw-modal-wrapper')) {
-                    $('.qpefw-modal-wrapper').fadeOut();
-                    $("body").removeClass("qpefw-modal-open");
+            $(document).on('click', '.wpcipe-modal-wrapper', function (e) {
+                if ($(e.target).hasClass('wpcipe-modal-wrapper')) {
+                    $('.wpcipe-modal-wrapper').fadeOut();
+                    $("body").removeClass("wpcipe-modal-open");
                 }
             });
 
             // Escape key close
             $(document).on('keyup', function (e) {
                 if (e.key === "Escape") {
-                    $('.qpefw-modal-wrapper').fadeOut();
-                    $("body").removeClass("qpefw-modal-open");
+                    $('.wpcipe-modal-wrapper').fadeOut();
+                    $("body").removeClass("wpcipe-modal-open");
                 }
             });
         },
@@ -159,7 +159,7 @@ jQuery(document).ready(function ($) {
         // Form submit handler
         enquireUsDetailsHandler: function () {
             let that = this;
-            $(document).on('click', '.qpefw-form-container .qpefw-submit', function (e) {
+            $(document).on('click', '.wpcipe-form-container .wpcipe-submit', function (e) {
                 e.preventDefault();
                 let $form = $(this).closest('form');
 
@@ -171,17 +171,17 @@ jQuery(document).ready(function ($) {
                 let country_code = $form.find('select[name="country_code"]').val() || '';
                 let subscribe    = $form.find('input[name="subscribe"]').is(':checked') ? 'yes' : 'no';
                 // get active tab (enquire)
-                let type = $('.qpefw-tab.active').data('tab'); // enquire
+                let type = $('.wpcipe-tab.active').data('tab'); // enquire
                 let emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
                 // helper function for notice
                 function showError(msg) {
-                    $('.qpefw-notice .qpefw-response-message')
+                    $('.wpcipe-notice .wpcipe-response-message')
                         .text(msg)
                         .css('color', 'red');
-                    $('.qpefw-notice').fadeIn();
+                    $('.wpcipe-notice').fadeIn();
 
                     setTimeout(function () {
-                        $('.qpefw-notice').fadeOut();
+                        $('.wpcipe-notice').fadeOut();
                     }, 4000);
                 }
                 /* ======================
@@ -224,27 +224,27 @@ jQuery(document).ready(function ($) {
         // AJAX request
         enquireUsDetailsAction: function (details) {
             showLoading();
-            jQuery.post('/?wc-ajax=qpefw_ajax_actions', {
-                route: 'qpefw_details',
-                nonce: window.QuickProductEnquiryPublicVars.nonce,
+            jQuery.post('/?wc-ajax=wpcipe_ajax_actions', {
+                route: 'wpcipe_details',
+                nonce: window.WPCreativeIdeaProductEnquiryPublicVars.nonce,
                 details: JSON.stringify(details),
             })
             .success(function(response) {
                 if (response.success) {
-                    $('.qpefw-notice .qpefw-response-message').text(response.data.message).css({'color': 'green', 'border-left': '4px solid green'});
-                    $('.qpefw-notice').fadeIn();
+                    $('.wpcipe-notice .wpcipe-response-message').text(response.data.message).css({'color': 'green', 'border-left': '4px solid green'});
+                    $('.wpcipe-notice').fadeIn();
                     // Reset form
-                    $('.qpefw-form-container form')[0].reset();
+                    $('.wpcipe-form-container form')[0].reset();
                     setTimeout(function () {
-                        $('.qpefw-notice').fadeOut();
-                        $('.qpefw-modal-wrapper').fadeOut();
-                        $("body").removeClass("qpefw-modal-open");
+                        $('.wpcipe-notice').fadeOut();
+                        $('.wpcipe-modal-wrapper').fadeOut();
+                        $("body").removeClass("wpcipe-modal-open");
                     }, 6000);
                 } else {
-                    $('.qpefw-notice .qpefw-response-message').text(response.data.message).css({'color': 'red', 'border-left': '4px solid red'});
-                    $('.qpefw-notice').fadeIn();
+                    $('.wpcipe-notice .wpcipe-response-message').text(response.data.message).css({'color': 'red', 'border-left': '4px solid red'});
+                    $('.wpcipe-notice').fadeIn();
                     setTimeout(function () {
-                        $('.qpefw-notice').fadeOut();
+                        $('.wpcipe-notice').fadeOut();
                     }, 4000);
                 } 
             })
@@ -256,12 +256,12 @@ jQuery(document).ready(function ($) {
         },
 
         init: function () {
-            this.qpefwQuickProductEnquiryInit();
+            this.wpcipeWPCreativeIdeaProductEnquiryInit();
             this.closeModal();
             this.enquireUsDetailsHandler();
             // this.enquirUsShopButtonInit();
         }
     };
 
-    qpefwQuickProductEnquiry.init();
+    wpcipeWPCreativeIdeaProductEnquiry.init();
 });

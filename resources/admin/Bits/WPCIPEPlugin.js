@@ -12,7 +12,7 @@ import {
 
 Vue.use(Router);
 
-export default class QPEFWPlugin {
+export default class WPCIPEPlugin {
     constructor() {
         // this.Router = new Router({
         //     mode: 'history',
@@ -24,11 +24,11 @@ export default class QPEFWPlugin {
         this.addAction = addAction;
         this.applyFilters = applyFilters;
         this.removeAllActions = removeAllActions;
-        this.appVars = window.QuickProductEnquiryAdminVars;
+        this.appVars = window.WPCreativeIdeaProductEnquiryAdminVars;
         
         // Create a reactive data object for module status
         // this.moduleStatus = Vue.observable({
-        //     ...window.QuickProductEnquiryAdminVars.get_active_modules
+        //     ...window.WPCreativeIdeaProductEnquiryAdminVars.get_active_modules
         // });
         
         this.Vue = this.extendVueConstructor();
@@ -38,7 +38,7 @@ export default class QPEFWPlugin {
     // updateModuleStatus(type, status) {
     //     Vue.set(this.moduleStatus, type, status);
     //     // Also trigger a custom event for components that might need it
-    //     this.doAction('qpefw_module_status_changed', type, status);
+    //     this.doAction('wpcipe_module_status_changed', type, status);
     // }
 
     extendVueConstructor() {
@@ -84,7 +84,7 @@ export default class QPEFWPlugin {
                 },
 
                 // $t(string) {
-                //     return window.QuickProductEnquiryAdminVars.i18n[string] || string;
+                //     return window.WPCreativeIdeaProductEnquiryAdminVars.i18n[string] || string;
                 // },
 
                 // Updated method to use reactive module status
@@ -123,7 +123,7 @@ export default class QPEFWPlugin {
             return;
         }
 
-        this.addFilter('qpefw_top_menus', this.appVars.slug, function (menus) {
+        this.addFilter('wpcipe_top_menus', this.appVars.slug, function (menus) {
             menus = menus.filter(m => m.route !== route.name);
             menus.push({
                 route: route.name,
@@ -132,7 +132,7 @@ export default class QPEFWPlugin {
             return menus;
         });
 
-        this.addFilter('qpefw_global_routes', this.appVars.slug, function (routes) {
+        this.addFilter('wpcipe_global_routes', this.appVars.slug, function (routes) {
             routes = routes.filter(r => r.name !== route.name);
             routes.push(route);
             return routes;
@@ -140,9 +140,9 @@ export default class QPEFWPlugin {
     }
 
     request(method, route, data = {}) {
-        const url = `${window.QuickProductEnquiryAdminVars.rest.url}/${route}`;
+        const url = `${window.WPCreativeIdeaProductEnquiryAdminVars.rest.url}/${route}`;
 
-        const headers = { 'X-WP-Nonce': window.QuickProductEnquiryAdminVars.rest.nonce };
+        const headers = { 'X-WP-Nonce': window.WPCreativeIdeaProductEnquiryAdminVars.rest.nonce };
 
         if (['PUT', 'PATCH', 'DELETE'].indexOf(method.toUpperCase()) !== -1) {
             headers['X-HTTP-Method-Override'] = method;
@@ -164,23 +164,23 @@ export default class QPEFWPlugin {
     }
 
     $get(options) {
-        return window.jQuery.get(window.QuickProductEnquiryAdminVars.ajaxurl, options);
+        return window.jQuery.get(window.WPCreativeIdeaProductEnquiryAdminVars.ajaxurl, options);
     }
 
     $post(options) {
-        return window.jQuery.post(window.QuickProductEnquiryAdminVars.ajaxurl, options);
+        return window.jQuery.post(window.WPCreativeIdeaProductEnquiryAdminVars.ajaxurl, options);
     }
 
     $put(options) {
         return window.jQuery.ajax({
-            url: window.QuickProductEnquiryAdminVars.ajaxurl,
+            url: window.WPCreativeIdeaProductEnquiryAdminVars.ajaxurl,
             type: 'PUT',
             data: options,
         });
     }
 
     $del(options) {
-        return window.jQuery.post(window.QuickProductEnquiryAdminVars.ajaxurl, options);
+        return window.jQuery.post(window.WPCreativeIdeaProductEnquiryAdminVars.ajaxurl, options);
     }
 
     ucFirst(text) {

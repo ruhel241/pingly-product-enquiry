@@ -1,11 +1,13 @@
 <?php
 
-namespace Ruhel241\QuickProductEnquiry\Database;
+namespace WPCreativeIdeaProductEnquiry\Database;
 
-if ( ! defined( 'ABSPATH' ) ) exit;
+if (!defined('ABSPATH')) {
+    exit;
+}
 
 require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
-use Ruhel241\QuickProductEnquiry\Database\Migrations\QuickProductEnquiryMigrator;
+use WPCreativeIdeaProductEnquiry\Database\Migrations\WPCreativeIdeaProductEnquiryMigrator;
 
 class DBMigrator
 {
@@ -32,8 +34,8 @@ class DBMigrator
 
     private static function migrate()
     {
-        require_once(QPEFW_PLUGIN_DIR_PATH . 'App/Database/Migrations/QuickProductEnquiryMigrator.php');
+        require_once(WPCIPE_PLUGIN_DIR_PATH . 'App/Database/Migrations/WPCreativeIdeaProductEnquiryMigrator.php');
 
-        QuickProductEnquiryMigrator::migrate();
+        WPCreativeIdeaProductEnquiryMigrator::migrate();
     }
 }

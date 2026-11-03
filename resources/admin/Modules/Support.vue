@@ -1,13 +1,13 @@
 <template>
-  <div class="qpefw-support-wrapper qpefw-card">
-    <div class="qpefw_header">
-      <div class="qpefw_title qpefw_header_title">
+  <div class="wpcipe-support-wrapper wpcipe-card">
+    <div class="wpcipe_header">
+      <div class="wpcipe_title wpcipe_header_title">
         <h3 style="margin: 0px;"> Support </h3> 
       </div>
     </div>
 
-    <div class="qpefw_support_block_box">
-      <div class="qpefw_support_block text-center">
+    <div class="wpcipe_support_block_box">
+      <div class="wpcipe_support_block text-center">
         <img :src="`${imagesUrl}/support.png`">
         <h3>Need And Expert Support?</h3> 
         <p>Our EXPERTS would like to assist you for your query and any customization.</p> 
@@ -17,7 +17,7 @@
           </a>
         </p>
       </div>
-      <div class="qpefw_support_block text-center">
+      <div class="wpcipe_support_block text-center">
         <img :src="`${imagesUrl}/community.png`">
         <h3>Join our community</h3> 
         <p>We have a strong community where we discuss ideas and help each other.</p> 
@@ -27,7 +27,7 @@
           </a>
         </p>
       </div>
-      <div class="qpefw_support_block text-center">
+      <div class="wpcipe_support_block text-center">
         <img :src="`${imagesUrl}/love.png`">
         <h3>Love this Plugin?</h3> 
         <p>Please write a review the plugin. We appreciate it!</p> 
@@ -48,7 +48,7 @@ export default {
     components: {},
     data() {
         return {
-          imagesUrl: window.QuickProductEnquiryAdminVars.images_url,
+          imagesUrl: window.WPCreativeIdeaProductEnquiryAdminVars.images_url,
         }
     },
   }

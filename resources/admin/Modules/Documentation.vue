@@ -1,8 +1,8 @@
 <template>
-  <div class="qpefw-documentation-wrapper qpefw-card">
+  <div class="wpcipe-documentation-wrapper wpcipe-card">
     <!-- Header -->
-    <div class="qpefw_header">
-      <div class="qpefw_title qpefw_header_title">
+    <div class="wpcipe_header">
+      <div class="wpcipe_title wpcipe_header_title">
         <h3>Documentation</h3>
       </div>
     </div>
@@ -13,24 +13,24 @@
         <div class="dashboard-document-youtube">
           <iframe width="100%" height="550" src="https://www.youtube.com/embed/jhPquLtObTc?si=VH3SLsDmzl_hS4gB" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
         </div>
-        <p class="qpefw-subtitle">
+        <p class="wpcipe-subtitle">
           Learn how to set up and use this plugin step by step.
         </p>
       </el-col>
 
       <!-- Documentation Content -->
       <el-col :span="24">
-        <div class="qpefw-doc-content">
+        <div class="wpcipe-doc-content">
           <h4>🚀 Getting Started</h4>
-          <ul class="qpefw-doc-list">
+          <ul class="wpcipe-doc-list">
             <li>Install and activate the plugin</li>
-            <li>Go to <strong>Quick Product Enquiry Tab Settings</strong></li>
+            <li>Go to <strong>Product Enquiry Tab Settings</strong></li>
             <li>Configure required options</li>
             <li>Save Settings and Save Styles</li>
           </ul>
 
           <h4>🔗 Helpful Links</h4>
-          <ul class="qpefw-doc-links">
+          <ul class="wpcipe-doc-links">
             <li>
               <a href="https://wpcreativeidea.com/" target="_blank">
                 📄 Full Documentation

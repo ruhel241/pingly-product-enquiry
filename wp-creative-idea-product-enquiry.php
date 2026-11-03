@@ -1,28 +1,28 @@
 <?php
 
 /*
-Plugin Name: Quick Product Enquiry for WooCommerce
+Plugin Name: WPCreativeIdea Product Enquiry
 Description: A simple product enquiry plugin for WooCommerce with WhatsApp, SMS, and enquiry form support.
 Version: 1.0.1
 Requires at least: 6.0
 Requires PHP: 7.4
 Author: ruhel241
 Author URI: https://profiles.wordpress.org/ruhel241/
-Plugin URI: https://wpcreativeidea.com/quick-product-enquiry-for-woocommerce/
+Plugin URI: https://wpcreativeidea.com/wpcreativeidea-product-enquiry/
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
-Text Domain: quick-product-enquiry-for-woocommerce
+Text Domain: wpcreativeidea-product-enquiry
 Domain Path: /languages
 */
 
 
 defined("ABSPATH") or die;
-define('QPEFW_PLUGIN_DIR_URL', plugin_dir_url(__FILE__));
-define('QPEFW_PLUGIN_DIR_PATH', plugin_dir_path(__FILE__));
-define('QPEFW_PLUGIN_VERSION', '1.0.1');
-define('QPEFW_LITE', 'quick-product-enquiry-for-woocommerce');
+define('WPCIPE_PLUGIN_DIR_URL', plugin_dir_url(__FILE__));
+define('WPCIPE_PLUGIN_DIR_PATH', plugin_dir_path(__FILE__));
+define('WPCIPE_PLUGIN_VERSION', '1.0.1');
+define('WPCIPE_LITE', 'wpcreativeidea-product-enquiry');
 
-class QuickProductEnquiryLite
+class WPCreativeIdeaProductEnquiryLite
 {
     /**
      * Initialize the plugin
@@ -67,14 +67,14 @@ class QuickProductEnquiryLite
      */
     public function adminHooks()
     {
-       // woocommerce settings page add Quick Product Enquiry for WooCommerce settings tab
-        add_filter( 'woocommerce_get_settings_pages', array('Ruhel241\QuickProductEnquiry\Classes\Customization', 'quickProductEnquiryAddSettings'), 15, 1 );
+       // woocommerce settings page add WPCreativeIdea Product Enquiry settings tab
+        add_filter( 'woocommerce_get_settings_pages', array('WPCreativeIdeaProductEnquiry\Classes\Customization', 'WPCreativeIdeaProductEnquiryAddSettings'), 15, 1 );
     
-        $ajaxAdminAjaxHandler = new Ruhel241\QuickProductEnquiry\Handler\AdminAjaxHandler();
+        $ajaxAdminAjaxHandler = new WPCreativeIdeaProductEnquiry\Handler\AdminAjaxHandler();
         $ajaxAdminAjaxHandler->registerEndpoints();
         
-        if ( defined('QPEFW_PRO') && class_exists( \Ruhel241\QuickProductEnquiryPro\Classes\LicenseController::class ) ) {
-            $licenseController = new \Ruhel241\QuickProductEnquiryPro\Classes\LicenseController();
+        if ( defined('WPCIPE_PRO') && class_exists( \WPCreativeIdeaProductEnquiryPro\Classes\LicenseController::class ) ) {
+            $licenseController = new \WPCreativeIdeaProductEnquiryPro\Classes\LicenseController();
             $licenseController->registerEndpoints();
 		}
     }
@@ -87,7 +87,7 @@ class QuickProductEnquiryLite
     }
 
     public function commonHooks() {
-       $ActionHandler = new Ruhel241\QuickProductEnquiry\Handler\ActionHandler();
+       $ActionHandler = new WPCreativeIdeaProductEnquiry\Handler\ActionHandler();
        $ActionHandler->register();
     }
 
@@ -106,19 +106,19 @@ class QuickProductEnquiryLite
     {
         ?>
         <div class="notice notice-error">
-            <p><?php esc_html_e('WooCommerce Quick Product Enquiry for WooCommerce requires WooCommerce to be installed and active.', 'quick-product-enquiry-for-woocommerce'); ?></p>
+            <p><?php esc_html_e('WooCommerce WPCreativeIdea Product Enquiry requires WooCommerce to be installed and active.', 'wpcreativeidea-product-enquiry'); ?></p>
         </div>
         <?php
     }
 };
 
 add_action('plugins_loaded', function () {
-    $quickProductEnquiryLite = new QuickProductEnquiryLite();
-    $quickProductEnquiryLite->init();
+    $WPCreativeIdeaProductEnquiryLite = new WPCreativeIdeaProductEnquiryLite();
+    $WPCreativeIdeaProductEnquiryLite->init();
 });
 
 register_activation_hook(__FILE__, function ($network_wide) {
-    require_once(QPEFW_PLUGIN_DIR_PATH . 'App/Handler/ActivationHandler.php');
-    $activate = new Ruhel241\QuickProductEnquiry\Handler\ActivationHandler();
+    require_once(WPCIPE_PLUGIN_DIR_PATH . 'App/Handler/ActivationHandler.php');
+    $activate = new WPCreativeIdeaProductEnquiry\Handler\ActivationHandler();
     $activate->activate($network_wide);
 });

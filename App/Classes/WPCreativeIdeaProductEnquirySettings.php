@@ -1,6 +1,6 @@
 <?php
 
-namespace Ruhel241\QuickProductEnquiry\Classes;
+namespace WPCreativeIdeaProductEnquiry\Classes;
 
 use WC_Settings_Page;
 
@@ -10,7 +10,7 @@ if (!defined('ABSPATH')) exit; // Exit if accessed directly
  *
  * @since 1.0.1
  */
-class QuickProductEnquirySettings extends WC_Settings_Page
+class WPCreativeIdeaProductEnquirySettings extends WC_Settings_Page
 {
     /**
      * Setup settings class
@@ -19,8 +19,8 @@ class QuickProductEnquirySettings extends WC_Settings_Page
      */
     public function __construct()
     {
-        $this->id = 'quick-product-enquiry';
-        $this->label = __('Quick Product Enquiry', 'quick-product-enquiry-for-woocommerce');
+        $this->id = 'wpcreativeidea-product-enquiry';
+        $this->label = __('Product Enquiry', 'wpcreativeidea-product-enquiry');
 
         add_filter('woocommerce_settings_tabs_array', array($this, 'add_settings_page'), 20);
         add_action('woocommerce_settings_' . $this->id, array($this, 'output'));
@@ -36,7 +36,7 @@ class QuickProductEnquirySettings extends WC_Settings_Page
      */
     public function output()
     {
-        echo wp_kses_post('<div id="wp_qpefw_settings_app"></div>');
+        echo wp_kses_post('<div id="wp_wpcipe_settings_app"></div>');
     }
 
     public function enqueueAdminScripts()
@@ -46,26 +46,26 @@ class QuickProductEnquirySettings extends WC_Settings_Page
         
         if ($currentTab === $this->id) {
 
-            $assetsUrl = QPEFW_PLUGIN_DIR_URL . 'assets/';
+            $assetsUrl = WPCIPE_PLUGIN_DIR_URL . 'assets/';
 
-            wp_enqueue_script('qpefw_admin_boot', $assetsUrl . 'admin/js/boot.js', array('jquery'), QPEFW_PLUGIN_VERSION, false);
-            wp_enqueue_script('qpefw_admin_app', $assetsUrl . 'admin/js/start.js', array('jquery'), QPEFW_PLUGIN_VERSION, false);
-            wp_enqueue_style('qpefw_admin_css', $assetsUrl . 'admin/css/admin.css', array(), QPEFW_PLUGIN_VERSION);
+            wp_enqueue_script('wpcipe_admin_boot', $assetsUrl . 'admin/js/boot.js', array('jquery'), WPCIPE_PLUGIN_VERSION, false);
+            wp_enqueue_script('wpcipe_admin_app', $assetsUrl . 'admin/js/start.js', array('jquery'), WPCIPE_PLUGIN_VERSION, false);
+            wp_enqueue_style('wpcipe_admin_css', $assetsUrl . 'admin/css/admin.css', array(), WPCIPE_PLUGIN_VERSION);
 
-            wp_localize_script('qpefw_admin_app', 'QuickProductEnquiryAdminVars', array(
+            wp_localize_script('wpcipe_admin_app', 'WPCreativeIdeaProductEnquiryAdminVars', array(
                 'assets_url'  => $assetsUrl,
                 'images_url'  => $assetsUrl.'admin/images/',
                 'ajaxurl'     => admin_url('admin-ajax.php'),
                 'admin_url'   => admin_url('post.php'),
-                'slug'        => 'quick-product-enquiry-for-woocommerce',
+                'slug'        => 'wpcreativeidea-product-enquiry',
                 'site_url'    => get_site_url(),
-                'nonce'       => wp_create_nonce('qpefw_nonce'),
+                'nonce'       => wp_create_nonce('wpcipe_nonce'),
                 'server_time' => current_time('mysql'),
                 'woo_active'  => defined('WC_VERSION'),
-                'has_pro'     => defined('QPEFW_PRO')
+                'has_pro'     => defined('WPCIPE_PRO')
             ));
         }
     }
 }
 
-return new QuickProductEnquirySettings();
+return new WPCreativeIdeaProductEnquirySettings();

@@ -1,14 +1,14 @@
 <template>
-  <div class="qpefw-card">
+  <div class="wpcipe-card">
     <!-- {{configs}} -->
-    <div class="qpefw-settings-header">
+    <div class="wpcipe-settings-header">
       <h2>Enquiry</h2>
       <el-switch
           v-model="activeModule"
           active-text="Disable"
           active-value="yes"
           inactive-value="no"
-          @change="(value) => activeChangeHandler('qpefw_module', value)">
+          @change="(value) => activeChangeHandler('wpcipe_module', value)">
       </el-switch>
     </div>
     <!-- Confirmation Dialog -->
@@ -18,9 +18,9 @@
         :close-on-click-modal="true"
         :close-on-press-escape="true"
         :show-close="true"
-        custom-class="qpefw-module-disable-dialog"
+        custom-class="wpcipe-module-disable-dialog"
         center>
-      <div class="qpefw-module-dialog-content text-align-center">
+      <div class="wpcipe-module-dialog-content text-align-center">
         <!-- Icon Container with Gradient Background -->
         <div class="icon-container">
           <div class="warning-circle">
@@ -29,7 +29,7 @@
         </div>
         <!-- Content -->
         <div class="dialog-text">
-          <h3>Disable Quick Product Enquiry?</h3>
+          <h3>Disable Product Enquiry?</h3>
           <p>This action will disable the module completely.<br/>Users won't see the enquiry functionality on your frontend.</p>
         </div>
         <!-- Action Buttons -->
@@ -63,15 +63,15 @@
             :fetching="fetching"
             @update="updateHandler"/>
       </el-tab-pane>
-       <el-tab-pane label="Quick Product Enquiry" name="quick-product-enquiry-for-woocommerce">
-        <QuickProductEnquiryData
+       <el-tab-pane label="Product Enquiry" name="wpcreativeidea-product-enquiry">
+        <WPCreativeIdeaProductEnquiryData
             :enquireDatas="configs"
             :fetching="fetching"
             @update="updateHandler"/>
       </el-tab-pane>
     </el-tabs>
    
-    <div class="qpefw-button-group" v-if="activeTab !='quick-product-enquiry-for-woocommerce'">
+    <div class="wpcipe-button-group" v-if="activeTab !='wpcreativeidea-product-enquiry'">
       <el-button type="primary" @click="saveSettings">
         <i :class="!saving ? 'el-icon-circle-check': 'el-icon-loading'"></i>
         Save {{currentTab}}
@@ -88,18 +88,18 @@
 <script>
 import Settings from "./Settings.vue";
 import Styles from "./Styles.vue";
-import QuickProductEnquiryData from "./QuickProductEnquiryData.vue";
+import WPCreativeIdeaProductEnquiryData from "./WPCreativeIdeaProductEnquiryData.vue";
 
 export default {
-  name: 'quick-product-enquiry',
+  name: 'wpcreativeidea-product-enquiry',
   components: {
     Settings,
     Styles,
-    QuickProductEnquiryData
+    WPCreativeIdeaProductEnquiryData
   },
   data() {
     return {
-      activeTab: localStorage.getItem('qpefw-active-tab') || 'settings',
+      activeTab: localStorage.getItem('wpcipe-active-tab') || 'settings',
       configs: {},
       fetching: false,
       activeModule: 'no',
@@ -134,7 +134,7 @@ export default {
 
     handleClick(tab, event) {
       this.getSettings();
-      localStorage.setItem('qpefw-active-tab', this.activeTab);
+      localStorage.setItem('wpcipe-active-tab', this.activeTab);
     },
 
     //Handle updates from child components
@@ -171,12 +171,12 @@ export default {
 
     getSettings() {
       this.fetching = true;
-      this.$get({
-        action: "qpefw_admin_ajax",
+      this.$post({
+        action: "wpcipe_admin_ajax",
         route: "get_settings",
-        type: 'qpefw_settings',
+        type: 'wpcipe_settings',
         tab: this.activeTab,
-        nonce: window.QuickProductEnquiryAdminVars.nonce,
+        nonce: window.WPCreativeIdeaProductEnquiryAdminVars.nonce,
       })
           .then((response) => {
             if (!this.configs) {
@@ -203,12 +203,12 @@ export default {
       if (!this.whatsappNumberValidation()) return;
 
       this.$post({
-        action: "qpefw_admin_ajax",
+        action: "wpcipe_admin_ajax",
         route: "save_settings",
-        type: 'qpefw_settings',
+        type: 'wpcipe_settings',
         tab: this.activeTab,
         tab_configs: this.configs,
-        nonce: window.QuickProductEnquiryAdminVars.nonce,
+        nonce: window.WPCreativeIdeaProductEnquiryAdminVars.nonce,
       })
           .then((response) => {
             setTimeout(() => {
@@ -227,11 +227,11 @@ export default {
     resetSettings() {
       this.resetting = true;
       this.$post({
-        action: "qpefw_admin_ajax",
+        action: "wpcipe_admin_ajax",
         route: "reset_settings",
-        type: 'qpefw_settings',
+        type: 'wpcipe_settings',
         tab: this.activeTab,
-        nonce: window.QuickProductEnquiryAdminVars.nonce,
+        nonce: window.WPCreativeIdeaProductEnquiryAdminVars.nonce,
       })
           .then((response) => {
             setTimeout(() => {
@@ -250,11 +250,11 @@ export default {
     enableActiveModule(type, status) {
       this.saving = true;
       this.$post({
-        action: "qpefw_admin_ajax",
+        action: "wpcipe_admin_ajax",
         route: "enable_active_module",
         type: type,
         status: status,
-        nonce: window.QuickProductEnquiryAdminVars.nonce,
+        nonce: window.WPCreativeIdeaProductEnquiryAdminVars.nonce,
       })
           .then((response) => {
             this.getEnableModule();
@@ -271,11 +271,11 @@ export default {
 
     getEnableModule() {
       this.fetching = true;
-      this.$get({
-        action: "qpefw_admin_ajax",
+      this.$post({
+        action: "wpcipe_admin_ajax",
         route: "get_active_module",
-        type: 'qpefw_module',
-        nonce: window.QuickProductEnquiryAdminVars.nonce,
+        type: 'wpcipe_module',
+        nonce: window.WPCreativeIdeaProductEnquiryAdminVars.nonce,
       })
           .then((response) => {
             this.activeModule = response.data.active_module;

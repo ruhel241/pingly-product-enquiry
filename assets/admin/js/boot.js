@@ -1670,16 +1670,16 @@ function mergeFn (a, b) {
 
 /***/ }),
 
-/***/ "./resources/admin/Bits/QPEFWPlugin.js":
-/*!*********************************************!*\
-  !*** ./resources/admin/Bits/QPEFWPlugin.js ***!
-  \*********************************************/
+/***/ "./resources/admin/Bits/WPCIPEPlugin.js":
+/*!**********************************************!*\
+  !*** ./resources/admin/Bits/WPCIPEPlugin.js ***!
+  \**********************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ QPEFWPlugin)
+/* harmony export */   "default": () => (/* binding */ WPCIPEPlugin)
 /* harmony export */ });
 /* harmony import */ var _Bits_elements__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/Bits/elements */ "./resources/admin/Bits/elements.js");
 /* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
@@ -1695,9 +1695,9 @@ function _toPrimitive(t, e) { if ("object" != _typeof(t) || !t) return t; var r;
 
 
 _Bits_elements__WEBPACK_IMPORTED_MODULE_0__["default"].use(vue_router__WEBPACK_IMPORTED_MODULE_2__["default"]);
-var QPEFWPlugin = /*#__PURE__*/function () {
-  function QPEFWPlugin() {
-    _classCallCheck(this, QPEFWPlugin);
+var WPCIPEPlugin = /*#__PURE__*/function () {
+  function WPCIPEPlugin() {
+    _classCallCheck(this, WPCIPEPlugin);
     // this.Router = new Router({
     //     mode: 'history',
     //     routes: [] // Define your routes here
@@ -1708,11 +1708,11 @@ var QPEFWPlugin = /*#__PURE__*/function () {
     this.addAction = _wordpress_hooks__WEBPACK_IMPORTED_MODULE_1__.addAction;
     this.applyFilters = _wordpress_hooks__WEBPACK_IMPORTED_MODULE_1__.applyFilters;
     this.removeAllActions = _wordpress_hooks__WEBPACK_IMPORTED_MODULE_1__.removeAllActions;
-    this.appVars = window.QuickProductEnquiryAdminVars;
+    this.appVars = window.WPCreativeIdeaProductEnquiryAdminVars;
 
     // Create a reactive data object for module status
     // this.moduleStatus = Vue.observable({
-    //     ...window.QuickProductEnquiryAdminVars.get_active_modules
+    //     ...window.WPCreativeIdeaProductEnquiryAdminVars.get_active_modules
     // });
 
     this.Vue = this.extendVueConstructor();
@@ -1722,9 +1722,9 @@ var QPEFWPlugin = /*#__PURE__*/function () {
   // updateModuleStatus(type, status) {
   //     Vue.set(this.moduleStatus, type, status);
   //     // Also trigger a custom event for components that might need it
-  //     this.doAction('qpefw_module_status_changed', type, status);
+  //     this.doAction('wpcipe_module_status_changed', type, status);
   // }
-  return _createClass(QPEFWPlugin, [{
+  return _createClass(WPCIPEPlugin, [{
     key: "extendVueConstructor",
     value: function extendVueConstructor() {
       var self = this;
@@ -1763,7 +1763,7 @@ var QPEFWPlugin = /*#__PURE__*/function () {
           getCopyText: function getCopyText(val) {
             return val;
           } // $t(string) {
-          //     return window.QuickProductEnquiryAdminVars.i18n[string] || string;
+          //     return window.WPCreativeIdeaProductEnquiryAdminVars.i18n[string] || string;
           // },
           // Updated method to use reactive module status
           // $getTypeModule(type) {
@@ -1799,7 +1799,7 @@ var QPEFWPlugin = /*#__PURE__*/function () {
       if (!title || !route.name || !route.path || !route.component) {
         return;
       }
-      this.addFilter('qpefw_top_menus', this.appVars.slug, function (menus) {
+      this.addFilter('wpcipe_top_menus', this.appVars.slug, function (menus) {
         menus = menus.filter(function (m) {
           return m.route !== route.name;
         });
@@ -1809,7 +1809,7 @@ var QPEFWPlugin = /*#__PURE__*/function () {
         });
         return menus;
       });
-      this.addFilter('qpefw_global_routes', this.appVars.slug, function (routes) {
+      this.addFilter('wpcipe_global_routes', this.appVars.slug, function (routes) {
         routes = routes.filter(function (r) {
           return r.name !== route.name;
         });
@@ -1821,9 +1821,9 @@ var QPEFWPlugin = /*#__PURE__*/function () {
     key: "request",
     value: function request(method, route) {
       var data = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
-      var url = "".concat(window.QuickProductEnquiryAdminVars.rest.url, "/").concat(route);
+      var url = "".concat(window.WPCreativeIdeaProductEnquiryAdminVars.rest.url, "/").concat(route);
       var headers = {
-        'X-WP-Nonce': window.QuickProductEnquiryAdminVars.rest.nonce
+        'X-WP-Nonce': window.WPCreativeIdeaProductEnquiryAdminVars.rest.nonce
       };
       if (['PUT', 'PATCH', 'DELETE'].indexOf(method.toUpperCase()) !== -1) {
         headers['X-HTTP-Method-Override'] = method;
@@ -1846,18 +1846,18 @@ var QPEFWPlugin = /*#__PURE__*/function () {
   }, {
     key: "$get",
     value: function $get(options) {
-      return window.jQuery.get(window.QuickProductEnquiryAdminVars.ajaxurl, options);
+      return window.jQuery.get(window.WPCreativeIdeaProductEnquiryAdminVars.ajaxurl, options);
     }
   }, {
     key: "$post",
     value: function $post(options) {
-      return window.jQuery.post(window.QuickProductEnquiryAdminVars.ajaxurl, options);
+      return window.jQuery.post(window.WPCreativeIdeaProductEnquiryAdminVars.ajaxurl, options);
     }
   }, {
     key: "$put",
     value: function $put(options) {
       return window.jQuery.ajax({
-        url: window.QuickProductEnquiryAdminVars.ajaxurl,
+        url: window.WPCreativeIdeaProductEnquiryAdminVars.ajaxurl,
         type: 'PUT',
         data: options
       });
@@ -1865,7 +1865,7 @@ var QPEFWPlugin = /*#__PURE__*/function () {
   }, {
     key: "$del",
     value: function $del(options) {
-      return window.jQuery.post(window.QuickProductEnquiryAdminVars.ajaxurl, options);
+      return window.jQuery.post(window.WPCreativeIdeaProductEnquiryAdminVars.ajaxurl, options);
     }
   }, {
     key: "ucFirst",
@@ -2038,9 +2038,9 @@ element_ui_lib_locale__WEBPACK_IMPORTED_MODULE_1__["default"].use(element_ui_lib
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _Bits_QPEFWPlugin_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Bits/QPEFWPlugin.js */ "./resources/admin/Bits/QPEFWPlugin.js");
+/* harmony import */ var _Bits_WPCIPEPlugin_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Bits/WPCIPEPlugin.js */ "./resources/admin/Bits/WPCIPEPlugin.js");
 
-window.QPEFWPlugin = new _Bits_QPEFWPlugin_js__WEBPACK_IMPORTED_MODULE_0__["default"]();
+window.WPCIPEPlugin = new _Bits_WPCIPEPlugin_js__WEBPACK_IMPORTED_MODULE_0__["default"]();
 
 /***/ }),
 
@@ -72302,10 +72302,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/scss/public-qpefw.scss":
-/*!******************************************!*\
-  !*** ./resources/scss/public-qpefw.scss ***!
-  \******************************************/
+/***/ "./resources/scss/public-wpcipe.scss":
+/*!*******************************************!*\
+  !*** ./resources/scss/public-wpcipe.scss ***!
+  \*******************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -89841,7 +89841,7 @@ var validateNamespace_default = validateNamespace;
 /******/ 		var installedChunks = {
 /******/ 			"/assets/admin/js/boot": 0,
 /******/ 			"assets/admin/css/admin": 0,
-/******/ 			"assets/public/css/quick-product-enquiry-for-woocommerce": 0
+/******/ 			"assets/public/css/wpcreativeidea-product-enquiry": 0
 /******/ 		};
 /******/ 		
 /******/ 		// no chunk on demand loading
@@ -89881,7 +89881,7 @@ var validateNamespace_default = validateNamespace;
 /******/ 			return __webpack_require__.O(result);
 /******/ 		}
 /******/ 		
-/******/ 		var chunkLoadingGlobal = self["webpackChunkquick_product_enquiry_for_woocommerce"] = self["webpackChunkquick_product_enquiry_for_woocommerce"] || [];
+/******/ 		var chunkLoadingGlobal = self["webpackChunkwpcreativeidea_product_enquiry"] = self["webpackChunkwpcreativeidea_product_enquiry"] || [];
 /******/ 		chunkLoadingGlobal.forEach(webpackJsonpCallback.bind(null, 0));
 /******/ 		chunkLoadingGlobal.push = webpackJsonpCallback.bind(null, chunkLoadingGlobal.push.bind(chunkLoadingGlobal));
 /******/ 	})();
@@ -89891,9 +89891,9 @@ var validateNamespace_default = validateNamespace;
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 	__webpack_require__.O(undefined, ["assets/admin/css/admin","assets/public/css/quick-product-enquiry-for-woocommerce"], () => (__webpack_require__("./resources/admin/boot.js")))
-/******/ 	__webpack_require__.O(undefined, ["assets/admin/css/admin","assets/public/css/quick-product-enquiry-for-woocommerce"], () => (__webpack_require__("./resources/scss/admin.scss")))
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["assets/admin/css/admin","assets/public/css/quick-product-enquiry-for-woocommerce"], () => (__webpack_require__("./resources/scss/public-qpefw.scss")))
+/******/ 	__webpack_require__.O(undefined, ["assets/admin/css/admin","assets/public/css/wpcreativeidea-product-enquiry"], () => (__webpack_require__("./resources/admin/boot.js")))
+/******/ 	__webpack_require__.O(undefined, ["assets/admin/css/admin","assets/public/css/wpcreativeidea-product-enquiry"], () => (__webpack_require__("./resources/scss/admin.scss")))
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["assets/admin/css/admin","assets/public/css/wpcreativeidea-product-enquiry"], () => (__webpack_require__("./resources/scss/public-wpcipe.scss")))
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()

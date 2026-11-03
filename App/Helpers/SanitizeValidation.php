@@ -1,6 +1,6 @@
 <?php
 
-namespace Ruhel241\QuickProductEnquiry\Helpers;
+namespace WPCreativeIdeaProductEnquiry\Helpers;
 
 class SanitizeValidation
 {

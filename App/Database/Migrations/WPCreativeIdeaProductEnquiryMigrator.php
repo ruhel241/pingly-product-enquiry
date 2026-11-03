@@ -1,10 +1,14 @@
 <?php
 
-namespace Ruhel241\QuickProductEnquiry\Database\Migrations;
+namespace WPCreativeIdeaProductEnquiry\Database\Migrations;
 
-class QuickProductEnquiryMigrator
+if (!defined('ABSPATH')) {
+    exit;
+}
+
+class WPCreativeIdeaProductEnquiryMigrator
 {
-    static $tableName = 'qpefw_quick_product_enquiry';
+    static $tableName = 'wpcipe_product_enquiry';
 
     public static function migrate()
     {

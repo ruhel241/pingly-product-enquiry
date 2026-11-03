@@ -1,7 +1,7 @@
 <?php
 
-namespace Ruhel241\QuickProductEnquiry\Handler;
-use Ruhel241\QuickProductEnquiry\Handler\FrontendHandler;
+namespace WPCreativeIdeaProductEnquiry\Handler;
+use WPCreativeIdeaProductEnquiry\Handler\FrontendHandler;
 
 class ActionHandler
 {
@@ -11,9 +11,9 @@ class ActionHandler
 
     public function activationAddons() {
       
-        $qpefwActiveModule = get_option('qpefw_active_module', []);
+        $wpcipeActiveModule = get_option('wpcipe_active_module', []);
 
-        if (isset($qpefwActiveModule['qpefw_module']) && $qpefwActiveModule['qpefw_module'] === 'yes') {
+        if (isset($wpcipeActiveModule['wpcipe_module']) && $wpcipeActiveModule['wpcipe_module'] === 'yes') {
             $frontendHandler = new FrontendHandler();
             $frontendHandler->register();
         } 

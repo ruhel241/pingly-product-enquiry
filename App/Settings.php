@@ -1,13 +1,17 @@
 <?php
 
-namespace Ruhel241\QuickProductEnquiry;
+namespace WPCreativeIdeaProductEnquiry;
+
+if (!defined('ABSPATH')) {
+    exit;
+}
 
 class Settings
 {
     public function getConfigs()
     {
         $configs = [
-            'qpefw_settings' => [
+            'wpcipe_settings' => [
                 'settings' => [
                     'shop_page_enable'                     => 'yes',
                     'in_stock_shop_button_text'            => 'Enquiry Us',
@@ -58,32 +62,32 @@ class Settings
                     'order_summary_enquiry_button_color' => '#5467f8',
 
                 ],
-                'quick-product-enquiry-for-woocommerce' => [
+                'wpcreativeidea-product-enquiry' => [
                     'details' => []
                 ]
             ],
         ];
 
-        return apply_filters('qpefw/configs', $configs);
+        return apply_filters('wpcipe/configs', $configs);
     }
 
     public function getActiveModule() {
-        $qpefwActiveModule = [
-            'qpefw_module' => 'yes',
+        $wpcipeActiveModule = [
+            'wpcipe_module' => 'yes',
         ];
 
-        return apply_filters('qpefw/active_module', $qpefwActiveModule);
+        return apply_filters('wpcipe/active_module', $wpcipeActiveModule);
     }
 
-    public function qpefwLicense() {
-        $qpefwLicense = [
+    public function wpcipeLicense() {
+        $wpcipeLicense = [
             'license_key' => '',
             'price_id'    => '',
             'expires'     => '',
             'status'      => '',
         ];
         
-        return apply_filters('qpefw/get_license', $qpefwLicense);
+        return apply_filters('wpcipe/get_license', $wpcipeLicense);
     }
 }
 

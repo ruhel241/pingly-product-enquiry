@@ -1,8 +1,8 @@
 <template>
-  <div class="qpefw-settings-wrapper" v-loading="loading" element-loading-spinner="el-icon-loading">
-    <div class="qpefw-settings-content">
+  <div class="wpcipe-settings-wrapper" v-loading="loading" element-loading-spinner="el-icon-loading">
+    <div class="wpcipe-settings-content">
       <template>
-        <div class="qpefw-header">
+        <div class="wpcipe-header">
           <el-input
             placeholder="Search"
             v-model="search"
@@ -13,7 +13,7 @@
         </div>
         <!-- {{ tableData }} -->
         <table-selections
-          @reloadData="getQuickProductEnquiry"
+          @reloadData="getWPCreativeIdeaProductEnquiry"
           :selections="multipleSelection"
         />
           <el-table
@@ -85,9 +85,9 @@
               label="Actions"
               width="150">
               <template slot-scope="scope">
-                <el-button class="qpefw-btn" type="primary" icon="el-icon-view" circle @click="confirmView(scope.row.id)"></el-button>
+                <el-button class="wpcipe-btn" type="primary" icon="el-icon-view" circle @click="confirmView(scope.row.id)"></el-button>
                 <el-button 
-                  class="qpefw-btn"
+                  class="wpcipe-btn"
                   type="danger" 
                   icon="el-icon-delete" 
                   @click="handleDeleteModal(scope.row.id)"
@@ -97,10 +97,10 @@
             </el-table-column>
           </el-table>
         <table-selections
-            @reloadData="getQuickProductEnquiry"
+            @reloadData="getWPCreativeIdeaProductEnquiry"
             :selections="multipleSelection"
         />
-        <div class="qpefw_pagination_wrap">
+        <div class="wpcipe_pagination_wrap">
             <el-pagination
                 :hide-on-single-page="false"
                 @size-change="handleSizeChange"
@@ -119,12 +119,12 @@
           :close-on-click-modal="true"
           :close-on-press-escape="true"
           :show-close="true"
-          custom-class="qpefw-module-disable-dialog"
+          custom-class="wpcipe-module-disable-dialog"
           center>
-          <div class="qpefw-module-dialog-content">
+          <div class="wpcipe-module-dialog-content">
             <div class="dialog-text">
-              <h3>Quick Product Enquiry Details</h3>
-              <table class="qpefw-table" v-loading="loading" element-loading-spinner="el-icon-loading">
+              <h3>Product Enquiry Details</h3>
+              <table class="wpcipe-table" v-loading="loading" element-loading-spinner="el-icon-loading">
                 <tbody>
                   <tr v-if="detail.name">
                     <td class="label">Name</td>
@@ -181,7 +181,7 @@
 // import { Loading } from 'element-ui';
 import TableSelections from './_TableSelectionHandler.vue';
   export default {
-    name: 'quick-product-enquiry-data',
+    name: 'wpcreativeidea-product-enquiry-data',
     props: ['settings', 'fetching'],
     components: {
       TableSelections,
@@ -193,9 +193,9 @@ import TableSelections from './_TableSelectionHandler.vue';
         search: "",
         paginate: {
           total: 0,
-          current_page: +(localStorage.getItem('quickProductEnquiryDetailsCurrentPage') || 1),
+          current_page: +(localStorage.getItem('WPCreativeIdeaProductEnquiryDetailsCurrentPage') || 1),
           last_page: 1,
-          per_page: +(localStorage.getItem('quickProductEnquiryPerPage') || 10)
+          per_page: +(localStorage.getItem('WPCreativeIdeaProductEnquiryPerPage') || 10)
         },
         tableData: [],
         multipleSelection: [],
@@ -203,7 +203,7 @@ import TableSelections from './_TableSelectionHandler.vue';
         detail: {
           name: ''
         },
-        adminUrl: window.QuickProductEnquiryAdminVars.admin_url
+        adminUrl: window.WPCreativeIdeaProductEnquiryAdminVars.admin_url
       }
     },
     methods: {
@@ -225,7 +225,7 @@ import TableSelections from './_TableSelectionHandler.vue';
           return `
             <a href="${obj.product_url}"
               target="_blank"
-              class="qpefw-product-title">
+              class="wpcipe-product-title">
               ${this.textTrim(obj.title)}
             </a>`;
         } catch (e) {
@@ -240,23 +240,23 @@ import TableSelections from './_TableSelectionHandler.vue';
       },
       
       handleSizeChange(val) {
-          localStorage.setItem('quickProductEnquiryPerPage', val);
+          localStorage.setItem('WPCreativeIdeaProductEnquiryPerPage', val);
           this.paginate.per_page = val;
-          this.getQuickProductEnquiry();
+          this.getWPCreativeIdeaProductEnquiry();
       },
       handleCurrentChange(val) {
-          localStorage.setItem('quickProductEnquiryDetailsCurrentPage', val);
+          localStorage.setItem('WPCreativeIdeaProductEnquiryDetailsCurrentPage', val);
           this.paginate.current_page = val
-          this.getQuickProductEnquiry();
+          this.getWPCreativeIdeaProductEnquiry();
       },
       confirmView(id) {
         this.showDisableDialog = true;
         this.loading = true;
-        this.$get({
-          action: "qpefw_admin_ajax",
-          route: "get_qpefw_detail_view",
+        this.$post({
+          action: "wpcipe_admin_ajax",
+          route: "get_wpcipe_detail_view",
           detail_id: id,
-          nonce: window.QuickProductEnquiryAdminVars.nonce,
+          nonce: window.WPCreativeIdeaProductEnquiryAdminVars.nonce,
         })
             .then((response) => {
               this.detail = response.data.detail;
@@ -280,18 +280,18 @@ import TableSelections from './_TableSelectionHandler.vue';
 
       searchHandler(val) {
         this.search = val;
-        this.getQuickProductEnquiry();
+        this.getWPCreativeIdeaProductEnquiry();
       },
 
-      getQuickProductEnquiry() {
+      getWPCreativeIdeaProductEnquiry() {
         this.loading = true;
-        this.$get({
-          action: "qpefw_admin_ajax",
-          route: "get_qpefw_details",
+        this.$post({
+          action: "wpcipe_admin_ajax",
+          route: "get_wpcipe_details",
           search: this.search,
           current_page: this.paginate.current_page,
           per_page: this.paginate.per_page,
-          nonce: window.QuickProductEnquiryAdminVars.nonce,
+          nonce: window.WPCreativeIdeaProductEnquiryAdminVars.nonce,
         })
             .then((response) => {
               this.tableData = response.data.data.details;
@@ -328,15 +328,15 @@ import TableSelections from './_TableSelectionHandler.vue';
       },
       performAction(type, id) {
         this.$post({
-          action: "qpefw_admin_ajax",
+          action: "wpcipe_admin_ajax",
           route: "maybe_delete_details",
           details_ids: [id],
           action_type: type,
-          nonce: window.QuickProductEnquiryAdminVars.nonce,
+          nonce: window.WPCreativeIdeaProductEnquiryAdminVars.nonce,
         })
           .then((response) => {
             this.$handleSuccess(response.data.message);
-            this.getQuickProductEnquiry();
+            this.getWPCreativeIdeaProductEnquiry();
           })
           .fail((error) => {
             this.$handleError(error);
@@ -345,7 +345,7 @@ import TableSelections from './_TableSelectionHandler.vue';
       },
     },
     mounted() {
-      this.getQuickProductEnquiry();
+      this.getWPCreativeIdeaProductEnquiry();
     }
   }
 </script>

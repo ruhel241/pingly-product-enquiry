@@ -1,7 +1,7 @@
 <template>
-    <div class="qpefw-license-management qpefw-card" v-if="hasPro">
-        <div class="qpefw_header">
-            <div class="qpefw_title qpefw_header_title">
+    <div class="wpcipe-license-management wpcipe-card" v-if="hasPro">
+        <div class="wpcipe_header">
+            <div class="wpcipe_title wpcipe_header_title">
                 <h3 style="margin: 0;"> License Management </h3>
                 <el-button
                     type="text"
@@ -11,18 +11,18 @@
                 </el-button>
             </div>
         </div>
-        <div v-loading="verifying" class="qpefw_pad_around">
-            <div v-if="fetching" v-loading="fetching" class="qpefw_narrow_box text-align-center fetching-text">
+        <div v-loading="verifying" class="wpcipe_pad_around">
+            <div v-if="fetching" v-loading="fetching" class="wpcipe_narrow_box text-align-center fetching-text">
                 <h3>Fetching License Information Please wait</h3>
             </div>
-            <div v-else class="qpefw_narrow_box" :class="'qpefw_license_'+licenseData.status">
-                <div class="qpefw-expired" v-if="licenseData.status == 'expired'">
+            <div v-else class="wpcipe_narrow_box" :class="'wpcipe_license_'+licenseData.status">
+                <div class="wpcipe-expired" v-if="licenseData.status == 'expired'">
                     <h3>Looks like your license has been expired </h3>
                     <div class="license-status-container">
                         <div class="license-info-card">
                             <div class="info-item">
                                 <div class="label"> Plugin:  </div>
-                                <div class="value"> Quick Product Enquiry for WooCommerce </div>
+                                <div class="value"> WPCreativeIdea Product Enquiry </div>
                             </div>
                             <div class="info-item">
                                 <div class="label"> License Status: </div>
@@ -44,7 +44,7 @@
                         </div>
                     </div>
                     <a :href="licenseData.renew_url" target="_blank" class="el-button el-button--danger el-button--small">Click Here to Renew your License</a>
-                    <p class="license-expired-notice">Note: <em>Your License has expired, so "Quick Product Enquiry for WooCommerce" Addons is currently inactive. Please click the button to renew your license and continue using the plugin.</em> </p>
+                    <p class="license-expired-notice">Note: <em>Your License has expired, so "WPCreativeIdea Product Enquiry" Addons is currently inactive. Please click the button to renew your license and continue using the plugin.</em> </p>
                     <hr style="margin: 20px 0px;" />
                     <p v-if="!showNewLicenseInput">Have a new license Key? <a @click.prevent="showNewLicenseInput = !showNewLicenseInput" href="#">Click here</a></p>
                     <div v-else>
@@ -52,8 +52,8 @@
                         <el-input v-model="licenseKey" placeholder="License Key">
                             <el-button @click="verifyLicense()" slot="append" icon="el-icon-lock">Verify License</el-button>
                         </el-input>
-                        <!-- <div class="qpefw-provide-license-key">
-                            <h3>Please Provide a license key of Quick Product Enquiry for WooCommerce Addon</h3>
+                        <!-- <div class="wpcipe-provide-license-key">
+                            <h3>Please Provide a license key of WPCreativeIdea Product Enquiry Addon</h3>
                             <el-input v-model="licenseKey" placeholder="License Key">
                                 <el-button type="success" @click="verifyLicense()" slot="append" icon="el-icon-lock">Verify License</el-button>
                             </el-input>
@@ -64,7 +64,7 @@
                     </div>
                 </div>
                 
-                <div class="qpefw-valid" v-else-if="licenseData.status == 'valid'">
+                <div class="wpcipe-valid" v-else-if="licenseData.status == 'valid'">
                     <div class="circle-check-icon">
                         <span class="el-icon el-icon-circle-check"></span>
                     </div>
@@ -74,7 +74,7 @@
                         <div class="license-info-card">
                             <div class="info-item">
                                 <div class="label"> Plugin:  </div>
-                                <div class="value"> Quick Product Enquiry for WooCommerce </div>
+                                <div class="value"> WPCreativeIdea Product Enquiry </div>
                             </div>
                             <div class="info-item">
                                 <div class="label"> License Key: </div>
@@ -103,15 +103,15 @@
                     <p>Want to deactivate this license? <a @click.prevent="deactivateLicense()" href="#">Click here</a></p>
                 </div>
 
-                <div class="qpefw-provide-license-key" v-else>
-                    <h3>Please Provide a license key of Quick Product Enquiry for WooCommerce Addons</h3>
+                <div class="wpcipe-provide-license-key" v-else>
+                    <h3>Please Provide a license key of WPCreativeIdea Product Enquiry Addons</h3>
                     <el-input v-model="licenseKey" placeholder="License Key">
                         <el-button type="success" @click="verifyLicense()" slot="append" icon="el-icon-lock">Verify License</el-button>
                     </el-input>
                     <p class="text-align-center" style="color: red; margin: 50px 0 0px 0px;" v-html="errorMessage"></p>
                     <hr style="margin: 10px 0px 10px 0px;"/>
                     <p class="text-align-center alert-text"> Don't have a license key? <a target="_blank" :href="licenseData.purchase_url">Purchase one here</a></p>
-                    <p class="license-empty-notice">Note: <em>Please activate your license key, Quick Product Enquiry for WooCommerce Addons will not work without license activation.</em> </p>
+                    <p class="license-empty-notice">Note: <em>Please activate your license key, WPCreativeIdea Product Enquiry Addons will not work without license activation.</em> </p>
                 </div>
             </div>
         </div>
@@ -130,17 +130,17 @@ export default {
             licenseKey: '',
             showNewLicenseInput: false,
             errorMessage: '',
-            hasPro: !!window.QuickProductEnquiryAdminVars?.has_pro
+            hasPro: !!window.WPCreativeIdeaProductEnquiryAdminVars?.has_pro
         }
     },
     methods: {
         getLicense() {
             this.errorMessage = '';
             this.fetching = true;
-            this.$get({
-                action: "qpefw_admin_license_ajax",
+            this.$post({
+                action: "wpcipe_admin_license_ajax",
                 route: "get_license_status",
-                nonce: window.QuickProductEnquiryAdminVars.nonce,
+                nonce: window.WPCreativeIdeaProductEnquiryAdminVars.nonce,
                 // verify: true
             })
                 .then((response) => {
@@ -164,9 +164,9 @@ export default {
             this.verifying = true;
             this.errorMessage = '';
             this.$post({
-                action: "qpefw_admin_license_ajax",
+                action: "wpcipe_admin_license_ajax",
                 route: "save_license",
-                nonce: window.QuickProductEnquiryAdminVars.nonce,
+                nonce: window.WPCreativeIdeaProductEnquiryAdminVars.nonce,
                 license_key: this.licenseKey
             })
                 .then((response) => {
@@ -205,9 +205,9 @@ export default {
         deactivateLicense() {
             this.verifying = true;
             this.$del({
-                action: "qpefw_admin_license_ajax",
+                action: "wpcipe_admin_license_ajax",
                 route: "deactivated_license",
-                nonce: window.QuickProductEnquiryAdminVars.nonce
+                nonce: window.WPCreativeIdeaProductEnquiryAdminVars.nonce
             })
                 .then((response) => {
                     this.licenseData = response.data.license_data;

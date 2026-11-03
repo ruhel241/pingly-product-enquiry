@@ -1,8 +1,8 @@
 
 {
-  "name": "quick-product-enquiry-for-woocommerce",
+  "name": "wpcreativeidea-product-enquiry",
   "version": "1.0.1",
-  "description": "Quick Product Enquiry for WooCommerce",
+  "description": "WPCreativeIdea Product Enquiry",
   "main": "index.js",
   "scripts": {
     "dev": "mix",
@@ -11,14 +11,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ruhel241/quick-product-enquiry-for-woocommerce.git"
+    "url": "git+https://github.com/ruhel241/wpcreativeidea-product-enquiry.git"
   },
   "author": "ruhel241",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/ruhel241/quick-product-enquiry-for-woocommerce/issues"
+    "url": "https://github.com/ruhel241/wpcreativeidea-product-enquiry/issues"
   },
-  "homepage": "https://github.com/ruhel241/quick-product-enquiry-for-woocommerce#readme",
+  "homepage": "https://github.com/ruhel241/wpcreativeidea-product-enquiry#readme",
   "dependencies": {
     "@wordpress/hooks": "^4.2.0",
     "clipboard": "^2.0.11",

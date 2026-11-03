@@ -1,3 +1,3 @@
-import QPEFWPlugin from './Bits/QPEFWPlugin.js';
+import WPCIPEPlugin from './Bits/WPCIPEPlugin.js';
 
-window.QPEFWPlugin = new QPEFWPlugin();
+window.WPCIPEPlugin = new WPCIPEPlugin();

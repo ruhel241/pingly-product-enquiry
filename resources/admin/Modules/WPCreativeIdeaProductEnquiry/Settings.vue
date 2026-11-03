@@ -1,6 +1,6 @@
 <template>
-  <div class="qpefw-settings-wrapper" v-loading="fetching" element-loading-spinner="el-icon-loading">
-    <div class="qpefw-settings-content">
+  <div class="wpcipe-settings-wrapper" v-loading="fetching" element-loading-spinner="el-icon-loading">
+    <div class="wpcipe-settings-content">
       <div class="setting-title">
         <h3>Enquiry Shop Page Button Settings</h3>
       </div>
@@ -57,7 +57,7 @@
       </div>
     </div>
 
-    <div class="qpefw-settings-content">
+    <div class="wpcipe-settings-content">
       <div class="setting-title">
         <h3>Enquiry Single Page Button Settings</h3>
       </div>
@@ -111,7 +111,7 @@
       </div>
     </div>
 
-    <div class="qpefw-settings-content">
+    <div class="wpcipe-settings-content">
       <div class="setting-title">
         <h3>Enquiry Form Heading</h3>
       </div>
@@ -150,7 +150,7 @@
       </div>
     </div>
 
-    <div class="qpefw-settings-content">
+    <div class="wpcipe-settings-content">
       <div class="setting-title">
         <h3>Enquiry Form Tabs Settings</h3>
       </div>
@@ -195,7 +195,7 @@
       </div>
     </div>
 
-    <div class="qpefw-settings-content" v-if="settings.enquiry_form_tab_enable === 'yes'">
+    <div class="wpcipe-settings-content" v-if="settings.enquiry_form_tab_enable === 'yes'">
       <div class="setting-title">
         <h3>Enquiry Form Configure Settings</h3>
       </div>
@@ -251,7 +251,7 @@
       </div>
     </div>
 
-    <div class="qpefw-settings-content" v-if="settings.whatsapp_tab_enable === 'yes'">
+    <div class="wpcipe-settings-content" v-if="settings.whatsapp_tab_enable === 'yes'">
       <div class="setting-title">
         <h3>WhatsApp Configure Settings</h3>
       </div>
@@ -339,7 +339,7 @@
       </div>
     </div>
 
-    <div class="qpefw-settings-content" v-if="settings.sms_tab_enable === 'yes'">
+    <div class="wpcipe-settings-content" v-if="settings.sms_tab_enable === 'yes'">
       <div class="setting-title">
           <h3>SMS Configure Settings</h3>
         </div>
@@ -426,7 +426,7 @@
           </el-tooltip>
         </div>
     </div>
-    <div class="qpefw-settings-content">
+    <div class="wpcipe-settings-content">
       <div class="setting-title">
         <h3>ShortCode Enquiry Button Settings</h3>
       </div>
@@ -505,7 +505,7 @@
         </el-tooltip>
       </div>
     </div>   
-    <div class="qpefw-settings-content">
+    <div class="wpcipe-settings-content">
       <div class="setting-title">
         <h3>Cart Page Enquiry Button Settings</h3>
       </div>
@@ -534,7 +534,7 @@
         </el-tooltip>
       </div>
     </div> 
-    <div class="qpefw-settings-content">
+    <div class="wpcipe-settings-content">
       <div class="setting-title">
         <h3>Order Summary Enquiry Button Settings</h3>
       </div>
@@ -593,9 +593,9 @@
           receiver_number: ''
         }
       ],
-      shortcodeGeneralForm: '[qpefw_button]',
-      shortcodeProductId: '[qpefw_button product_id="23"]',
-      shortcodeProductSlug: '[qpefw_button product_slug="beanie-with-logo"]'
+      shortcodeGeneralForm: '[wpcipe_button]',
+      shortcodeProductId: '[wpcipe_button product_id="23"]',
+      shortcodeProductSlug: '[wpcipe_button product_slug="beanie-with-logo"]'
     }
   },
   watch: {

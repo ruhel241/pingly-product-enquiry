@@ -27,7 +27,7 @@ body.woocommerce_page_wc-settings p.submit {
   display: none !important;
 }
 // Admin Base styles
-.qpefw-app-wrapper {
+.wpcipe-app-wrapper {
   background: $light-bg;
   min-height: 100vh;
   margin-left: -15px;
@@ -43,7 +43,7 @@ body.woocommerce_page_wc-settings p.submit {
       font-size: 40px;
     }
   }
-  .qpefw-main-navigation {
+  .wpcipe-main-navigation {
     background: $card-bg;
     box-shadow: $shadow-md;
     padding-top: $spacing-unit * 3;
@@ -118,7 +118,7 @@ body.woocommerce_page_wc-settings p.submit {
     }
   }
   // Content area
-  .qpefw-card {
+  .wpcipe-card {
     background: $card-bg;
     padding: 20px;
     box-shadow: $shadow-md;
@@ -129,13 +129,13 @@ body.woocommerce_page_wc-settings p.submit {
       margin: 0px;
     }
   }
-  .qpefw-body {
+  .wpcipe-body {
     padding: $spacing-unit * 2;
   }
   // settings tab
-  .qpefw-settings-wrapper {
+  .wpcipe-settings-wrapper {
     margin-bottom: 30px;
-    .qpefw-settings-content {
+    .wpcipe-settings-content {
       border-bottom: solid 1px #ddd;
       padding-bottom: 15px;
       margin-top: 20px;
@@ -208,8 +208,8 @@ body.woocommerce_page_wc-settings p.submit {
     }
   }
   // Styles tab
-  .qpefw-styles-wrapper {
-    .qpefw-styles-header {
+  .wpcipe-styles-wrapper {
+    .wpcipe-styles-header {
       margin-bottom: $spacing-unit * 5;
       h2 {
         font-size: 24px;
@@ -391,7 +391,7 @@ body.woocommerce_page_wc-settings p.submit {
   //     width: 100%;
   //   }
 
-  //   .qpefw-body {
+  //   .wpcipe-body {
   //     margin: $spacing-unit;
   //     padding: $spacing-unit * 2;
   //   }
@@ -421,7 +421,7 @@ body.woocommerce_page_wc-settings p.submit {
   }
 
   // All modules
-  .qpefw-product-section {
+  .wpcipe-product-section {
     //padding: 2rem 0;
     .product-item {
       background: #ffffff;
@@ -526,17 +526,17 @@ body.woocommerce_page_wc-settings p.submit {
 
   /* Responsive adjustments */
   @media (max-width: 768px) {
-    .qpefw-product-section {
+    .wpcipe-product-section {
       .feature-footer {
         flex-direction: column;
         gap: 10px;
       }
-      .qpefw-product-section .el-button {
+      .wpcipe-product-section .el-button {
         width: 100%;
         margin-right: 0 !important;
         margin-bottom: 10px;
       }
-      .qpefw-product-section .el-switch {
+      .wpcipe-product-section .el-switch {
         margin-left: 0;
         align-self: flex-end;
       }
@@ -544,7 +544,7 @@ body.woocommerce_page_wc-settings p.submit {
   }
 
   //settings
-  .qpefw-settings-header {
+  .wpcipe-settings-header {
     display: flex;
     gap: 20px;
     align-items: center;
@@ -557,7 +557,7 @@ body.woocommerce_page_wc-settings p.submit {
   }
 
 //module
-  .qpefw-module-disable-dialog {
+  .wpcipe-module-disable-dialog {
     border-radius: 15px;
     margin-top: 30vh !important;
     .el-dialog__header {
@@ -652,7 +652,7 @@ body.woocommerce_page_wc-settings p.submit {
       }
     }
   }
-  .qpefw_fullscreen_loading {
+  .wpcipe_fullscreen_loading {
     opacity: 0.7;
     .el-loading-spinner {
       margin-top: 60px !important;
@@ -720,8 +720,8 @@ body.woocommerce_page_wc-settings p.submit {
     }
   }
 
-  // Quick Product Enquiry for WooCommerce styles
-  .qpefw-settings-content {
+  // WPCreativeIdea Product Enquiry styles
+  .wpcipe-settings-content {
     .el-collapse {
           margin: 20px;
           /* background: #dddd; */
@@ -734,19 +734,19 @@ body.woocommerce_page_wc-settings p.submit {
               }
           }
       }
-    .qpefw-global-setting-row {
+    .wpcipe-global-setting-row {
       align-items: flex-start !important;
     }
-    .qpefw-global-checkbox {
+    .wpcipe-global-checkbox {
       display: flex;
       flex-direction: column;
       gap: 20px;
     }
   }
   
-  // qpefw styles
-   // quick enquire us styles
-  .qpefw-header {
+  // wpcipe styles
+   // enquire us styles
+  .wpcipe-header {
     display: flex;
     justify-content: end;
     // margin-right: 1px;
@@ -760,7 +760,7 @@ body.woocommerce_page_wc-settings p.submit {
     }
   }
   // pagination style
-  .qpefw_pagination_wrap {
+  .wpcipe_pagination_wrap {
     margin-top: 10px;
     text-align: right;
     .el-pagination {
@@ -789,7 +789,7 @@ body.woocommerce_page_wc-settings p.submit {
     }
   }
   /* enquire us button */
-  .qpefw-module-disable-dialog {
+  .wpcipe-module-disable-dialog {
     border-radius: 5px !important;
     overflow: hidden;
     .el-dialog__header {
@@ -814,7 +814,7 @@ body.woocommerce_page_wc-settings p.submit {
       padding: 0 !important;
     }
     /* Modal */
-    .qpefw-module-dialog-content {
+    .wpcipe-module-dialog-content {
       background: #ffffff;
       margin: 18px;
       padding: 24px 26px;
@@ -849,7 +849,7 @@ body.woocommerce_page_wc-settings p.submit {
           color: #111827;
         }
       }
-      .qpefw-table {
+      .wpcipe-table {
         width: 100%;
         border-collapse: collapse;
         background: #ffffff;
@@ -905,12 +905,12 @@ body.woocommerce_page_wc-settings p.submit {
       }
     }
   }
-  .qpefw-settings-content {
-    .qpefw-product-title {
+  .wpcipe-settings-content {
+    .wpcipe-product-title {
       text-decoration: none !important;
       color: #409EFF;
     }
-    .qpefw-btn {
+    .wpcipe-btn {
       padding: 12px;
       border-radius: 50%;
       box-shadow: initial !important;
@@ -956,9 +956,9 @@ body.woocommerce_page_wc-settings p.submit {
 }
 
 // license management styles
-.qpefw-license-management {
-  .qpefw_header {
-    .qpefw_header_title {
+.wpcipe-license-management {
+  .wpcipe_header {
+    .wpcipe_header_title {
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -970,9 +970,9 @@ body.woocommerce_page_wc-settings p.submit {
       }
     }
   }  
-  .qpefw_license_valid {
+  .wpcipe_license_valid {
     // text-align: center;
-    .qpefw-valid {
+    .wpcipe-valid {
       .title {
         margin-bottom: 10px;
       }
@@ -1008,8 +1008,8 @@ body.woocommerce_page_wc-settings p.submit {
       }
     }
   }
-  .qpefw_license_expired {
-    .qpefw-expired {
+  .wpcipe_license_expired {
+    .wpcipe-expired {
         .title {
           margin-bottom: 10px;
         }
@@ -1063,7 +1063,7 @@ body.woocommerce_page_wc-settings p.submit {
     border-radius: 5px;
     margin-bottom: 20px;
   }
-  .qpefw-provide-license-key {
+  .wpcipe-provide-license-key {
       max-width: 750px;
       margin: 0 auto;
       padding: 45px 45px 0px 45px;
@@ -1083,9 +1083,9 @@ body.woocommerce_page_wc-settings p.submit {
 }
 
 // support
-.qpefw-support-wrapper {
-  .qpefw_header {
-    .qpefw_header_title {
+.wpcipe-support-wrapper {
+  .wpcipe_header {
+    .wpcipe_header_title {
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -1095,12 +1095,12 @@ body.woocommerce_page_wc-settings p.submit {
     }
   }
   
-  .qpefw_support_block_box {
+  .wpcipe_support_block_box {
     display: flex;
     gap: 20px;
     margin-top: 20px;
     text-align: center;
-    .qpefw_support_block {
+    .wpcipe_support_block {
       border: solid rgba(221, 221, 221, 0.8666666667);
       padding: 20px;
       border-radius: 8px;
@@ -1118,10 +1118,10 @@ body.woocommerce_page_wc-settings p.submit {
 }
 
 // documentation-wrapper
-.qpefw-documentation-wrapper {
+.wpcipe-documentation-wrapper {
   padding: 20px;
-  .qpefw_header {
-    .qpefw_header_title {
+  .wpcipe_header {
+    .wpcipe_header_title {
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -1130,7 +1130,7 @@ body.woocommerce_page_wc-settings p.submit {
       padding-bottom: 15px;
     }
   }
-  .qpefw-subtitle {
+  .wpcipe-subtitle {
     margin: 6px 0 0;
     color: #666;
     font-size: 14px;
@@ -1144,30 +1144,30 @@ body.woocommerce_page_wc-settings p.submit {
     padding: 15px;
   }
 
-  .qpefw-doc-content h4 {
+  .wpcipe-doc-content h4 {
     margin-top: 20px;
     font-size: 16px;
   }
 
-  .qpefw-doc-list,
-  .qpefw-doc-links {
+  .wpcipe-doc-list,
+  .wpcipe-doc-links {
     margin: 10px 0;
     padding-left: 18px;
   }
 
-  .qpefw-doc-list li,
-  .qpefw-doc-links li {
+  .wpcipe-doc-list li,
+  .wpcipe-doc-links li {
     margin-bottom: 8px;
     color: #444;
   }
 
-  .qpefw-doc-links a {
+  .wpcipe-doc-links a {
     text-decoration: none;
     color: #409eff;
     font-weight: 500;
   }
 
-  .qpefw-doc-links a:hover {
+  .wpcipe-doc-links a:hover {
     text-decoration: underline;
   }
 }

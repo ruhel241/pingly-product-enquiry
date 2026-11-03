@@ -1,4 +1,4 @@
-=== Quick Product Enquiry for WooCommerce ===
+=== WPCreativeIdea Product Enquiry ===
 Contributors: ruhel241
 Tags: product enquiry, whatsapp enquiry, sms enquiry, contact form, woocommerce enquiry
 Requires at least: 6.0
@@ -12,7 +12,7 @@ Let customers send product enquiries through a popup form, WhatsApp, or SMS with
 
 == Description ==
 
-Quick Product Enquiry for WooCommerce lets customers contact your store using an enquiry form, WhatsApp, or SMS directly from your WooCommerce store. Customers can ask questions about products before purchasing, helping you provide faster customer support.
+WPCreativeIdea Product Enquiry lets customers contact your store using an enquiry form, WhatsApp, or SMS directly from your WooCommerce store. Customers can ask questions about products before purchasing, helping you provide faster customer support.
 
 The plugin displays a convenient popup with the contact options you enable. Customers can submit an enquiry, open WhatsApp with a pre-filled message, or open their device's default SMS application to contact your store.
 
@@ -71,7 +71,7 @@ Enable or disable the Enquiry Form, WhatsApp, and SMS tabs independently. You ca
 
 = Translation Ready =
 
-All plugin text uses the `quick-product-enquiry-for-woocommerce` text domain.
+All plugin text uses the `wpcreativeidea-product-enquiry` text domain.
 
 == External Services ==
 
@@ -98,17 +98,17 @@ SMS delivery, availability, and charges depend on the customer's device, mobile 
 
 == Development ==
 
-Quick Product Enquiry for WooCommerce uses development tools including Vue.js, npm, Laravel Mix, Webpack, Babel, and Composer to generate production-ready JavaScript, CSS, and PHP assets.
+WPCreativeIdea Product Enquiry uses development tools including Vue.js, npm, Laravel Mix, Webpack, Babel, and Composer to generate production-ready JavaScript, CSS, and PHP assets.
 
 The source repository contains the human-readable source code used to build the distributed plugin assets.
 
 = Naming Convention =
 
-Plugin-defined functions, classes, hooks, AJAX actions, and options use the `qpefw` prefix to help avoid conflicts with other plugins.
+Plugin-defined functions, classes, hooks, AJAX actions, and options use the `wpcipe` prefix to help avoid conflicts with other plugins.
 
 = Source Code Repository =
 
-https://github.com/ruhel241/quick-product-enquiry-for-woocommerce
+https://github.com/ruhel241/wpcreativeidea-product-enquiry
 
 The repository includes source files and build configuration used to develop the plugin, including:
 
@@ -117,7 +117,7 @@ The repository includes source files and build configuration used to develop the
 * languages/
 * readme.txt
 * composer.json
-* quick-product-enquiry-for-woocommerce.php
+* wpcreativeidea-product-enquiry.php
 
 It also contains dependency definitions and configuration files required for development and compilation.
 
@@ -140,20 +140,20 @@ This plugin uses Composer for PHP dependency management and autoloading. Install
 
 1. Log in to your WordPress admin area.
 2. Go to Plugins -> Add New.
-3. Search for Quick Product Enquiry for WooCommerce.
+3. Search for WPCreativeIdea Product Enquiry.
 4. Click Install Now.
 5. Activate the plugin.
 
 = Manual Installation =
 
-1. Upload the plugin files to the `/wp-content/plugins/quick-product-enquiry-for-woocommerce` directory, or install the plugin through the WordPress plugins screen.
+1. Upload the plugin files to the `/wp-content/plugins/wpcreativeidea-product-enquiry` directory, or install the plugin through the WordPress plugins screen.
 2. Activate the plugin through the Plugins screen in WordPress.
 
 WooCommerce must be installed and active.
 
 = Getting Started =
 
-1. Open Quick Product Enquiry for WooCommerce from the WordPress admin menu.
+1. Open WPCreativeIdea Product Enquiry from the WordPress admin menu.
 2. Choose which tabs to enable: Enquiry Form, WhatsApp, and SMS.
 3. Configure the form headings, tab labels, and button text.
 4. Add your WhatsApp contact numbers and receiver names.

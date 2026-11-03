@@ -1,6 +1,6 @@
 #!/bin/bash
 
-PLUGIN_NAME="quick-product-enquiry-for-woocommerce"
+PLUGIN_NAME="wpcreativeidea-product-enquiry"
 BUILD_DIR="builds"
 DIST_DIR="$BUILD_DIR/$PLUGIN_NAME"
 
@@ -22,7 +22,7 @@ echo "📦 Copying production files..."
 cp -r App $DIST_DIR/
 cp -r assets $DIST_DIR/
 cp -r languages $DIST_DIR/ 2>/dev/null
-cp quick-product-enquiry-for-woocommerce.php $DIST_DIR/
+cp wpcreativeidea-product-enquiry.php $DIST_DIR/
 cp readme.txt $DIST_DIR/ 2>/dev/null
 cp mix-manifest.json $DIST_DIR/
 cp composer.json $DIST_DIR/
