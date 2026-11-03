@@ -1,7 +1,7 @@
 
 {
   "name": "wpcreativeidea-product-enquiry",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "WPCreativeIdea Product Enquiry",
   "main": "index.js",
   "scripts": {

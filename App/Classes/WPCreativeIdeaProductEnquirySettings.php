@@ -8,7 +8,7 @@ if (!defined('ABSPATH')) exit; // Exit if accessed directly
  /**
  * Settings class
  *
- * @since 1.0.1
+ * @since 1.0.2
  */
 class WPCreativeIdeaProductEnquirySettings extends WC_Settings_Page
 {

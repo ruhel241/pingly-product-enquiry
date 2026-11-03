@@ -3,7 +3,7 @@
 /*
 Plugin Name: WPCreativeIdea Product Enquiry
 Description: A simple product enquiry plugin for WooCommerce with WhatsApp, SMS, and enquiry form support.
-Version: 1.0.1
+Version: 1.0.2
 Requires at least: 6.0
 Requires PHP: 7.4
 Author: ruhel241
@@ -19,7 +19,7 @@ Domain Path: /languages
 defined("ABSPATH") or die;
 define('WPCIPE_PLUGIN_DIR_URL', plugin_dir_url(__FILE__));
 define('WPCIPE_PLUGIN_DIR_PATH', plugin_dir_path(__FILE__));
-define('WPCIPE_PLUGIN_VERSION', '1.0.1');
+define('WPCIPE_PLUGIN_VERSION', '1.0.2');
 define('WPCIPE_LITE', 'wpcreativeidea-product-enquiry');
 
 class WPCreativeIdeaProductEnquiryLite
