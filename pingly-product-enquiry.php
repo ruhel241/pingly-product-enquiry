@@ -8,7 +8,7 @@ Requires at least: 6.0
 Requires PHP: 7.4
 Author: ruhel241
 Author URI: https://profiles.wordpress.org/ruhel241/
-Plugin URI: https://pingly.com/pingly-product-enquiry/
+Plugin URI: https://wpcreativeidea.com/pingly-product-enquiry/
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: pingly-product-enquiry
