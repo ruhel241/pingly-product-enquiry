@@ -1,7 +1,7 @@
 <?php
 
-namespace WPCreativeIdeaProductEnquiry\Handler;
-use WPCreativeIdeaProductEnquiry\Handler\FrontendHandler;
+namespace PinglyProductEnquiry\Handler;
+use PinglyProductEnquiry\Handler\FrontendHandler;
 
 class ActionHandler
 {
@@ -11,9 +11,9 @@ class ActionHandler
 
     public function activationAddons() {
       
-        $wpcipeActiveModule = get_option('wpcipe_active_module', []);
+        $pinglyActiveModule = get_option('pingly_active_module', []);
 
-        if (isset($wpcipeActiveModule['wpcipe_module']) && $wpcipeActiveModule['wpcipe_module'] === 'yes') {
+        if (isset($pinglyActiveModule['pingly_module']) && $pinglyActiveModule['pingly_module'] === 'yes') {
             $frontendHandler = new FrontendHandler();
             $frontendHandler->register();
         } 

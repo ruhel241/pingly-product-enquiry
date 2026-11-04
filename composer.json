@@ -1,7 +1,7 @@
 
 {
-    "name": "wpcreativeidea/product-enquiry",
-    "description": "WPCreativeIdea Product Enquiry",
+    "name": "pingly/product-enquiry",
+    "description": "Pingly Product Enquiry",
     "type": "wordpress-plugin",
     "license": "GPL-2.0-or-later",
     "authors": [
@@ -12,7 +12,7 @@
     ],
     "autoload": {
         "psr-4": {
-            "WPCreativeIdeaProductEnquiry\\": "App/"
+            "PinglyProductEnquiry\\": "App/"
         },
         "exclude-from-classmap": [
             "App/Libs/wp-fluent/"

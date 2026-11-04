@@ -96,14 +96,14 @@ __webpack_require__.r(__webpack_exports__);
   props: [''],
   data: function data() {
     return {
-      active: localStorage.getItem('wpcipe_active_menu') || '/',
+      active: localStorage.getItem('pingly_active_menu') || '/',
       allMenuItems: []
     };
   },
   computed: {
     visibleItems: function visibleItems() {
-      var _window$WPCreativeIde;
-      var hasPro = !!((_window$WPCreativeIde = window.WPCreativeIdeaProductEnquiryAdminVars) !== null && _window$WPCreativeIde !== void 0 && _window$WPCreativeIde.has_pro);
+      var _window$PinglyProduct;
+      var hasPro = !!((_window$PinglyProduct = window.PinglyProductEnquiryAdminVars) !== null && _window$PinglyProduct !== void 0 && _window$PinglyProduct.has_pro);
       return this.allMenuItems.filter(function (item) {
         // License menu only for Pro version
         if (item.key === 'license_module') {
@@ -140,11 +140,11 @@ __webpack_require__.r(__webpack_exports__);
     },
     setMenus: function setMenus() {
       // Get all menu items with filters applied
-      this.allMenuItems = this.applyFilters('wpcipe_top_menus', this.defaultRoutes());
+      this.allMenuItems = this.applyFilters('pingly_top_menus', this.defaultRoutes());
     },
     handleSelect: function handleSelect(key) {
       this.active = key;
-      localStorage.setItem('wpcipe_active_menu', this.active);
+      localStorage.setItem('pingly_active_menu', this.active);
     }
   },
   mounted: function mounted() {
@@ -177,7 +177,7 @@ __webpack_require__.r(__webpack_exports__);
   name: 'license-management',
   components: {},
   data: function data() {
-    var _window$WPCreativeIde;
+    var _window$PinglyProduct;
     return {
       fetching: false,
       verifying: false,
@@ -185,7 +185,7 @@ __webpack_require__.r(__webpack_exports__);
       licenseKey: '',
       showNewLicenseInput: false,
       errorMessage: '',
-      hasPro: !!((_window$WPCreativeIde = window.WPCreativeIdeaProductEnquiryAdminVars) !== null && _window$WPCreativeIde !== void 0 && _window$WPCreativeIde.has_pro)
+      hasPro: !!((_window$PinglyProduct = window.PinglyProductEnquiryAdminVars) !== null && _window$PinglyProduct !== void 0 && _window$PinglyProduct.has_pro)
     };
   },
   methods: {
@@ -194,9 +194,9 @@ __webpack_require__.r(__webpack_exports__);
       this.errorMessage = '';
       this.fetching = true;
       this.$post({
-        action: "wpcipe_admin_license_ajax",
+        action: "pingly_admin_license_ajax",
         route: "get_license_status",
-        nonce: window.WPCreativeIdeaProductEnquiryAdminVars.nonce
+        nonce: window.PinglyProductEnquiryAdminVars.nonce
         // verify: true
       }).then(function (response) {
         // console.log(response);
@@ -218,9 +218,9 @@ __webpack_require__.r(__webpack_exports__);
       this.verifying = true;
       this.errorMessage = '';
       this.$post({
-        action: "wpcipe_admin_license_ajax",
+        action: "pingly_admin_license_ajax",
         route: "save_license",
-        nonce: window.WPCreativeIdeaProductEnquiryAdminVars.nonce,
+        nonce: window.PinglyProductEnquiryAdminVars.nonce,
         license_key: this.licenseKey
       }).then(function (response) {
         _this2.getLicense();
@@ -255,9 +255,9 @@ __webpack_require__.r(__webpack_exports__);
       var _this3 = this;
       this.verifying = true;
       this.$del({
-        action: "wpcipe_admin_license_ajax",
+        action: "pingly_admin_license_ajax",
         route: "deactivated_license",
-        nonce: window.WPCreativeIdeaProductEnquiryAdminVars.nonce
+        nonce: window.PinglyProductEnquiryAdminVars.nonce
       }).then(function (response) {
         _this3.licenseData = response.data.license_data;
         _this3.$handleSuccess(response.data.message);
@@ -280,10 +280,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/admin/Modules/Support.vue?vue&type=script&lang=js":
-/*!*************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/admin/Modules/Support.vue?vue&type=script&lang=js ***!
-  \*************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/admin/Modules/PinglyProductEnquiry/PinglyProductEnquiry.vue?vue&type=script&lang=js":
+/*!***********************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/admin/Modules/PinglyProductEnquiry/PinglyProductEnquiry.vue?vue&type=script&lang=js ***!
+  \***********************************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -291,22 +291,427 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var _Settings_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Settings.vue */ "./resources/admin/Modules/PinglyProductEnquiry/Settings.vue");
+/* harmony import */ var _Styles_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Styles.vue */ "./resources/admin/Modules/PinglyProductEnquiry/Styles.vue");
+/* harmony import */ var _PinglyProductEnquiryData_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./PinglyProductEnquiryData.vue */ "./resources/admin/Modules/PinglyProductEnquiry/PinglyProductEnquiryData.vue");
+
+
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  name: 'support',
-  components: {},
+  name: 'pingly-product-enquiry',
+  components: {
+    Settings: _Settings_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
+    Styles: _Styles_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
+    PinglyProductEnquiryData: _PinglyProductEnquiryData_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
+  },
   data: function data() {
     return {
-      imagesUrl: window.WPCreativeIdeaProductEnquiryAdminVars.images_url
+      activeTab: localStorage.getItem('pingly-active-tab') || 'settings',
+      configs: {},
+      fetching: false,
+      activeModule: 'no',
+      saving: false,
+      resetting: false,
+      showDisableDialog: false,
+      pendingDisableKey: null
     };
+  },
+  computed: {
+    currentTab: function currentTab() {
+      if (!this.activeTab) return '';
+      return this.activeTab.charAt(0).toUpperCase() + this.activeTab.slice(1);
+    }
+  },
+  methods: {
+    resetAlertMessage: function resetAlertMessage() {
+      var _this = this;
+      this.$confirm('Are you sure you want to reset all ' + this.activeTab + '? This will set the default values.', 'Warning', {
+        confirmButtonText: 'OK',
+        cancelButtonText: 'Cancel',
+        type: 'warning'
+      }).then(function () {
+        _this.resetSettings();
+      })["catch"](function () {
+        _this.$message({
+          type: 'info',
+          offset: 50,
+          message: 'Delete canceled'
+        });
+      });
+    },
+    handleClick: function handleClick(tab, event) {
+      this.getSettings();
+      localStorage.setItem('pingly-active-tab', this.activeTab);
+    },
+    //Handle updates from child components
+    updateHandler: function updateHandler(field, value) {
+      this.configs[field] = value;
+    },
+    activeChangeHandler: function activeChangeHandler(type, status) {
+      // If user is trying to disable the module, show confirmation dialog
+      if (status === 'no') {
+        this.showDisableDialog = true;
+        this.pendingDisableKey = type;
+        // Revert the switch back to enabled state temporarily
+        this.activeModule = 'yes';
+      } else {
+        // If enabling, proceed directly
+        this.enableActiveModule(type, status);
+      }
+    },
+    // Handle dialog confirmation
+    confirmDisable: function confirmDisable() {
+      this.showDisableDialog = false;
+      this.enableActiveModule(this.pendingDisableKey, 'no');
+      this.pendingDisableKey = null;
+    },
+    // Handle dialog cancellation
+    cancelDisable: function cancelDisable() {
+      this.showDisableDialog = false;
+      this.activeModule = 'yes'; // Keep it enabled
+      this.pendingDisableKey = null;
+    },
+    getSettings: function getSettings() {
+      var _this2 = this;
+      this.fetching = true;
+      this.$post({
+        action: "pingly_admin_ajax",
+        route: "get_settings",
+        type: 'pingly_settings',
+        tab: this.activeTab,
+        nonce: window.PinglyProductEnquiryAdminVars.nonce
+      }).then(function (response) {
+        if (!_this2.configs) {
+          _this2.configs = {};
+        }
+        // store only the current tab's data
+        if (response.data.configs) {
+          _this2.configs = response.data.configs;
+        }
+      }).fail(function (error) {
+        _this2.$handleError(error);
+      }).always(function () {
+        setTimeout(function () {
+          _this2.fetching = false;
+        }, 500);
+      });
+    },
+    saveSettings: function saveSettings() {
+      var _this3 = this;
+      this.saving = true;
+      if (!this.emailValidation()) return;
+      if (!this.smsValidation()) return;
+      if (!this.whatsappNumberValidation()) return;
+      this.$post({
+        action: "pingly_admin_ajax",
+        route: "save_settings",
+        type: 'pingly_settings',
+        tab: this.activeTab,
+        tab_configs: this.configs,
+        nonce: window.PinglyProductEnquiryAdminVars.nonce
+      }).then(function (response) {
+        setTimeout(function () {
+          _this3.getSettings();
+          _this3.$handleSuccess(response.data.message);
+        }, 500);
+      }).fail(function (error) {
+        _this3.$handleError(error.message);
+      }).always(function () {
+        setTimeout(function () {
+          _this3.saving = false;
+        }, 500);
+      });
+    },
+    resetSettings: function resetSettings() {
+      var _this4 = this;
+      this.resetting = true;
+      this.$post({
+        action: "pingly_admin_ajax",
+        route: "reset_settings",
+        type: 'pingly_settings',
+        tab: this.activeTab,
+        nonce: window.PinglyProductEnquiryAdminVars.nonce
+      }).then(function (response) {
+        setTimeout(function () {
+          _this4.getSettings();
+          _this4.$handleSuccess(response.data.message);
+        }, 500);
+      }).fail(function (error) {
+        _this4.$handleError(error.message);
+      }).always(function () {
+        setTimeout(function () {
+          _this4.resetting = false;
+        }, 500);
+      });
+    },
+    enableActiveModule: function enableActiveModule(type, status) {
+      var _this5 = this;
+      this.saving = true;
+      this.$post({
+        action: "pingly_admin_ajax",
+        route: "enable_active_module",
+        type: type,
+        status: status,
+        nonce: window.PinglyProductEnquiryAdminVars.nonce
+      }).then(function (response) {
+        _this5.getEnableModule();
+      }).fail(function (error) {
+        _this5.$handleError(error);
+        // Revert the local state if the server request failed
+        _this5.activeModule = status === 'yes' ? 'no' : 'yes';
+      }).always(function () {
+        _this5.saving = false;
+      });
+    },
+    getEnableModule: function getEnableModule() {
+      var _this6 = this;
+      this.fetching = true;
+      this.$post({
+        action: "pingly_admin_ajax",
+        route: "get_active_module",
+        type: 'pingly_module',
+        nonce: window.PinglyProductEnquiryAdminVars.nonce
+      }).then(function (response) {
+        _this6.activeModule = response.data.active_module;
+      }).fail(function (error) {
+        _this6.$handleError(error);
+      }).always(function () {
+        setTimeout(function () {
+          _this6.fetching = false;
+        }, 500);
+      });
+    },
+    emailValidation: function emailValidation() {
+      if (this.configs.email_enable === 'yes' && !this.configs.admin_email) {
+        this.$handleError('Admin Email field is required');
+        this.saving = false;
+        return false;
+      }
+      return true;
+    },
+    whatsappNumberValidation: function whatsappNumberValidation() {
+      if (this.configs.whatsapp_tab_enable === 'yes') {
+        var numbers = this.configs.whatsapp_numbers || [];
+        var first = numbers[0];
+        // First entry is mandatory
+        if (!first || !first.receiver_name || !first.receiver_number) {
+          this.$handleError('WhatsApp Name and Number are required');
+          this.saving = false;
+          return false;
+        }
+        // Remove empty second+ entries
+        this.configs.whatsapp_numbers = numbers.filter(function (item, index) {
+          if (!item.receiver_name || !item.receiver_number) {
+            return index === 0;
+          }
+          return true;
+        });
+      }
+      return true;
+    },
+    smsValidation: function smsValidation() {
+      if (this.configs.sms_tab_enable === 'yes') {
+        var numbers = this.configs.sms_numbers || [];
+        var first = numbers[0];
+        // First entry is mandatory
+        if (!first || !first.receiver_name || !first.receiver_number) {
+          this.$handleError('SMS Name and Number are required');
+          this.saving = false;
+          return false;
+        }
+        // Remove empty second+ entries
+        this.configs.sms_numbers = numbers.filter(function (item, index) {
+          if (!item.receiver_name || !item.receiver_number) {
+            return index === 0;
+          }
+          return true;
+        });
+      }
+      return true;
+    }
+  },
+  mounted: function mounted() {
+    this.getSettings();
+    this.getEnableModule();
   }
 });
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/admin/Modules/WPCreativeIdeaProductEnquiry/Settings.vue?vue&type=script&lang=js":
-/*!*******************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/admin/Modules/WPCreativeIdeaProductEnquiry/Settings.vue?vue&type=script&lang=js ***!
-  \*******************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/admin/Modules/PinglyProductEnquiry/PinglyProductEnquiryData.vue?vue&type=script&lang=js":
+/*!***************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/admin/Modules/PinglyProductEnquiry/PinglyProductEnquiryData.vue?vue&type=script&lang=js ***!
+  \***************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _TableSelectionHandler_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./_TableSelectionHandler.vue */ "./resources/admin/Modules/PinglyProductEnquiry/_TableSelectionHandler.vue");
+// import { Loading } from 'element-ui';
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  name: 'pingly-product-enquiry-data',
+  props: ['settings', 'fetching'],
+  components: {
+    TableSelections: _TableSelectionHandler_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
+  },
+  data: function data() {
+    return {
+      //fetching: false,
+      loading: false,
+      search: "",
+      paginate: {
+        total: 0,
+        current_page: +(localStorage.getItem('PinglyProductEnquiryDetailsCurrentPage') || 1),
+        last_page: 1,
+        per_page: +(localStorage.getItem('PinglyProductEnquiryPerPage') || 10)
+      },
+      tableData: [],
+      multipleSelection: [],
+      showDisableDialog: false,
+      detail: {
+        name: ''
+      },
+      adminUrl: window.PinglyProductEnquiryAdminVars.admin_url
+    };
+  },
+  methods: {
+    hasProduct: function hasProduct(row) {
+      if (!row || !row.settings) return false;
+      try {
+        var obj = JSON.parse(row.settings);
+        return !!obj.title && !!obj.product_url;
+      } catch (e) {
+        return false;
+      }
+    },
+    getProductHtml: function getProductHtml(row) {
+      if (!row || !row.settings) return '';
+      try {
+        var obj = JSON.parse(row.settings);
+        return "\n            <a href=\"".concat(obj.product_url, "\"\n              target=\"_blank\"\n              class=\"pingly-product-title\">\n              ").concat(this.textTrim(obj.title), "\n            </a>");
+      } catch (e) {
+        return '';
+      }
+    },
+    textTrim: function textTrim(val) {
+      if (!val) return '';
+      var words = val.split(' ');
+      return words.slice(0, 10).join(' ') + (words.length > 10 ? '...' : '');
+    },
+    handleSizeChange: function handleSizeChange(val) {
+      localStorage.setItem('PinglyProductEnquiryPerPage', val);
+      this.paginate.per_page = val;
+      this.getPinglyProductEnquiry();
+    },
+    handleCurrentChange: function handleCurrentChange(val) {
+      localStorage.setItem('PinglyProductEnquiryDetailsCurrentPage', val);
+      this.paginate.current_page = val;
+      this.getPinglyProductEnquiry();
+    },
+    confirmView: function confirmView(id) {
+      var _this = this;
+      this.showDisableDialog = true;
+      this.loading = true;
+      this.$post({
+        action: "pingly_admin_ajax",
+        route: "get_pingly_detail_view",
+        detail_id: id,
+        nonce: window.PinglyProductEnquiryAdminVars.nonce
+      }).then(function (response) {
+        _this.detail = response.data.detail;
+      }).fail(function (error) {
+        _this.$handleError(error);
+      }).always(function () {
+        setTimeout(function () {
+          _this.loading = false;
+        }, 500);
+      });
+    },
+    cancelDisable: function cancelDisable() {
+      this.showDisableDialog = false;
+    },
+    confirmDisable: function confirmDisable() {
+      this.showDisableDialog = false;
+    },
+    handleSelectionChange: function handleSelectionChange(val) {
+      this.multipleSelection = val;
+    },
+    searchHandler: function searchHandler(val) {
+      this.search = val;
+      this.getPinglyProductEnquiry();
+    },
+    getPinglyProductEnquiry: function getPinglyProductEnquiry() {
+      var _this2 = this;
+      this.loading = true;
+      this.$post({
+        action: "pingly_admin_ajax",
+        route: "get_pingly_details",
+        search: this.search,
+        current_page: this.paginate.current_page,
+        per_page: this.paginate.per_page,
+        nonce: window.PinglyProductEnquiryAdminVars.nonce
+      }).then(function (response) {
+        _this2.tableData = response.data.data.details;
+        // console.log(this.tableData);
+        _this2.paginate.total = response.data.data.total;
+        _this2.paginate.current_page = response.data.data.current_page;
+        _this2.paginate.last_page = response.data.data.last_page;
+      }).fail(function (error) {
+        _this2.$handleError(error);
+      }).always(function () {
+        setTimeout(function () {
+          _this2.loading = false;
+        }, 500);
+      });
+    },
+    handleDeleteModal: function handleDeleteModal(id) {
+      var _this3 = this;
+      this.$confirm("Do you want delete this enquire us permanently", "Warning", {
+        confirmButtonText: "Delete",
+        cancelButtonText: "Cancel",
+        type: "warning"
+      }).then(function () {
+        _this3.performAction("delete", id);
+      })["catch"](function () {
+        _this3.$message({
+          type: "info",
+          offset: 90,
+          showClose: true,
+          message: "Delete canceled"
+        });
+      });
+    },
+    performAction: function performAction(type, id) {
+      var _this4 = this;
+      this.$post({
+        action: "pingly_admin_ajax",
+        route: "maybe_delete_details",
+        details_ids: [id],
+        action_type: type,
+        nonce: window.PinglyProductEnquiryAdminVars.nonce
+      }).then(function (response) {
+        _this4.$handleSuccess(response.data.message);
+        _this4.getPinglyProductEnquiry();
+      }).fail(function (error) {
+        _this4.$handleError(error);
+      }).always(function () {});
+    }
+  },
+  mounted: function mounted() {
+    this.getPinglyProductEnquiry();
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/admin/Modules/PinglyProductEnquiry/Settings.vue?vue&type=script&lang=js":
+/*!***********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/admin/Modules/PinglyProductEnquiry/Settings.vue?vue&type=script&lang=js ***!
+  \***********************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -336,9 +741,9 @@ __webpack_require__.r(__webpack_exports__);
         receiver_name: '',
         receiver_number: ''
       }],
-      shortcodeGeneralForm: '[wpcipe_button]',
-      shortcodeProductId: '[wpcipe_button product_id="23"]',
-      shortcodeProductSlug: '[wpcipe_button product_slug="beanie-with-logo"]'
+      shortcodeGeneralForm: '[pingly_button]',
+      shortcodeProductId: '[pingly_button product_id="23"]',
+      shortcodeProductSlug: '[pingly_button product_slug="beanie-with-logo"]'
     };
   },
   watch: {
@@ -420,10 +825,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/admin/Modules/WPCreativeIdeaProductEnquiry/Styles.vue?vue&type=script&lang=js":
-/*!*****************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/admin/Modules/WPCreativeIdeaProductEnquiry/Styles.vue?vue&type=script&lang=js ***!
-  \*****************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/admin/Modules/PinglyProductEnquiry/Styles.vue?vue&type=script&lang=js":
+/*!*********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/admin/Modules/PinglyProductEnquiry/Styles.vue?vue&type=script&lang=js ***!
+  \*********************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -448,438 +853,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/admin/Modules/WPCreativeIdeaProductEnquiry/WPCreativeIdeaProductEnquiry.vue?vue&type=script&lang=js":
-/*!***************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/admin/Modules/WPCreativeIdeaProductEnquiry/WPCreativeIdeaProductEnquiry.vue?vue&type=script&lang=js ***!
-  \***************************************************************************************************************************************************************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _Settings_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Settings.vue */ "./resources/admin/Modules/WPCreativeIdeaProductEnquiry/Settings.vue");
-/* harmony import */ var _Styles_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Styles.vue */ "./resources/admin/Modules/WPCreativeIdeaProductEnquiry/Styles.vue");
-/* harmony import */ var _WPCreativeIdeaProductEnquiryData_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./WPCreativeIdeaProductEnquiryData.vue */ "./resources/admin/Modules/WPCreativeIdeaProductEnquiry/WPCreativeIdeaProductEnquiryData.vue");
-
-
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  name: 'wpcreativeidea-product-enquiry',
-  components: {
-    Settings: _Settings_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
-    Styles: _Styles_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
-    WPCreativeIdeaProductEnquiryData: _WPCreativeIdeaProductEnquiryData_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
-  },
-  data: function data() {
-    return {
-      activeTab: localStorage.getItem('wpcipe-active-tab') || 'settings',
-      configs: {},
-      fetching: false,
-      activeModule: 'no',
-      saving: false,
-      resetting: false,
-      showDisableDialog: false,
-      pendingDisableKey: null
-    };
-  },
-  computed: {
-    currentTab: function currentTab() {
-      if (!this.activeTab) return '';
-      return this.activeTab.charAt(0).toUpperCase() + this.activeTab.slice(1);
-    }
-  },
-  methods: {
-    resetAlertMessage: function resetAlertMessage() {
-      var _this = this;
-      this.$confirm('Are you sure you want to reset all ' + this.activeTab + '? This will set the default values.', 'Warning', {
-        confirmButtonText: 'OK',
-        cancelButtonText: 'Cancel',
-        type: 'warning'
-      }).then(function () {
-        _this.resetSettings();
-      })["catch"](function () {
-        _this.$message({
-          type: 'info',
-          offset: 50,
-          message: 'Delete canceled'
-        });
-      });
-    },
-    handleClick: function handleClick(tab, event) {
-      this.getSettings();
-      localStorage.setItem('wpcipe-active-tab', this.activeTab);
-    },
-    //Handle updates from child components
-    updateHandler: function updateHandler(field, value) {
-      this.configs[field] = value;
-    },
-    activeChangeHandler: function activeChangeHandler(type, status) {
-      // If user is trying to disable the module, show confirmation dialog
-      if (status === 'no') {
-        this.showDisableDialog = true;
-        this.pendingDisableKey = type;
-        // Revert the switch back to enabled state temporarily
-        this.activeModule = 'yes';
-      } else {
-        // If enabling, proceed directly
-        this.enableActiveModule(type, status);
-      }
-    },
-    // Handle dialog confirmation
-    confirmDisable: function confirmDisable() {
-      this.showDisableDialog = false;
-      this.enableActiveModule(this.pendingDisableKey, 'no');
-      this.pendingDisableKey = null;
-    },
-    // Handle dialog cancellation
-    cancelDisable: function cancelDisable() {
-      this.showDisableDialog = false;
-      this.activeModule = 'yes'; // Keep it enabled
-      this.pendingDisableKey = null;
-    },
-    getSettings: function getSettings() {
-      var _this2 = this;
-      this.fetching = true;
-      this.$post({
-        action: "wpcipe_admin_ajax",
-        route: "get_settings",
-        type: 'wpcipe_settings',
-        tab: this.activeTab,
-        nonce: window.WPCreativeIdeaProductEnquiryAdminVars.nonce
-      }).then(function (response) {
-        if (!_this2.configs) {
-          _this2.configs = {};
-        }
-        // store only the current tab's data
-        if (response.data.configs) {
-          _this2.configs = response.data.configs;
-        }
-      }).fail(function (error) {
-        _this2.$handleError(error);
-      }).always(function () {
-        setTimeout(function () {
-          _this2.fetching = false;
-        }, 500);
-      });
-    },
-    saveSettings: function saveSettings() {
-      var _this3 = this;
-      this.saving = true;
-      if (!this.emailValidation()) return;
-      if (!this.smsValidation()) return;
-      if (!this.whatsappNumberValidation()) return;
-      this.$post({
-        action: "wpcipe_admin_ajax",
-        route: "save_settings",
-        type: 'wpcipe_settings',
-        tab: this.activeTab,
-        tab_configs: this.configs,
-        nonce: window.WPCreativeIdeaProductEnquiryAdminVars.nonce
-      }).then(function (response) {
-        setTimeout(function () {
-          _this3.getSettings();
-          _this3.$handleSuccess(response.data.message);
-        }, 500);
-      }).fail(function (error) {
-        _this3.$handleError(error.message);
-      }).always(function () {
-        setTimeout(function () {
-          _this3.saving = false;
-        }, 500);
-      });
-    },
-    resetSettings: function resetSettings() {
-      var _this4 = this;
-      this.resetting = true;
-      this.$post({
-        action: "wpcipe_admin_ajax",
-        route: "reset_settings",
-        type: 'wpcipe_settings',
-        tab: this.activeTab,
-        nonce: window.WPCreativeIdeaProductEnquiryAdminVars.nonce
-      }).then(function (response) {
-        setTimeout(function () {
-          _this4.getSettings();
-          _this4.$handleSuccess(response.data.message);
-        }, 500);
-      }).fail(function (error) {
-        _this4.$handleError(error.message);
-      }).always(function () {
-        setTimeout(function () {
-          _this4.resetting = false;
-        }, 500);
-      });
-    },
-    enableActiveModule: function enableActiveModule(type, status) {
-      var _this5 = this;
-      this.saving = true;
-      this.$post({
-        action: "wpcipe_admin_ajax",
-        route: "enable_active_module",
-        type: type,
-        status: status,
-        nonce: window.WPCreativeIdeaProductEnquiryAdminVars.nonce
-      }).then(function (response) {
-        _this5.getEnableModule();
-      }).fail(function (error) {
-        _this5.$handleError(error);
-        // Revert the local state if the server request failed
-        _this5.activeModule = status === 'yes' ? 'no' : 'yes';
-      }).always(function () {
-        _this5.saving = false;
-      });
-    },
-    getEnableModule: function getEnableModule() {
-      var _this6 = this;
-      this.fetching = true;
-      this.$post({
-        action: "wpcipe_admin_ajax",
-        route: "get_active_module",
-        type: 'wpcipe_module',
-        nonce: window.WPCreativeIdeaProductEnquiryAdminVars.nonce
-      }).then(function (response) {
-        _this6.activeModule = response.data.active_module;
-      }).fail(function (error) {
-        _this6.$handleError(error);
-      }).always(function () {
-        setTimeout(function () {
-          _this6.fetching = false;
-        }, 500);
-      });
-    },
-    emailValidation: function emailValidation() {
-      if (this.configs.email_enable === 'yes' && !this.configs.admin_email) {
-        this.$handleError('Admin Email field is required');
-        this.saving = false;
-        return false;
-      }
-      return true;
-    },
-    whatsappNumberValidation: function whatsappNumberValidation() {
-      if (this.configs.whatsapp_tab_enable === 'yes') {
-        var numbers = this.configs.whatsapp_numbers || [];
-        var first = numbers[0];
-        // First entry is mandatory
-        if (!first || !first.receiver_name || !first.receiver_number) {
-          this.$handleError('WhatsApp Name and Number are required');
-          this.saving = false;
-          return false;
-        }
-        // Remove empty second+ entries
-        this.configs.whatsapp_numbers = numbers.filter(function (item, index) {
-          if (!item.receiver_name || !item.receiver_number) {
-            return index === 0;
-          }
-          return true;
-        });
-      }
-      return true;
-    },
-    smsValidation: function smsValidation() {
-      if (this.configs.sms_tab_enable === 'yes') {
-        var numbers = this.configs.sms_numbers || [];
-        var first = numbers[0];
-        // First entry is mandatory
-        if (!first || !first.receiver_name || !first.receiver_number) {
-          this.$handleError('SMS Name and Number are required');
-          this.saving = false;
-          return false;
-        }
-        // Remove empty second+ entries
-        this.configs.sms_numbers = numbers.filter(function (item, index) {
-          if (!item.receiver_name || !item.receiver_number) {
-            return index === 0;
-          }
-          return true;
-        });
-      }
-      return true;
-    }
-  },
-  mounted: function mounted() {
-    this.getSettings();
-    this.getEnableModule();
-  }
-});
-
-/***/ }),
-
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/admin/Modules/WPCreativeIdeaProductEnquiry/WPCreativeIdeaProductEnquiryData.vue?vue&type=script&lang=js":
-/*!*******************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/admin/Modules/WPCreativeIdeaProductEnquiry/WPCreativeIdeaProductEnquiryData.vue?vue&type=script&lang=js ***!
-  \*******************************************************************************************************************************************************************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _TableSelectionHandler_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./_TableSelectionHandler.vue */ "./resources/admin/Modules/WPCreativeIdeaProductEnquiry/_TableSelectionHandler.vue");
-// import { Loading } from 'element-ui';
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  name: 'wpcreativeidea-product-enquiry-data',
-  props: ['settings', 'fetching'],
-  components: {
-    TableSelections: _TableSelectionHandler_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
-  },
-  data: function data() {
-    return {
-      //fetching: false,
-      loading: false,
-      search: "",
-      paginate: {
-        total: 0,
-        current_page: +(localStorage.getItem('WPCreativeIdeaProductEnquiryDetailsCurrentPage') || 1),
-        last_page: 1,
-        per_page: +(localStorage.getItem('WPCreativeIdeaProductEnquiryPerPage') || 10)
-      },
-      tableData: [],
-      multipleSelection: [],
-      showDisableDialog: false,
-      detail: {
-        name: ''
-      },
-      adminUrl: window.WPCreativeIdeaProductEnquiryAdminVars.admin_url
-    };
-  },
-  methods: {
-    hasProduct: function hasProduct(row) {
-      if (!row || !row.settings) return false;
-      try {
-        var obj = JSON.parse(row.settings);
-        return !!obj.title && !!obj.product_url;
-      } catch (e) {
-        return false;
-      }
-    },
-    getProductHtml: function getProductHtml(row) {
-      if (!row || !row.settings) return '';
-      try {
-        var obj = JSON.parse(row.settings);
-        return "\n            <a href=\"".concat(obj.product_url, "\"\n              target=\"_blank\"\n              class=\"wpcipe-product-title\">\n              ").concat(this.textTrim(obj.title), "\n            </a>");
-      } catch (e) {
-        return '';
-      }
-    },
-    textTrim: function textTrim(val) {
-      if (!val) return '';
-      var words = val.split(' ');
-      return words.slice(0, 10).join(' ') + (words.length > 10 ? '...' : '');
-    },
-    handleSizeChange: function handleSizeChange(val) {
-      localStorage.setItem('WPCreativeIdeaProductEnquiryPerPage', val);
-      this.paginate.per_page = val;
-      this.getWPCreativeIdeaProductEnquiry();
-    },
-    handleCurrentChange: function handleCurrentChange(val) {
-      localStorage.setItem('WPCreativeIdeaProductEnquiryDetailsCurrentPage', val);
-      this.paginate.current_page = val;
-      this.getWPCreativeIdeaProductEnquiry();
-    },
-    confirmView: function confirmView(id) {
-      var _this = this;
-      this.showDisableDialog = true;
-      this.loading = true;
-      this.$post({
-        action: "wpcipe_admin_ajax",
-        route: "get_wpcipe_detail_view",
-        detail_id: id,
-        nonce: window.WPCreativeIdeaProductEnquiryAdminVars.nonce
-      }).then(function (response) {
-        _this.detail = response.data.detail;
-      }).fail(function (error) {
-        _this.$handleError(error);
-      }).always(function () {
-        setTimeout(function () {
-          _this.loading = false;
-        }, 500);
-      });
-    },
-    cancelDisable: function cancelDisable() {
-      this.showDisableDialog = false;
-    },
-    confirmDisable: function confirmDisable() {
-      this.showDisableDialog = false;
-    },
-    handleSelectionChange: function handleSelectionChange(val) {
-      this.multipleSelection = val;
-    },
-    searchHandler: function searchHandler(val) {
-      this.search = val;
-      this.getWPCreativeIdeaProductEnquiry();
-    },
-    getWPCreativeIdeaProductEnquiry: function getWPCreativeIdeaProductEnquiry() {
-      var _this2 = this;
-      this.loading = true;
-      this.$post({
-        action: "wpcipe_admin_ajax",
-        route: "get_wpcipe_details",
-        search: this.search,
-        current_page: this.paginate.current_page,
-        per_page: this.paginate.per_page,
-        nonce: window.WPCreativeIdeaProductEnquiryAdminVars.nonce
-      }).then(function (response) {
-        _this2.tableData = response.data.data.details;
-        // console.log(this.tableData);
-        _this2.paginate.total = response.data.data.total;
-        _this2.paginate.current_page = response.data.data.current_page;
-        _this2.paginate.last_page = response.data.data.last_page;
-      }).fail(function (error) {
-        _this2.$handleError(error);
-      }).always(function () {
-        setTimeout(function () {
-          _this2.loading = false;
-        }, 500);
-      });
-    },
-    handleDeleteModal: function handleDeleteModal(id) {
-      var _this3 = this;
-      this.$confirm("Do you want delete this enquire us permanently", "Warning", {
-        confirmButtonText: "Delete",
-        cancelButtonText: "Cancel",
-        type: "warning"
-      }).then(function () {
-        _this3.performAction("delete", id);
-      })["catch"](function () {
-        _this3.$message({
-          type: "info",
-          offset: 90,
-          showClose: true,
-          message: "Delete canceled"
-        });
-      });
-    },
-    performAction: function performAction(type, id) {
-      var _this4 = this;
-      this.$post({
-        action: "wpcipe_admin_ajax",
-        route: "maybe_delete_details",
-        details_ids: [id],
-        action_type: type,
-        nonce: window.WPCreativeIdeaProductEnquiryAdminVars.nonce
-      }).then(function (response) {
-        _this4.$handleSuccess(response.data.message);
-        _this4.getWPCreativeIdeaProductEnquiry();
-      }).fail(function (error) {
-        _this4.$handleError(error);
-      }).always(function () {});
-    }
-  },
-  mounted: function mounted() {
-    this.getWPCreativeIdeaProductEnquiry();
-  }
-});
-
-/***/ }),
-
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/admin/Modules/WPCreativeIdeaProductEnquiry/_TableSelectionHandler.vue?vue&type=script&lang=js":
-/*!*********************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/admin/Modules/WPCreativeIdeaProductEnquiry/_TableSelectionHandler.vue?vue&type=script&lang=js ***!
-  \*********************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/admin/Modules/PinglyProductEnquiry/_TableSelectionHandler.vue?vue&type=script&lang=js":
+/*!*************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/admin/Modules/PinglyProductEnquiry/_TableSelectionHandler.vue?vue&type=script&lang=js ***!
+  \*************************************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -921,11 +898,11 @@ __webpack_require__.r(__webpack_exports__);
         selectedIds.push(selection.id);
       });
       this.$post({
-        action: 'wpcipe_admin_ajax',
+        action: 'pingly_admin_ajax',
         route: 'maybe_delete_details',
         details_ids: selectedIds,
         action_type: type,
-        nonce: window.WPCreativeIdeaProductEnquiryAdminVars.nonce
+        nonce: window.PinglyProductEnquiryAdminVars.nonce
       }).then(function (response) {
         _this2.$notify({
           title: 'Sucess',
@@ -937,6 +914,29 @@ __webpack_require__.r(__webpack_exports__);
         _this2.$handleError(error);
       }).always(function () {});
     }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/admin/Modules/Support.vue?vue&type=script&lang=js":
+/*!*************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/admin/Modules/Support.vue?vue&type=script&lang=js ***!
+  \*************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  name: 'support',
+  components: {},
+  data: function data() {
+    return {
+      imagesUrl: window.PinglyProductEnquiryAdminVars.images_url
+    };
   }
 });
 
@@ -958,7 +958,7 @@ var render = function render() {
   var _vm = this,
     _c = _vm._self._c;
   return _c("div", {
-    staticClass: "wpcipe-app-wrapper"
+    staticClass: "pingly-app-wrapper"
   }, [_c("el-row", [_c("el-col", {
     attrs: {
       span: 4
@@ -968,9 +968,9 @@ var render = function render() {
       span: 20
     }
   }, [_c("div", {
-    staticClass: "wpcipe-header"
+    staticClass: "pingly-header"
   }), _vm._v(" "), _c("div", {
-    staticClass: "wpcipe-body"
+    staticClass: "pingly-body"
   }, [_c("router-view", {
     key: _vm.$route.fullPath
   })], 1)])], 1)], 1);
@@ -1038,9 +1038,9 @@ var render = function render() {
   var _vm = this,
     _c = _vm._self._c;
   return _c("div", {
-    staticClass: "wpcipe-main-navigation"
+    staticClass: "pingly-main-navigation"
   }, [_vm._m(0), _vm._v(" "), _c("el-menu", {
-    staticClass: "wpcipe-navbar",
+    staticClass: "pingly-navbar",
     attrs: {
       router: true,
       mode: "horizontal",
@@ -1068,7 +1068,7 @@ var staticRenderFns = [function () {
     _c = _vm._self._c;
   return _c("div", {
     staticClass: "logo"
-  }, [_c("h1", [_vm._v("Product Enquiry")])]);
+  }, [_c("h1", [_vm._v("Pingly Product Enquiry")])]);
 }];
 render._withStripped = true;
 
@@ -1091,7 +1091,7 @@ var render = function render() {
   var _vm = this,
     _c = _vm._self._c;
   return _c("div", {
-    staticClass: "wpcipe-documentation-wrapper wpcipe-card"
+    staticClass: "pingly-documentation-wrapper pingly-card"
   }, [_vm._m(0), _vm._v(" "), _c("el-row", {
     attrs: {
       gutter: 20
@@ -1114,17 +1114,17 @@ var render = function render() {
       allowfullscreen: ""
     }
   })]), _vm._v(" "), _c("p", {
-    staticClass: "wpcipe-subtitle"
+    staticClass: "pingly-subtitle"
   }, [_vm._v("\n        Learn how to set up and use this plugin step by step.\n      ")])]), _vm._v(" "), _c("el-col", {
     attrs: {
       span: 24
     }
   }, [_c("div", {
-    staticClass: "wpcipe-doc-content"
+    staticClass: "pingly-doc-content"
   }, [_c("h4", [_vm._v("🚀 Getting Started")]), _vm._v(" "), _c("ul", {
-    staticClass: "wpcipe-doc-list"
+    staticClass: "pingly-doc-list"
   }, [_c("li", [_vm._v("Install and activate the plugin")]), _vm._v(" "), _c("li", [_vm._v("Go to "), _c("strong", [_vm._v("Product Enquiry Tab Settings")])]), _vm._v(" "), _c("li", [_vm._v("Configure required options")]), _vm._v(" "), _c("li", [_vm._v("Save Settings and Save Styles")])]), _vm._v(" "), _c("h4", [_vm._v("🔗 Helpful Links")]), _vm._v(" "), _c("ul", {
-    staticClass: "wpcipe-doc-links"
+    staticClass: "pingly-doc-links"
   }, [_c("li", [_c("a", {
     attrs: {
       href: "https://wpcreativeidea.com/",
@@ -1146,9 +1146,9 @@ var staticRenderFns = [function () {
   var _vm = this,
     _c = _vm._self._c;
   return _c("div", {
-    staticClass: "wpcipe_header"
+    staticClass: "pingly_header"
   }, [_c("div", {
-    staticClass: "wpcipe_title wpcipe_header_title"
+    staticClass: "pingly_title pingly_header_title"
   }, [_c("h3", [_vm._v("Documentation")])])]);
 }];
 render._withStripped = true;
@@ -1172,11 +1172,11 @@ var render = function render() {
   var _vm = this,
     _c = _vm._self._c;
   return _vm.hasPro ? _c("div", {
-    staticClass: "wpcipe-license-management wpcipe-card"
+    staticClass: "pingly-license-management pingly-card"
   }, [_c("div", {
-    staticClass: "wpcipe_header"
+    staticClass: "pingly_header"
   }, [_c("div", {
-    staticClass: "wpcipe_title wpcipe_header_title"
+    staticClass: "pingly_title pingly_header_title"
   }, [_c("h3", {
     staticStyle: {
       margin: "0"
@@ -1197,7 +1197,7 @@ var render = function render() {
       value: _vm.verifying,
       expression: "verifying"
     }],
-    staticClass: "wpcipe_pad_around"
+    staticClass: "pingly_pad_around"
   }, [_vm.fetching ? _c("div", {
     directives: [{
       name: "loading",
@@ -1205,12 +1205,12 @@ var render = function render() {
       value: _vm.fetching,
       expression: "fetching"
     }],
-    staticClass: "wpcipe_narrow_box text-align-center fetching-text"
+    staticClass: "pingly_narrow_box text-align-center fetching-text"
   }, [_c("h3", [_vm._v("Fetching License Information Please wait")])]) : _c("div", {
-    staticClass: "wpcipe_narrow_box",
-    "class": "wpcipe_license_" + _vm.licenseData.status
+    staticClass: "pingly_narrow_box",
+    "class": "pingly_license_" + _vm.licenseData.status
   }, [_vm.licenseData.status == "expired" ? _c("div", {
-    staticClass: "wpcipe-expired"
+    staticClass: "pingly-expired"
   }, [_c("h3", [_vm._v("Looks like your license has been expired ")]), _vm._v(" "), _c("div", {
     staticClass: "license-status-container"
   }, [_c("div", {
@@ -1285,7 +1285,7 @@ var render = function render() {
     },
     slot: "append"
   }, [_vm._v("Verify License")])], 1)], 1)]) : _vm.licenseData.status == "valid" ? _c("div", {
-    staticClass: "wpcipe-valid"
+    staticClass: "pingly-valid"
   }, [_vm._m(2), _vm._v(" "), _c("h2", {
     staticClass: "title"
   }, [_vm._v("You license key is valid and activated")]), _vm._v(" "), _c("div", {
@@ -1330,8 +1330,8 @@ var render = function render() {
       }
     }
   }, [_vm._v("Click here")])])]) : _c("div", {
-    staticClass: "wpcipe-provide-license-key"
-  }, [_c("h3", [_vm._v("Please Provide a license key of WPCreativeIdea Product Enquiry Addons")]), _vm._v(" "), _c("el-input", {
+    staticClass: "pingly-provide-license-key"
+  }, [_c("h3", [_vm._v("Please Provide a license key of Pingly Product Enquiry Addons")]), _vm._v(" "), _c("el-input", {
     attrs: {
       placeholder: "License Key"
     },
@@ -1385,13 +1385,13 @@ var staticRenderFns = [function () {
     staticClass: "label"
   }, [_vm._v(" Plugin:  ")]), _vm._v(" "), _c("div", {
     staticClass: "value"
-  }, [_vm._v(" WPCreativeIdea Product Enquiry ")])]);
+  }, [_vm._v(" Pingly Product Enquiry ")])]);
 }, function () {
   var _vm = this,
     _c = _vm._self._c;
   return _c("p", {
     staticClass: "license-expired-notice"
-  }, [_vm._v("Note: "), _c("em", [_vm._v('Your License has expired, so "WPCreativeIdea Product Enquiry" Addons is currently inactive. Please click the button to renew your license and continue using the plugin.')])]);
+  }, [_vm._v("Note: "), _c("em", [_vm._v('Your License has expired, so "Pingly Product Enquiry" Addons is currently inactive. Please click the button to renew your license and continue using the plugin.')])]);
 }, function () {
   var _vm = this,
     _c = _vm._self._c;
@@ -1409,7 +1409,7 @@ var staticRenderFns = [function () {
     staticClass: "label"
   }, [_vm._v(" Plugin:  ")]), _vm._v(" "), _c("div", {
     staticClass: "value"
-  }, [_vm._v(" WPCreativeIdea Product Enquiry ")])]);
+  }, [_vm._v(" Pingly Product Enquiry ")])]);
 }, function () {
   var _vm = this,
     _c = _vm._self._c;
@@ -1425,17 +1425,17 @@ var staticRenderFns = [function () {
     _c = _vm._self._c;
   return _c("p", {
     staticClass: "license-empty-notice"
-  }, [_vm._v("Note: "), _c("em", [_vm._v("Please activate your license key, WPCreativeIdea Product Enquiry Addons will not work without license activation.")])]);
+  }, [_vm._v("Note: "), _c("em", [_vm._v("Please activate your license key, Pingly Product Enquiry Addons will not work without license activation.")])]);
 }];
 render._withStripped = true;
 
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/admin/Modules/Support.vue?vue&type=template&id=45a03b82":
-/*!************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/admin/Modules/Support.vue?vue&type=template&id=45a03b82 ***!
-  \************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/admin/Modules/PinglyProductEnquiry/PinglyProductEnquiry.vue?vue&type=template&id=bdb79dc2":
+/*!**********************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/admin/Modules/PinglyProductEnquiry/PinglyProductEnquiry.vue?vue&type=template&id=bdb79dc2 ***!
+  \**********************************************************************************************************************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -1448,81 +1448,472 @@ var render = function render() {
   var _vm = this,
     _c = _vm._self._c;
   return _c("div", {
-    staticClass: "wpcipe-support-wrapper wpcipe-card"
-  }, [_vm._m(0), _vm._v(" "), _c("div", {
-    staticClass: "wpcipe_support_block_box"
+    staticClass: "pingly-card"
   }, [_c("div", {
-    staticClass: "wpcipe_support_block text-center"
-  }, [_c("img", {
+    staticClass: "pingly-settings-header"
+  }, [_c("h2", [_vm._v("Enquiry")]), _vm._v(" "), _c("el-switch", {
     attrs: {
-      src: "".concat(_vm.imagesUrl, "/support.png")
+      "active-text": "Disable",
+      "active-value": "yes",
+      "inactive-value": "no"
+    },
+    on: {
+      change: function change(value) {
+        return _vm.activeChangeHandler("pingly_module", value);
+      }
+    },
+    model: {
+      value: _vm.activeModule,
+      callback: function callback($$v) {
+        _vm.activeModule = $$v;
+      },
+      expression: "activeModule"
     }
-  }), _vm._v(" "), _c("h3", [_vm._v("Need And Expert Support?")]), _vm._v(" "), _c("p", [_vm._v("Our EXPERTS would like to assist you for your query and any customization.")]), _vm._v(" "), _vm._m(1)]), _vm._v(" "), _c("div", {
-    staticClass: "wpcipe_support_block text-center"
-  }, [_c("img", {
+  })], 1), _vm._v(" "), _c("el-dialog", {
     attrs: {
-      src: "".concat(_vm.imagesUrl, "/community.png")
+      visible: _vm.showDisableDialog,
+      width: "480px",
+      "close-on-click-modal": true,
+      "close-on-press-escape": true,
+      "show-close": true,
+      "custom-class": "pingly-module-disable-dialog",
+      center: ""
+    },
+    on: {
+      "update:visible": function updateVisible($event) {
+        _vm.showDisableDialog = $event;
+      }
     }
-  }), _vm._v(" "), _c("h3", [_vm._v("Join our community")]), _vm._v(" "), _c("p", [_vm._v("We have a strong community where we discuss ideas and help each other.")]), _vm._v(" "), _vm._m(2)]), _vm._v(" "), _c("div", {
-    staticClass: "wpcipe_support_block text-center"
-  }, [_c("img", {
+  }, [_c("div", {
+    staticClass: "pingly-module-dialog-content text-align-center"
+  }, [_c("div", {
+    staticClass: "icon-container"
+  }, [_c("div", {
+    staticClass: "warning-circle"
+  }, [_c("i", {
+    staticClass: "el-icon-warning-outline"
+  })])]), _vm._v(" "), _c("div", {
+    staticClass: "dialog-text"
+  }, [_c("h3", [_vm._v("Disable Product Enquiry?")]), _vm._v(" "), _c("p", [_vm._v("This action will disable the module completely."), _c("br"), _vm._v("Users won't see the enquiry functionality on your frontend.")])]), _vm._v(" "), _c("div", {
+    staticClass: "dialog-actions"
+  }, [_c("el-button", {
+    staticClass: "cancel-btn",
+    on: {
+      click: _vm.cancelDisable
+    }
+  }, [_vm._v("\n          Keep Enabled\n        ")]), _vm._v(" "), _c("el-button", {
     attrs: {
-      src: "".concat(_vm.imagesUrl, "/love.png")
+      type: "danger",
+      loading: _vm.saving
+    },
+    on: {
+      click: _vm.confirmDisable
     }
-  }), _vm._v(" "), _c("h3", [_vm._v("Love this Plugin?")]), _vm._v(" "), _c("p", [_vm._v("Please write a review the plugin. We appreciate it!")]), _vm._v(" "), _vm._m(3)])])]);
+  }, [!_vm.saving ? _c("i", {
+    staticClass: "el-icon-close"
+  }) : _vm._e(), _vm._v("\n          Yes, Disable\n        ")])], 1)])]), _vm._v(" "), _c("el-tabs", {
+    on: {
+      "tab-click": _vm.handleClick
+    },
+    model: {
+      value: _vm.activeTab,
+      callback: function callback($$v) {
+        _vm.activeTab = $$v;
+      },
+      expression: "activeTab"
+    }
+  }, [_c("el-tab-pane", {
+    attrs: {
+      label: "Settings",
+      name: "settings"
+    }
+  }, [_c("Settings", {
+    attrs: {
+      settings: _vm.configs,
+      fetching: _vm.fetching
+    },
+    on: {
+      update: _vm.updateHandler
+    }
+  })], 1), _vm._v(" "), _c("el-tab-pane", {
+    attrs: {
+      label: "Styles",
+      name: "styles"
+    }
+  }, [_c("Styles", {
+    attrs: {
+      styles: _vm.configs,
+      fetching: _vm.fetching
+    },
+    on: {
+      update: _vm.updateHandler
+    }
+  })], 1), _vm._v(" "), _c("el-tab-pane", {
+    attrs: {
+      label: "Product Enquiry",
+      name: "pingly-product-enquiry"
+    }
+  }, [_c("PinglyProductEnquiryData", {
+    attrs: {
+      enquireDatas: _vm.configs,
+      fetching: _vm.fetching
+    },
+    on: {
+      update: _vm.updateHandler
+    }
+  })], 1)], 1), _vm._v(" "), _vm.activeTab != "pingly-product-enquiry" ? _c("div", {
+    staticClass: "pingly-button-group"
+  }, [_c("el-button", {
+    attrs: {
+      type: "primary"
+    },
+    on: {
+      click: _vm.saveSettings
+    }
+  }, [_c("i", {
+    "class": !_vm.saving ? "el-icon-circle-check" : "el-icon-loading"
+  }), _vm._v("\n      Save " + _vm._s(_vm.currentTab) + "\n    ")]), _vm._v(" "), _c("el-button", {
+    attrs: {
+      type: "danger",
+      resetting: ""
+    },
+    on: {
+      click: function click($event) {
+        return _vm.resetAlertMessage();
+      }
+    }
+  }, [_c("i", {
+    "class": !_vm.resetting ? "el-icon-refresh" : "el-icon-loading"
+  }), _vm._v("\n      Reset " + _vm._s(_vm.currentTab) + "\n    ")])], 1) : _vm._e()], 1);
 };
-var staticRenderFns = [function () {
-  var _vm = this,
-    _c = _vm._self._c;
-  return _c("div", {
-    staticClass: "wpcipe_header"
-  }, [_c("div", {
-    staticClass: "wpcipe_title wpcipe_header_title"
-  }, [_c("h3", {
-    staticStyle: {
-      margin: "0px"
-    }
-  }, [_vm._v(" Support ")])])]);
-}, function () {
-  var _vm = this,
-    _c = _vm._self._c;
-  return _c("p", [_c("a", {
-    staticClass: "button button-primary",
-    attrs: {
-      href: "https://wpcreativeidea.com/support-ticket/",
-      target: "_blank"
-    }
-  }, [_vm._v("\n          Contact Support\n        ")])]);
-}, function () {
-  var _vm = this,
-    _c = _vm._self._c;
-  return _c("p", [_c("a", {
-    staticClass: "button button-primary",
-    attrs: {
-      href: "https://wpcreativeidea.com/",
-      target: "_blank"
-    }
-  }, [_vm._v("\n          Join Community\n        ")])]);
-}, function () {
-  var _vm = this,
-    _c = _vm._self._c;
-  return _c("p", [_c("a", {
-    staticClass: "button button-primary",
-    attrs: {
-      href: "https://wpcreativeidea.com/",
-      target: "_blank"
-    }
-  }, [_vm._v("\n         Write Review\n        ")])]);
-}];
+var staticRenderFns = [];
 render._withStripped = true;
 
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/admin/Modules/WPCreativeIdeaProductEnquiry/Settings.vue?vue&type=template&id=09bb6022":
-/*!******************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/admin/Modules/WPCreativeIdeaProductEnquiry/Settings.vue?vue&type=template&id=09bb6022 ***!
-  \******************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/admin/Modules/PinglyProductEnquiry/PinglyProductEnquiryData.vue?vue&type=template&id=900df72e":
+/*!**************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/admin/Modules/PinglyProductEnquiry/PinglyProductEnquiryData.vue?vue&type=template&id=900df72e ***!
+  \**************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function render() {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("div", {
+    directives: [{
+      name: "loading",
+      rawName: "v-loading",
+      value: _vm.loading,
+      expression: "loading"
+    }],
+    staticClass: "pingly-settings-wrapper",
+    attrs: {
+      "element-loading-spinner": "el-icon-loading"
+    }
+  }, [_c("div", {
+    staticClass: "pingly-settings-content"
+  }, [[_c("div", {
+    staticClass: "pingly-header"
+  }, [_c("el-input", {
+    attrs: {
+      placeholder: "Search",
+      clearable: ""
+    },
+    on: {
+      change: _vm.searchHandler
+    },
+    model: {
+      value: _vm.search,
+      callback: function callback($$v) {
+        _vm.search = $$v;
+      },
+      expression: "search"
+    }
+  }, [_c("el-button", {
+    attrs: {
+      slot: "append",
+      icon: "el-icon-search"
+    },
+    slot: "append"
+  })], 1)], 1), _vm._v(" "), _c("table-selections", {
+    attrs: {
+      selections: _vm.multipleSelection
+    },
+    on: {
+      reloadData: _vm.getPinglyProductEnquiry
+    }
+  }), _vm._v(" "), _c("el-table", {
+    ref: "multipleTable",
+    staticStyle: {
+      width: "100%"
+    },
+    attrs: {
+      data: _vm.tableData,
+      border: ""
+    },
+    on: {
+      "selection-change": _vm.handleSelectionChange
+    }
+  }, [_c("el-table-column", {
+    attrs: {
+      type: "selection"
+    }
+  }), _vm._v(" "), _c("el-table-column", {
+    attrs: {
+      label: "Name",
+      width: "150"
+    },
+    scopedSlots: _vm._u([{
+      key: "default",
+      fn: function fn(scope) {
+        return [_vm._v(_vm._s(scope.row.name))];
+      }
+    }])
+  }), _vm._v(" "), _c("el-table-column", {
+    attrs: {
+      label: "Email",
+      width: "180"
+    },
+    scopedSlots: _vm._u([{
+      key: "default",
+      fn: function fn(scope) {
+        return [_vm._v(_vm._s(scope.row.email))];
+      }
+    }])
+  }), _vm._v(" "), _c("el-table-column", {
+    attrs: {
+      label: "Phone Number",
+      width: "150"
+    },
+    scopedSlots: _vm._u([{
+      key: "default",
+      fn: function fn(scope) {
+        return [_vm._v(_vm._s(scope.row.phone_number))];
+      }
+    }])
+  }), _vm._v(" "), _c("el-table-column", {
+    attrs: {
+      label: "Enquiry",
+      width: "250"
+    },
+    scopedSlots: _vm._u([{
+      key: "default",
+      fn: function fn(scope) {
+        return [_vm._v(_vm._s(_vm.textTrim(scope.row.enquiry)))];
+      }
+    }])
+  }), _vm._v(" "), _c("el-table-column", {
+    attrs: {
+      label: "Product Title",
+      width: "150"
+    },
+    scopedSlots: _vm._u([{
+      key: "default",
+      fn: function fn(scope) {
+        return [_c("span", {
+          domProps: {
+            innerHTML: _vm._s(_vm.getProductHtml(scope.row))
+          }
+        })];
+      }
+    }])
+  }), _vm._v(" "), _c("el-table-column", {
+    attrs: {
+      label: "Type",
+      width: "150"
+    },
+    scopedSlots: _vm._u([{
+      key: "default",
+      fn: function fn(scope) {
+        return [_vm._v(_vm._s(_vm.textTrim(scope.row.type)))];
+      }
+    }])
+  }), _vm._v(" "), _c("el-table-column", {
+    attrs: {
+      label: "Status",
+      width: "150"
+    },
+    scopedSlots: _vm._u([{
+      key: "default",
+      fn: function fn(scope) {
+        return [_vm._v(_vm._s(_vm.textTrim(scope.row.status)))];
+      }
+    }])
+  }), _vm._v(" "), _c("el-table-column", {
+    attrs: {
+      label: "subscribe",
+      width: "150"
+    },
+    scopedSlots: _vm._u([{
+      key: "default",
+      fn: function fn(scope) {
+        return [_vm._v(_vm._s(_vm.textTrim(scope.row.subscribe)))];
+      }
+    }])
+  }), _vm._v(" "), _c("el-table-column", {
+    attrs: {
+      label: "Date",
+      width: "150"
+    },
+    scopedSlots: _vm._u([{
+      key: "default",
+      fn: function fn(scope) {
+        return [_vm._v("\n              " + _vm._s(new Date(scope.row.created_at).toLocaleDateString("en-GB", {
+          day: "2-digit",
+          month: "long",
+          year: "numeric"
+        })) + "\n            ")];
+      }
+    }])
+  }), _vm._v(" "), _c("el-table-column", {
+    attrs: {
+      label: "Actions",
+      width: "150"
+    },
+    scopedSlots: _vm._u([{
+      key: "default",
+      fn: function fn(scope) {
+        return [_c("el-button", {
+          staticClass: "pingly-btn",
+          attrs: {
+            type: "primary",
+            icon: "el-icon-view",
+            circle: ""
+          },
+          on: {
+            click: function click($event) {
+              return _vm.confirmView(scope.row.id);
+            }
+          }
+        }), _vm._v(" "), _c("el-button", {
+          staticClass: "pingly-btn",
+          attrs: {
+            type: "danger",
+            icon: "el-icon-delete",
+            circle: ""
+          },
+          on: {
+            click: function click($event) {
+              return _vm.handleDeleteModal(scope.row.id);
+            }
+          }
+        })];
+      }
+    }])
+  })], 1), _vm._v(" "), _c("table-selections", {
+    attrs: {
+      selections: _vm.multipleSelection
+    },
+    on: {
+      reloadData: _vm.getPinglyProductEnquiry
+    }
+  }), _vm._v(" "), _c("div", {
+    staticClass: "pingly_pagination_wrap"
+  }, [_c("el-pagination", {
+    attrs: {
+      "hide-on-single-page": false,
+      "current-page": _vm.paginate.current_page,
+      "page-sizes": [5, 10, 20, 50, 100],
+      "page-size": _vm.paginate.per_page,
+      layout: "total, sizes, prev, pager, next",
+      total: _vm.paginate.total
+    },
+    on: {
+      "size-change": _vm.handleSizeChange,
+      "current-change": _vm.handleCurrentChange,
+      "update:currentPage": function updateCurrentPage($event) {
+        return _vm.$set(_vm.paginate, "current_page", $event);
+      },
+      "update:current-page": function updateCurrentPage($event) {
+        return _vm.$set(_vm.paginate, "current_page", $event);
+      }
+    }
+  })], 1), _vm._v(" "), _c("el-dialog", {
+    attrs: {
+      visible: _vm.showDisableDialog,
+      width: "45%",
+      "close-on-click-modal": true,
+      "close-on-press-escape": true,
+      "show-close": true,
+      "custom-class": "pingly-module-disable-dialog",
+      center: ""
+    },
+    on: {
+      "update:visible": function updateVisible($event) {
+        _vm.showDisableDialog = $event;
+      }
+    }
+  }, [_c("div", {
+    staticClass: "pingly-module-dialog-content"
+  }, [_c("div", {
+    staticClass: "dialog-text"
+  }, [_c("h3", [_vm._v("Product Enquiry Details")]), _vm._v(" "), _c("table", {
+    directives: [{
+      name: "loading",
+      rawName: "v-loading",
+      value: _vm.loading,
+      expression: "loading"
+    }],
+    staticClass: "pingly-table",
+    attrs: {
+      "element-loading-spinner": "el-icon-loading"
+    }
+  }, [_c("tbody", [_vm.detail.name ? _c("tr", [_c("td", {
+    staticClass: "label"
+  }, [_vm._v("Name")]), _vm._v(" "), _c("td", {
+    staticClass: "value"
+  }, [_vm._v(_vm._s(_vm.detail.name))])]) : _vm._e(), _vm._v(" "), _vm.detail.email ? _c("tr", [_c("td", {
+    staticClass: "label"
+  }, [_vm._v("Email")]), _vm._v(" "), _c("td", {
+    staticClass: "value"
+  }, [_vm._v(_vm._s(_vm.detail.email))])]) : _vm._e(), _vm._v(" "), _vm.detail.enquiry ? _c("tr", [_c("td", {
+    staticClass: "label"
+  }, [_vm._v("Enquiry")]), _vm._v(" "), _c("td", {
+    staticClass: "value"
+  }, [_vm._v(_vm._s(_vm.detail.enquiry))])]) : _vm._e(), _vm._v(" "), _vm.detail.phone_number ? _c("tr", [_c("td", {
+    staticClass: "label"
+  }, [_vm._v("Phone Number")]), _vm._v(" "), _c("td", {
+    staticClass: "value"
+  }, [_vm._v(_vm._s(_vm.detail.phone_number))])]) : _vm._e(), _vm._v(" "), _vm.detail.type ? _c("tr", [_c("td", {
+    staticClass: "label"
+  }, [_vm._v("Type")]), _vm._v(" "), _c("td", {
+    staticClass: "value"
+  }, [_vm._v(_vm._s(_vm.detail.type))])]) : _vm._e(), _vm._v(" "), _vm.detail.status ? _c("tr", [_c("td", {
+    staticClass: "label"
+  }, [_vm._v("Status")]), _vm._v(" "), _c("td", {
+    staticClass: "value"
+  }, [_vm._v(_vm._s(_vm.detail.status))])]) : _vm._e(), _vm._v(" "), _vm.detail.subscribe ? _c("tr", [_c("td", {
+    staticClass: "label"
+  }, [_vm._v("Subscribe")]), _vm._v(" "), _c("td", {
+    staticClass: "value"
+  }, [_vm._v(_vm._s(_vm.detail.subscribe))])]) : _vm._e(), _vm._v(" "), _vm.hasProduct(_vm.detail) ? _c("tr", [_c("td", {
+    staticClass: "label"
+  }, [_vm._v("Product Title")]), _vm._v(" "), _c("td", {
+    staticClass: "value"
+  }, [_c("span", {
+    domProps: {
+      innerHTML: _vm._s(_vm.getProductHtml(_vm.detail))
+    }
+  })])]) : _vm._e()])])])])])]], 2)]);
+};
+var staticRenderFns = [];
+render._withStripped = true;
+
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/admin/Modules/PinglyProductEnquiry/Settings.vue?vue&type=template&id=7a6bca0f":
+/*!**********************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/admin/Modules/PinglyProductEnquiry/Settings.vue?vue&type=template&id=7a6bca0f ***!
+  \**********************************************************************************************************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -1541,12 +1932,12 @@ var render = function render() {
       value: _vm.fetching,
       expression: "fetching"
     }],
-    staticClass: "wpcipe-settings-wrapper",
+    staticClass: "pingly-settings-wrapper",
     attrs: {
       "element-loading-spinner": "el-icon-loading"
     }
   }, [_c("div", {
-    staticClass: "wpcipe-settings-content"
+    staticClass: "pingly-settings-content"
   }, [_vm._m(0), _vm._v(" "), _c("div", {
     staticClass: "setting-row"
   }, [_c("span", {
@@ -1661,7 +2052,7 @@ var render = function render() {
   }, [_c("i", {
     staticClass: "el-icon-question"
   })])], 1)]) : _vm._e()]), _vm._v(" "), _c("div", {
-    staticClass: "wpcipe-settings-content"
+    staticClass: "pingly-settings-content"
   }, [_vm._m(1), _vm._v(" "), _c("div", {
     staticClass: "setting-row"
   }, [_c("span", {
@@ -1767,7 +2158,7 @@ var render = function render() {
   }, [_c("i", {
     staticClass: "el-icon-question"
   })])], 1)]) : _vm._e()]), _vm._v(" "), _c("div", {
-    staticClass: "wpcipe-settings-content"
+    staticClass: "pingly-settings-content"
   }, [_vm._m(2), _vm._v(" "), _c("div", {
     staticClass: "setting-row"
   }, [_c("span", {
@@ -1844,7 +2235,7 @@ var render = function render() {
   }, [_c("i", {
     staticClass: "el-icon-question"
   })])], 1)]), _vm._v(" "), _c("div", {
-    staticClass: "wpcipe-settings-content"
+    staticClass: "pingly-settings-content"
   }, [_vm._m(3), _vm._v(" "), _c("div", {
     staticClass: "setting-row"
   }, [_c("span", {
@@ -1933,7 +2324,7 @@ var render = function render() {
   }, [_c("i", {
     staticClass: "el-icon-question"
   })])], 1)]), _vm._v(" "), _vm.settings.enquiry_form_tab_enable === "yes" ? _c("div", {
-    staticClass: "wpcipe-settings-content"
+    staticClass: "pingly-settings-content"
   }, [_vm._m(4), _vm._v(" "), _c("div", {
     staticClass: "setting-row"
   }, [_c("span", {
@@ -2037,7 +2428,7 @@ var render = function render() {
   }, [_c("i", {
     staticClass: "el-icon-question"
   })])], 1)]) : _vm._e(), _vm._v(" "), _vm.settings.whatsapp_tab_enable === "yes" ? _c("div", {
-    staticClass: "wpcipe-settings-content"
+    staticClass: "pingly-settings-content"
   }, [_vm._m(6), _vm._v(" "), _c("div", {
     staticClass: "setting-row"
   }, [_c("span", {
@@ -2215,7 +2606,7 @@ var render = function render() {
   }, [_c("i", {
     staticClass: "el-icon-question"
   })])], 1)]) : _vm._e(), _vm._v(" "), _vm.settings.sms_tab_enable === "yes" ? _c("div", {
-    staticClass: "wpcipe-settings-content"
+    staticClass: "pingly-settings-content"
   }, [_vm._m(7), _vm._v(" "), _c("div", {
     staticClass: "setting-row"
   }, [_c("span", {
@@ -2393,7 +2784,7 @@ var render = function render() {
   }, [_c("i", {
     staticClass: "el-icon-question"
   })])], 1)]) : _vm._e(), _vm._v(" "), _c("div", {
-    staticClass: "wpcipe-settings-content"
+    staticClass: "pingly-settings-content"
   }, [_vm._m(8), _vm._v(" "), _c("div", {
     staticClass: "setting-row"
   }, [_c("span", {
@@ -2531,7 +2922,7 @@ var render = function render() {
   }, [_c("i", {
     staticClass: "el-icon-question"
   })])], 1)]), _vm._v(" "), _c("div", {
-    staticClass: "wpcipe-settings-content"
+    staticClass: "pingly-settings-content"
   }, [_vm._m(9), _vm._v(" "), _c("div", {
     staticClass: "setting-row"
   }, [_c("span", {
@@ -2587,7 +2978,7 @@ var render = function render() {
   }, [_c("i", {
     staticClass: "el-icon-question"
   })])], 1) : _vm._e()]), _vm._v(" "), _c("div", {
-    staticClass: "wpcipe-settings-content"
+    staticClass: "pingly-settings-content"
   }, [_vm._m(10), _vm._v(" "), _c("div", {
     staticClass: "setting-row"
   }, [_c("span", {
@@ -2720,10 +3111,10 @@ render._withStripped = true;
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/admin/Modules/WPCreativeIdeaProductEnquiry/Styles.vue?vue&type=template&id=0cc0d22e":
-/*!****************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/admin/Modules/WPCreativeIdeaProductEnquiry/Styles.vue?vue&type=template&id=0cc0d22e ***!
-  \****************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/admin/Modules/PinglyProductEnquiry/Styles.vue?vue&type=template&id=6e62544e":
+/*!********************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/admin/Modules/PinglyProductEnquiry/Styles.vue?vue&type=template&id=6e62544e ***!
+  \********************************************************************************************************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -2742,12 +3133,12 @@ var render = function render() {
       value: _vm.fetching,
       expression: "fetching"
     }],
-    staticClass: "wpcipe-settings-wrapper",
+    staticClass: "pingly-settings-wrapper",
     attrs: {
       "element-loading-spinner": "el-icon-loading"
     }
   }, [_c("div", {
-    staticClass: "wpcipe-settings-content"
+    staticClass: "pingly-settings-content"
   }, [_vm._m(0), _vm._v(" "), _c("div", {
     staticClass: "setting-row"
   }, [_c("span", {
@@ -2800,7 +3191,7 @@ var render = function render() {
       expression: "styles.backorder_shop_button_color"
     }
   })], 1)]), _vm._v(" "), _c("div", {
-    staticClass: "wpcipe-settings-content"
+    staticClass: "pingly-settings-content"
   }, [_vm._m(1), _vm._v(" "), _c("div", {
     staticClass: "setting-row"
   }, [_c("span", {
@@ -2853,7 +3244,7 @@ var render = function render() {
       expression: "styles.backorder_single_button_color"
     }
   })], 1)]), _vm._v(" "), _c("div", {
-    staticClass: "wpcipe-settings-content"
+    staticClass: "pingly-settings-content"
   }, [_vm._m(2), _vm._v(" "), _c("div", {
     staticClass: "setting-row"
   }, [_c("span", {
@@ -2906,7 +3297,7 @@ var render = function render() {
       expression: "styles.submit_button_background_color"
     }
   })], 1)]), _vm._v(" "), _c("div", {
-    staticClass: "wpcipe-settings-content"
+    staticClass: "pingly-settings-content"
   }, [_vm._m(3), _vm._v(" "), _c("div", {
     staticClass: "setting-row"
   }, [_c("span", {
@@ -2925,7 +3316,7 @@ var render = function render() {
       expression: "styles.shortcode_enquiry_button_color"
     }
   })], 1)]), _vm._v(" "), _c("div", {
-    staticClass: "wpcipe-settings-content"
+    staticClass: "pingly-settings-content"
   }, [_vm._m(4), _vm._v(" "), _c("div", {
     staticClass: "setting-row"
   }, [_c("span", {
@@ -2944,7 +3335,7 @@ var render = function render() {
       expression: "styles.cart_page_enquiry_button_color"
     }
   })], 1)]), _vm._v(" "), _c("div", {
-    staticClass: "wpcipe-settings-content"
+    staticClass: "pingly-settings-content"
   }, [_vm._m(5), _vm._v(" "), _c("div", {
     staticClass: "setting-row"
   }, [_c("span", {
@@ -3006,488 +3397,10 @@ render._withStripped = true;
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/admin/Modules/WPCreativeIdeaProductEnquiry/WPCreativeIdeaProductEnquiry.vue?vue&type=template&id=122a791f":
-/*!**************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/admin/Modules/WPCreativeIdeaProductEnquiry/WPCreativeIdeaProductEnquiry.vue?vue&type=template&id=122a791f ***!
-  \**************************************************************************************************************************************************************************************************************************************************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => (/* binding */ render),
-/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
-/* harmony export */ });
-var render = function render() {
-  var _vm = this,
-    _c = _vm._self._c;
-  return _c("div", {
-    staticClass: "wpcipe-card"
-  }, [_c("div", {
-    staticClass: "wpcipe-settings-header"
-  }, [_c("h2", [_vm._v("Enquiry")]), _vm._v(" "), _c("el-switch", {
-    attrs: {
-      "active-text": "Disable",
-      "active-value": "yes",
-      "inactive-value": "no"
-    },
-    on: {
-      change: function change(value) {
-        return _vm.activeChangeHandler("wpcipe_module", value);
-      }
-    },
-    model: {
-      value: _vm.activeModule,
-      callback: function callback($$v) {
-        _vm.activeModule = $$v;
-      },
-      expression: "activeModule"
-    }
-  })], 1), _vm._v(" "), _c("el-dialog", {
-    attrs: {
-      visible: _vm.showDisableDialog,
-      width: "480px",
-      "close-on-click-modal": true,
-      "close-on-press-escape": true,
-      "show-close": true,
-      "custom-class": "wpcipe-module-disable-dialog",
-      center: ""
-    },
-    on: {
-      "update:visible": function updateVisible($event) {
-        _vm.showDisableDialog = $event;
-      }
-    }
-  }, [_c("div", {
-    staticClass: "wpcipe-module-dialog-content text-align-center"
-  }, [_c("div", {
-    staticClass: "icon-container"
-  }, [_c("div", {
-    staticClass: "warning-circle"
-  }, [_c("i", {
-    staticClass: "el-icon-warning-outline"
-  })])]), _vm._v(" "), _c("div", {
-    staticClass: "dialog-text"
-  }, [_c("h3", [_vm._v("Disable Product Enquiry?")]), _vm._v(" "), _c("p", [_vm._v("This action will disable the module completely."), _c("br"), _vm._v("Users won't see the enquiry functionality on your frontend.")])]), _vm._v(" "), _c("div", {
-    staticClass: "dialog-actions"
-  }, [_c("el-button", {
-    staticClass: "cancel-btn",
-    on: {
-      click: _vm.cancelDisable
-    }
-  }, [_vm._v("\n          Keep Enabled\n        ")]), _vm._v(" "), _c("el-button", {
-    attrs: {
-      type: "danger",
-      loading: _vm.saving
-    },
-    on: {
-      click: _vm.confirmDisable
-    }
-  }, [!_vm.saving ? _c("i", {
-    staticClass: "el-icon-close"
-  }) : _vm._e(), _vm._v("\n          Yes, Disable\n        ")])], 1)])]), _vm._v(" "), _c("el-tabs", {
-    on: {
-      "tab-click": _vm.handleClick
-    },
-    model: {
-      value: _vm.activeTab,
-      callback: function callback($$v) {
-        _vm.activeTab = $$v;
-      },
-      expression: "activeTab"
-    }
-  }, [_c("el-tab-pane", {
-    attrs: {
-      label: "Settings",
-      name: "settings"
-    }
-  }, [_c("Settings", {
-    attrs: {
-      settings: _vm.configs,
-      fetching: _vm.fetching
-    },
-    on: {
-      update: _vm.updateHandler
-    }
-  })], 1), _vm._v(" "), _c("el-tab-pane", {
-    attrs: {
-      label: "Styles",
-      name: "styles"
-    }
-  }, [_c("Styles", {
-    attrs: {
-      styles: _vm.configs,
-      fetching: _vm.fetching
-    },
-    on: {
-      update: _vm.updateHandler
-    }
-  })], 1), _vm._v(" "), _c("el-tab-pane", {
-    attrs: {
-      label: "Product Enquiry",
-      name: "wpcreativeidea-product-enquiry"
-    }
-  }, [_c("WPCreativeIdeaProductEnquiryData", {
-    attrs: {
-      enquireDatas: _vm.configs,
-      fetching: _vm.fetching
-    },
-    on: {
-      update: _vm.updateHandler
-    }
-  })], 1)], 1), _vm._v(" "), _vm.activeTab != "wpcreativeidea-product-enquiry" ? _c("div", {
-    staticClass: "wpcipe-button-group"
-  }, [_c("el-button", {
-    attrs: {
-      type: "primary"
-    },
-    on: {
-      click: _vm.saveSettings
-    }
-  }, [_c("i", {
-    "class": !_vm.saving ? "el-icon-circle-check" : "el-icon-loading"
-  }), _vm._v("\n      Save " + _vm._s(_vm.currentTab) + "\n    ")]), _vm._v(" "), _c("el-button", {
-    attrs: {
-      type: "danger",
-      resetting: ""
-    },
-    on: {
-      click: function click($event) {
-        return _vm.resetAlertMessage();
-      }
-    }
-  }, [_c("i", {
-    "class": !_vm.resetting ? "el-icon-refresh" : "el-icon-loading"
-  }), _vm._v("\n      Reset " + _vm._s(_vm.currentTab) + "\n    ")])], 1) : _vm._e()], 1);
-};
-var staticRenderFns = [];
-render._withStripped = true;
-
-
-/***/ }),
-
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/admin/Modules/WPCreativeIdeaProductEnquiry/WPCreativeIdeaProductEnquiryData.vue?vue&type=template&id=2c9b4c69":
-/*!******************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/admin/Modules/WPCreativeIdeaProductEnquiry/WPCreativeIdeaProductEnquiryData.vue?vue&type=template&id=2c9b4c69 ***!
-  \******************************************************************************************************************************************************************************************************************************************************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => (/* binding */ render),
-/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
-/* harmony export */ });
-var render = function render() {
-  var _vm = this,
-    _c = _vm._self._c;
-  return _c("div", {
-    directives: [{
-      name: "loading",
-      rawName: "v-loading",
-      value: _vm.loading,
-      expression: "loading"
-    }],
-    staticClass: "wpcipe-settings-wrapper",
-    attrs: {
-      "element-loading-spinner": "el-icon-loading"
-    }
-  }, [_c("div", {
-    staticClass: "wpcipe-settings-content"
-  }, [[_c("div", {
-    staticClass: "wpcipe-header"
-  }, [_c("el-input", {
-    attrs: {
-      placeholder: "Search",
-      clearable: ""
-    },
-    on: {
-      change: _vm.searchHandler
-    },
-    model: {
-      value: _vm.search,
-      callback: function callback($$v) {
-        _vm.search = $$v;
-      },
-      expression: "search"
-    }
-  }, [_c("el-button", {
-    attrs: {
-      slot: "append",
-      icon: "el-icon-search"
-    },
-    slot: "append"
-  })], 1)], 1), _vm._v(" "), _c("table-selections", {
-    attrs: {
-      selections: _vm.multipleSelection
-    },
-    on: {
-      reloadData: _vm.getWPCreativeIdeaProductEnquiry
-    }
-  }), _vm._v(" "), _c("el-table", {
-    ref: "multipleTable",
-    staticStyle: {
-      width: "100%"
-    },
-    attrs: {
-      data: _vm.tableData,
-      border: ""
-    },
-    on: {
-      "selection-change": _vm.handleSelectionChange
-    }
-  }, [_c("el-table-column", {
-    attrs: {
-      type: "selection"
-    }
-  }), _vm._v(" "), _c("el-table-column", {
-    attrs: {
-      label: "Name",
-      width: "150"
-    },
-    scopedSlots: _vm._u([{
-      key: "default",
-      fn: function fn(scope) {
-        return [_vm._v(_vm._s(scope.row.name))];
-      }
-    }])
-  }), _vm._v(" "), _c("el-table-column", {
-    attrs: {
-      label: "Email",
-      width: "180"
-    },
-    scopedSlots: _vm._u([{
-      key: "default",
-      fn: function fn(scope) {
-        return [_vm._v(_vm._s(scope.row.email))];
-      }
-    }])
-  }), _vm._v(" "), _c("el-table-column", {
-    attrs: {
-      label: "Phone Number",
-      width: "150"
-    },
-    scopedSlots: _vm._u([{
-      key: "default",
-      fn: function fn(scope) {
-        return [_vm._v(_vm._s(scope.row.phone_number))];
-      }
-    }])
-  }), _vm._v(" "), _c("el-table-column", {
-    attrs: {
-      label: "Enquiry",
-      width: "250"
-    },
-    scopedSlots: _vm._u([{
-      key: "default",
-      fn: function fn(scope) {
-        return [_vm._v(_vm._s(_vm.textTrim(scope.row.enquiry)))];
-      }
-    }])
-  }), _vm._v(" "), _c("el-table-column", {
-    attrs: {
-      label: "Product Title",
-      width: "150"
-    },
-    scopedSlots: _vm._u([{
-      key: "default",
-      fn: function fn(scope) {
-        return [_c("span", {
-          domProps: {
-            innerHTML: _vm._s(_vm.getProductHtml(scope.row))
-          }
-        })];
-      }
-    }])
-  }), _vm._v(" "), _c("el-table-column", {
-    attrs: {
-      label: "Type",
-      width: "150"
-    },
-    scopedSlots: _vm._u([{
-      key: "default",
-      fn: function fn(scope) {
-        return [_vm._v(_vm._s(_vm.textTrim(scope.row.type)))];
-      }
-    }])
-  }), _vm._v(" "), _c("el-table-column", {
-    attrs: {
-      label: "Status",
-      width: "150"
-    },
-    scopedSlots: _vm._u([{
-      key: "default",
-      fn: function fn(scope) {
-        return [_vm._v(_vm._s(_vm.textTrim(scope.row.status)))];
-      }
-    }])
-  }), _vm._v(" "), _c("el-table-column", {
-    attrs: {
-      label: "subscribe",
-      width: "150"
-    },
-    scopedSlots: _vm._u([{
-      key: "default",
-      fn: function fn(scope) {
-        return [_vm._v(_vm._s(_vm.textTrim(scope.row.subscribe)))];
-      }
-    }])
-  }), _vm._v(" "), _c("el-table-column", {
-    attrs: {
-      label: "Date",
-      width: "150"
-    },
-    scopedSlots: _vm._u([{
-      key: "default",
-      fn: function fn(scope) {
-        return [_vm._v("\n              " + _vm._s(new Date(scope.row.created_at).toLocaleDateString("en-GB", {
-          day: "2-digit",
-          month: "long",
-          year: "numeric"
-        })) + "\n            ")];
-      }
-    }])
-  }), _vm._v(" "), _c("el-table-column", {
-    attrs: {
-      label: "Actions",
-      width: "150"
-    },
-    scopedSlots: _vm._u([{
-      key: "default",
-      fn: function fn(scope) {
-        return [_c("el-button", {
-          staticClass: "wpcipe-btn",
-          attrs: {
-            type: "primary",
-            icon: "el-icon-view",
-            circle: ""
-          },
-          on: {
-            click: function click($event) {
-              return _vm.confirmView(scope.row.id);
-            }
-          }
-        }), _vm._v(" "), _c("el-button", {
-          staticClass: "wpcipe-btn",
-          attrs: {
-            type: "danger",
-            icon: "el-icon-delete",
-            circle: ""
-          },
-          on: {
-            click: function click($event) {
-              return _vm.handleDeleteModal(scope.row.id);
-            }
-          }
-        })];
-      }
-    }])
-  })], 1), _vm._v(" "), _c("table-selections", {
-    attrs: {
-      selections: _vm.multipleSelection
-    },
-    on: {
-      reloadData: _vm.getWPCreativeIdeaProductEnquiry
-    }
-  }), _vm._v(" "), _c("div", {
-    staticClass: "wpcipe_pagination_wrap"
-  }, [_c("el-pagination", {
-    attrs: {
-      "hide-on-single-page": false,
-      "current-page": _vm.paginate.current_page,
-      "page-sizes": [5, 10, 20, 50, 100],
-      "page-size": _vm.paginate.per_page,
-      layout: "total, sizes, prev, pager, next",
-      total: _vm.paginate.total
-    },
-    on: {
-      "size-change": _vm.handleSizeChange,
-      "current-change": _vm.handleCurrentChange,
-      "update:currentPage": function updateCurrentPage($event) {
-        return _vm.$set(_vm.paginate, "current_page", $event);
-      },
-      "update:current-page": function updateCurrentPage($event) {
-        return _vm.$set(_vm.paginate, "current_page", $event);
-      }
-    }
-  })], 1), _vm._v(" "), _c("el-dialog", {
-    attrs: {
-      visible: _vm.showDisableDialog,
-      width: "45%",
-      "close-on-click-modal": true,
-      "close-on-press-escape": true,
-      "show-close": true,
-      "custom-class": "wpcipe-module-disable-dialog",
-      center: ""
-    },
-    on: {
-      "update:visible": function updateVisible($event) {
-        _vm.showDisableDialog = $event;
-      }
-    }
-  }, [_c("div", {
-    staticClass: "wpcipe-module-dialog-content"
-  }, [_c("div", {
-    staticClass: "dialog-text"
-  }, [_c("h3", [_vm._v("Product Enquiry Details")]), _vm._v(" "), _c("table", {
-    directives: [{
-      name: "loading",
-      rawName: "v-loading",
-      value: _vm.loading,
-      expression: "loading"
-    }],
-    staticClass: "wpcipe-table",
-    attrs: {
-      "element-loading-spinner": "el-icon-loading"
-    }
-  }, [_c("tbody", [_vm.detail.name ? _c("tr", [_c("td", {
-    staticClass: "label"
-  }, [_vm._v("Name")]), _vm._v(" "), _c("td", {
-    staticClass: "value"
-  }, [_vm._v(_vm._s(_vm.detail.name))])]) : _vm._e(), _vm._v(" "), _vm.detail.email ? _c("tr", [_c("td", {
-    staticClass: "label"
-  }, [_vm._v("Email")]), _vm._v(" "), _c("td", {
-    staticClass: "value"
-  }, [_vm._v(_vm._s(_vm.detail.email))])]) : _vm._e(), _vm._v(" "), _vm.detail.enquiry ? _c("tr", [_c("td", {
-    staticClass: "label"
-  }, [_vm._v("Enquiry")]), _vm._v(" "), _c("td", {
-    staticClass: "value"
-  }, [_vm._v(_vm._s(_vm.detail.enquiry))])]) : _vm._e(), _vm._v(" "), _vm.detail.phone_number ? _c("tr", [_c("td", {
-    staticClass: "label"
-  }, [_vm._v("Phone Number")]), _vm._v(" "), _c("td", {
-    staticClass: "value"
-  }, [_vm._v(_vm._s(_vm.detail.phone_number))])]) : _vm._e(), _vm._v(" "), _vm.detail.type ? _c("tr", [_c("td", {
-    staticClass: "label"
-  }, [_vm._v("Type")]), _vm._v(" "), _c("td", {
-    staticClass: "value"
-  }, [_vm._v(_vm._s(_vm.detail.type))])]) : _vm._e(), _vm._v(" "), _vm.detail.status ? _c("tr", [_c("td", {
-    staticClass: "label"
-  }, [_vm._v("Status")]), _vm._v(" "), _c("td", {
-    staticClass: "value"
-  }, [_vm._v(_vm._s(_vm.detail.status))])]) : _vm._e(), _vm._v(" "), _vm.detail.subscribe ? _c("tr", [_c("td", {
-    staticClass: "label"
-  }, [_vm._v("Subscribe")]), _vm._v(" "), _c("td", {
-    staticClass: "value"
-  }, [_vm._v(_vm._s(_vm.detail.subscribe))])]) : _vm._e(), _vm._v(" "), _vm.hasProduct(_vm.detail) ? _c("tr", [_c("td", {
-    staticClass: "label"
-  }, [_vm._v("Product Title")]), _vm._v(" "), _c("td", {
-    staticClass: "value"
-  }, [_c("span", {
-    domProps: {
-      innerHTML: _vm._s(_vm.getProductHtml(_vm.detail))
-    }
-  })])]) : _vm._e()])])])])])]], 2)]);
-};
-var staticRenderFns = [];
-render._withStripped = true;
-
-
-/***/ }),
-
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/admin/Modules/WPCreativeIdeaProductEnquiry/_TableSelectionHandler.vue?vue&type=template&id=60fd5499":
-/*!********************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/admin/Modules/WPCreativeIdeaProductEnquiry/_TableSelectionHandler.vue?vue&type=template&id=60fd5499 ***!
-  \********************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/admin/Modules/PinglyProductEnquiry/_TableSelectionHandler.vue?vue&type=template&id=8ed2d28e":
+/*!************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/admin/Modules/PinglyProductEnquiry/_TableSelectionHandler.vue?vue&type=template&id=8ed2d28e ***!
+  \************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -3519,6 +3432,93 @@ render._withStripped = true;
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/admin/Modules/Support.vue?vue&type=template&id=45a03b82":
+/*!************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/admin/Modules/Support.vue?vue&type=template&id=45a03b82 ***!
+  \************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function render() {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("div", {
+    staticClass: "pingly-support-wrapper pingly-card"
+  }, [_vm._m(0), _vm._v(" "), _c("div", {
+    staticClass: "pingly_support_block_box"
+  }, [_c("div", {
+    staticClass: "pingly_support_block text-center"
+  }, [_c("img", {
+    attrs: {
+      src: "".concat(_vm.imagesUrl, "/support.png")
+    }
+  }), _vm._v(" "), _c("h3", [_vm._v("Need And Expert Support?")]), _vm._v(" "), _c("p", [_vm._v("Our EXPERTS would like to assist you for your query and any customization.")]), _vm._v(" "), _vm._m(1)]), _vm._v(" "), _c("div", {
+    staticClass: "pingly_support_block text-center"
+  }, [_c("img", {
+    attrs: {
+      src: "".concat(_vm.imagesUrl, "/community.png")
+    }
+  }), _vm._v(" "), _c("h3", [_vm._v("Join our community")]), _vm._v(" "), _c("p", [_vm._v("We have a strong community where we discuss ideas and help each other.")]), _vm._v(" "), _vm._m(2)]), _vm._v(" "), _c("div", {
+    staticClass: "pingly_support_block text-center"
+  }, [_c("img", {
+    attrs: {
+      src: "".concat(_vm.imagesUrl, "/love.png")
+    }
+  }), _vm._v(" "), _c("h3", [_vm._v("Love this Plugin?")]), _vm._v(" "), _c("p", [_vm._v("Please write a review the plugin. We appreciate it!")]), _vm._v(" "), _vm._m(3)])])]);
+};
+var staticRenderFns = [function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("div", {
+    staticClass: "pingly_header"
+  }, [_c("div", {
+    staticClass: "pingly_title pingly_header_title"
+  }, [_c("h3", {
+    staticStyle: {
+      margin: "0px"
+    }
+  }, [_vm._v(" Support ")])])]);
+}, function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("p", [_c("a", {
+    staticClass: "button button-primary",
+    attrs: {
+      href: "https://wpcreativeidea.com/support-ticket/",
+      target: "_blank"
+    }
+  }, [_vm._v("\n          Contact Support\n        ")])]);
+}, function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("p", [_c("a", {
+    staticClass: "button button-primary",
+    attrs: {
+      href: "https://wpcreativeidea.com/",
+      target: "_blank"
+    }
+  }, [_vm._v("\n          Join Community\n        ")])]);
+}, function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("p", [_c("a", {
+    staticClass: "button button-primary",
+    attrs: {
+      href: "https://wpcreativeidea.com/",
+      target: "_blank"
+    }
+  }, [_vm._v("\n         Write Review\n        ")])]);
+}];
+render._withStripped = true;
+
+
+/***/ }),
+
 /***/ "./resources/admin/Bits/routes.js":
 /*!****************************************!*\
   !*** ./resources/admin/Bits/routes.js ***!
@@ -3530,7 +3530,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _Modules_WPCreativeIdeaProductEnquiry_WPCreativeIdeaProductEnquiry_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../Modules/WPCreativeIdeaProductEnquiry/WPCreativeIdeaProductEnquiry.vue */ "./resources/admin/Modules/WPCreativeIdeaProductEnquiry/WPCreativeIdeaProductEnquiry.vue");
+/* harmony import */ var _Modules_PinglyProductEnquiry_PinglyProductEnquiry_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../Modules/PinglyProductEnquiry/PinglyProductEnquiry.vue */ "./resources/admin/Modules/PinglyProductEnquiry/PinglyProductEnquiry.vue");
 /* harmony import */ var _Modules_LicenseManagement__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../Modules/LicenseManagement */ "./resources/admin/Modules/LicenseManagement.vue");
 /* harmony import */ var _Modules_Documentation_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../Modules/Documentation.vue */ "./resources/admin/Modules/Documentation.vue");
 /* harmony import */ var _Modules_Support_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../Modules/Support.vue */ "./resources/admin/Modules/Support.vue");
@@ -3541,7 +3541,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ([{
   name: '',
   path: '/',
-  component: _Modules_WPCreativeIdeaProductEnquiry_WPCreativeIdeaProductEnquiry_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
+  component: _Modules_PinglyProductEnquiry_PinglyProductEnquiry_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
   exact: true
 }, {
   name: 'license-management',
@@ -5980,6 +5980,201 @@ component.options.__file = "resources/admin/Modules/LicenseManagement.vue"
 
 /***/ }),
 
+/***/ "./resources/admin/Modules/PinglyProductEnquiry/PinglyProductEnquiry.vue":
+/*!*******************************************************************************!*\
+  !*** ./resources/admin/Modules/PinglyProductEnquiry/PinglyProductEnquiry.vue ***!
+  \*******************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _PinglyProductEnquiry_vue_vue_type_template_id_bdb79dc2__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./PinglyProductEnquiry.vue?vue&type=template&id=bdb79dc2 */ "./resources/admin/Modules/PinglyProductEnquiry/PinglyProductEnquiry.vue?vue&type=template&id=bdb79dc2");
+/* harmony import */ var _PinglyProductEnquiry_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./PinglyProductEnquiry.vue?vue&type=script&lang=js */ "./resources/admin/Modules/PinglyProductEnquiry/PinglyProductEnquiry.vue?vue&type=script&lang=js");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _PinglyProductEnquiry_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"],
+  _PinglyProductEnquiry_vue_vue_type_template_id_bdb79dc2__WEBPACK_IMPORTED_MODULE_0__.render,
+  _PinglyProductEnquiry_vue_vue_type_template_id_bdb79dc2__WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/admin/Modules/PinglyProductEnquiry/PinglyProductEnquiry.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/admin/Modules/PinglyProductEnquiry/PinglyProductEnquiryData.vue":
+/*!***********************************************************************************!*\
+  !*** ./resources/admin/Modules/PinglyProductEnquiry/PinglyProductEnquiryData.vue ***!
+  \***********************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _PinglyProductEnquiryData_vue_vue_type_template_id_900df72e__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./PinglyProductEnquiryData.vue?vue&type=template&id=900df72e */ "./resources/admin/Modules/PinglyProductEnquiry/PinglyProductEnquiryData.vue?vue&type=template&id=900df72e");
+/* harmony import */ var _PinglyProductEnquiryData_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./PinglyProductEnquiryData.vue?vue&type=script&lang=js */ "./resources/admin/Modules/PinglyProductEnquiry/PinglyProductEnquiryData.vue?vue&type=script&lang=js");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _PinglyProductEnquiryData_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"],
+  _PinglyProductEnquiryData_vue_vue_type_template_id_900df72e__WEBPACK_IMPORTED_MODULE_0__.render,
+  _PinglyProductEnquiryData_vue_vue_type_template_id_900df72e__WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/admin/Modules/PinglyProductEnquiry/PinglyProductEnquiryData.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/admin/Modules/PinglyProductEnquiry/Settings.vue":
+/*!*******************************************************************!*\
+  !*** ./resources/admin/Modules/PinglyProductEnquiry/Settings.vue ***!
+  \*******************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _Settings_vue_vue_type_template_id_7a6bca0f__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Settings.vue?vue&type=template&id=7a6bca0f */ "./resources/admin/Modules/PinglyProductEnquiry/Settings.vue?vue&type=template&id=7a6bca0f");
+/* harmony import */ var _Settings_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Settings.vue?vue&type=script&lang=js */ "./resources/admin/Modules/PinglyProductEnquiry/Settings.vue?vue&type=script&lang=js");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _Settings_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"],
+  _Settings_vue_vue_type_template_id_7a6bca0f__WEBPACK_IMPORTED_MODULE_0__.render,
+  _Settings_vue_vue_type_template_id_7a6bca0f__WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/admin/Modules/PinglyProductEnquiry/Settings.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/admin/Modules/PinglyProductEnquiry/Styles.vue":
+/*!*****************************************************************!*\
+  !*** ./resources/admin/Modules/PinglyProductEnquiry/Styles.vue ***!
+  \*****************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _Styles_vue_vue_type_template_id_6e62544e__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Styles.vue?vue&type=template&id=6e62544e */ "./resources/admin/Modules/PinglyProductEnquiry/Styles.vue?vue&type=template&id=6e62544e");
+/* harmony import */ var _Styles_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Styles.vue?vue&type=script&lang=js */ "./resources/admin/Modules/PinglyProductEnquiry/Styles.vue?vue&type=script&lang=js");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _Styles_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"],
+  _Styles_vue_vue_type_template_id_6e62544e__WEBPACK_IMPORTED_MODULE_0__.render,
+  _Styles_vue_vue_type_template_id_6e62544e__WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/admin/Modules/PinglyProductEnquiry/Styles.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/admin/Modules/PinglyProductEnquiry/_TableSelectionHandler.vue":
+/*!*********************************************************************************!*\
+  !*** ./resources/admin/Modules/PinglyProductEnquiry/_TableSelectionHandler.vue ***!
+  \*********************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _TableSelectionHandler_vue_vue_type_template_id_8ed2d28e__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./_TableSelectionHandler.vue?vue&type=template&id=8ed2d28e */ "./resources/admin/Modules/PinglyProductEnquiry/_TableSelectionHandler.vue?vue&type=template&id=8ed2d28e");
+/* harmony import */ var _TableSelectionHandler_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./_TableSelectionHandler.vue?vue&type=script&lang=js */ "./resources/admin/Modules/PinglyProductEnquiry/_TableSelectionHandler.vue?vue&type=script&lang=js");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _TableSelectionHandler_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"],
+  _TableSelectionHandler_vue_vue_type_template_id_8ed2d28e__WEBPACK_IMPORTED_MODULE_0__.render,
+  _TableSelectionHandler_vue_vue_type_template_id_8ed2d28e__WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/admin/Modules/PinglyProductEnquiry/_TableSelectionHandler.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/admin/Modules/Support.vue":
 /*!*********************************************!*\
   !*** ./resources/admin/Modules/Support.vue ***!
@@ -6015,201 +6210,6 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
 /* hot reload */
 if (false) { var api; }
 component.options.__file = "resources/admin/Modules/Support.vue"
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
-
-/***/ }),
-
-/***/ "./resources/admin/Modules/WPCreativeIdeaProductEnquiry/Settings.vue":
-/*!***************************************************************************!*\
-  !*** ./resources/admin/Modules/WPCreativeIdeaProductEnquiry/Settings.vue ***!
-  \***************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _Settings_vue_vue_type_template_id_09bb6022__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Settings.vue?vue&type=template&id=09bb6022 */ "./resources/admin/Modules/WPCreativeIdeaProductEnquiry/Settings.vue?vue&type=template&id=09bb6022");
-/* harmony import */ var _Settings_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Settings.vue?vue&type=script&lang=js */ "./resources/admin/Modules/WPCreativeIdeaProductEnquiry/Settings.vue?vue&type=script&lang=js");
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-
-
-
-
-
-/* normalize component */
-;
-var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _Settings_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"],
-  _Settings_vue_vue_type_template_id_09bb6022__WEBPACK_IMPORTED_MODULE_0__.render,
-  _Settings_vue_vue_type_template_id_09bb6022__WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
-  false,
-  null,
-  null,
-  null
-  
-)
-
-/* hot reload */
-if (false) { var api; }
-component.options.__file = "resources/admin/Modules/WPCreativeIdeaProductEnquiry/Settings.vue"
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
-
-/***/ }),
-
-/***/ "./resources/admin/Modules/WPCreativeIdeaProductEnquiry/Styles.vue":
-/*!*************************************************************************!*\
-  !*** ./resources/admin/Modules/WPCreativeIdeaProductEnquiry/Styles.vue ***!
-  \*************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _Styles_vue_vue_type_template_id_0cc0d22e__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Styles.vue?vue&type=template&id=0cc0d22e */ "./resources/admin/Modules/WPCreativeIdeaProductEnquiry/Styles.vue?vue&type=template&id=0cc0d22e");
-/* harmony import */ var _Styles_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Styles.vue?vue&type=script&lang=js */ "./resources/admin/Modules/WPCreativeIdeaProductEnquiry/Styles.vue?vue&type=script&lang=js");
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-
-
-
-
-
-/* normalize component */
-;
-var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _Styles_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"],
-  _Styles_vue_vue_type_template_id_0cc0d22e__WEBPACK_IMPORTED_MODULE_0__.render,
-  _Styles_vue_vue_type_template_id_0cc0d22e__WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
-  false,
-  null,
-  null,
-  null
-  
-)
-
-/* hot reload */
-if (false) { var api; }
-component.options.__file = "resources/admin/Modules/WPCreativeIdeaProductEnquiry/Styles.vue"
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
-
-/***/ }),
-
-/***/ "./resources/admin/Modules/WPCreativeIdeaProductEnquiry/WPCreativeIdeaProductEnquiry.vue":
-/*!***********************************************************************************************!*\
-  !*** ./resources/admin/Modules/WPCreativeIdeaProductEnquiry/WPCreativeIdeaProductEnquiry.vue ***!
-  \***********************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _WPCreativeIdeaProductEnquiry_vue_vue_type_template_id_122a791f__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./WPCreativeIdeaProductEnquiry.vue?vue&type=template&id=122a791f */ "./resources/admin/Modules/WPCreativeIdeaProductEnquiry/WPCreativeIdeaProductEnquiry.vue?vue&type=template&id=122a791f");
-/* harmony import */ var _WPCreativeIdeaProductEnquiry_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./WPCreativeIdeaProductEnquiry.vue?vue&type=script&lang=js */ "./resources/admin/Modules/WPCreativeIdeaProductEnquiry/WPCreativeIdeaProductEnquiry.vue?vue&type=script&lang=js");
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-
-
-
-
-
-/* normalize component */
-;
-var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _WPCreativeIdeaProductEnquiry_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"],
-  _WPCreativeIdeaProductEnquiry_vue_vue_type_template_id_122a791f__WEBPACK_IMPORTED_MODULE_0__.render,
-  _WPCreativeIdeaProductEnquiry_vue_vue_type_template_id_122a791f__WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
-  false,
-  null,
-  null,
-  null
-  
-)
-
-/* hot reload */
-if (false) { var api; }
-component.options.__file = "resources/admin/Modules/WPCreativeIdeaProductEnquiry/WPCreativeIdeaProductEnquiry.vue"
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
-
-/***/ }),
-
-/***/ "./resources/admin/Modules/WPCreativeIdeaProductEnquiry/WPCreativeIdeaProductEnquiryData.vue":
-/*!***************************************************************************************************!*\
-  !*** ./resources/admin/Modules/WPCreativeIdeaProductEnquiry/WPCreativeIdeaProductEnquiryData.vue ***!
-  \***************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _WPCreativeIdeaProductEnquiryData_vue_vue_type_template_id_2c9b4c69__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./WPCreativeIdeaProductEnquiryData.vue?vue&type=template&id=2c9b4c69 */ "./resources/admin/Modules/WPCreativeIdeaProductEnquiry/WPCreativeIdeaProductEnquiryData.vue?vue&type=template&id=2c9b4c69");
-/* harmony import */ var _WPCreativeIdeaProductEnquiryData_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./WPCreativeIdeaProductEnquiryData.vue?vue&type=script&lang=js */ "./resources/admin/Modules/WPCreativeIdeaProductEnquiry/WPCreativeIdeaProductEnquiryData.vue?vue&type=script&lang=js");
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-
-
-
-
-
-/* normalize component */
-;
-var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _WPCreativeIdeaProductEnquiryData_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"],
-  _WPCreativeIdeaProductEnquiryData_vue_vue_type_template_id_2c9b4c69__WEBPACK_IMPORTED_MODULE_0__.render,
-  _WPCreativeIdeaProductEnquiryData_vue_vue_type_template_id_2c9b4c69__WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
-  false,
-  null,
-  null,
-  null
-  
-)
-
-/* hot reload */
-if (false) { var api; }
-component.options.__file = "resources/admin/Modules/WPCreativeIdeaProductEnquiry/WPCreativeIdeaProductEnquiryData.vue"
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
-
-/***/ }),
-
-/***/ "./resources/admin/Modules/WPCreativeIdeaProductEnquiry/_TableSelectionHandler.vue":
-/*!*****************************************************************************************!*\
-  !*** ./resources/admin/Modules/WPCreativeIdeaProductEnquiry/_TableSelectionHandler.vue ***!
-  \*****************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _TableSelectionHandler_vue_vue_type_template_id_60fd5499__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./_TableSelectionHandler.vue?vue&type=template&id=60fd5499 */ "./resources/admin/Modules/WPCreativeIdeaProductEnquiry/_TableSelectionHandler.vue?vue&type=template&id=60fd5499");
-/* harmony import */ var _TableSelectionHandler_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./_TableSelectionHandler.vue?vue&type=script&lang=js */ "./resources/admin/Modules/WPCreativeIdeaProductEnquiry/_TableSelectionHandler.vue?vue&type=script&lang=js");
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-
-
-
-
-
-/* normalize component */
-;
-var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _TableSelectionHandler_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"],
-  _TableSelectionHandler_vue_vue_type_template_id_60fd5499__WEBPACK_IMPORTED_MODULE_0__.render,
-  _TableSelectionHandler_vue_vue_type_template_id_60fd5499__WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
-  false,
-  null,
-  null,
-  null
-  
-)
-
-/* hot reload */
-if (false) { var api; }
-component.options.__file = "resources/admin/Modules/WPCreativeIdeaProductEnquiry/_TableSelectionHandler.vue"
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
 
 /***/ }),
@@ -6278,6 +6278,86 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/admin/Modules/PinglyProductEnquiry/PinglyProductEnquiry.vue?vue&type=script&lang=js":
+/*!*******************************************************************************************************!*\
+  !*** ./resources/admin/Modules/PinglyProductEnquiry/PinglyProductEnquiry.vue?vue&type=script&lang=js ***!
+  \*******************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_PinglyProductEnquiry_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./PinglyProductEnquiry.vue?vue&type=script&lang=js */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/admin/Modules/PinglyProductEnquiry/PinglyProductEnquiry.vue?vue&type=script&lang=js");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_PinglyProductEnquiry_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/admin/Modules/PinglyProductEnquiry/PinglyProductEnquiryData.vue?vue&type=script&lang=js":
+/*!***********************************************************************************************************!*\
+  !*** ./resources/admin/Modules/PinglyProductEnquiry/PinglyProductEnquiryData.vue?vue&type=script&lang=js ***!
+  \***********************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_PinglyProductEnquiryData_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./PinglyProductEnquiryData.vue?vue&type=script&lang=js */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/admin/Modules/PinglyProductEnquiry/PinglyProductEnquiryData.vue?vue&type=script&lang=js");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_PinglyProductEnquiryData_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/admin/Modules/PinglyProductEnquiry/Settings.vue?vue&type=script&lang=js":
+/*!*******************************************************************************************!*\
+  !*** ./resources/admin/Modules/PinglyProductEnquiry/Settings.vue?vue&type=script&lang=js ***!
+  \*******************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Settings_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Settings.vue?vue&type=script&lang=js */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/admin/Modules/PinglyProductEnquiry/Settings.vue?vue&type=script&lang=js");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Settings_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/admin/Modules/PinglyProductEnquiry/Styles.vue?vue&type=script&lang=js":
+/*!*****************************************************************************************!*\
+  !*** ./resources/admin/Modules/PinglyProductEnquiry/Styles.vue?vue&type=script&lang=js ***!
+  \*****************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Styles_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Styles.vue?vue&type=script&lang=js */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/admin/Modules/PinglyProductEnquiry/Styles.vue?vue&type=script&lang=js");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Styles_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/admin/Modules/PinglyProductEnquiry/_TableSelectionHandler.vue?vue&type=script&lang=js":
+/*!*********************************************************************************************************!*\
+  !*** ./resources/admin/Modules/PinglyProductEnquiry/_TableSelectionHandler.vue?vue&type=script&lang=js ***!
+  \*********************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_TableSelectionHandler_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./_TableSelectionHandler.vue?vue&type=script&lang=js */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/admin/Modules/PinglyProductEnquiry/_TableSelectionHandler.vue?vue&type=script&lang=js");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_TableSelectionHandler_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
 /***/ "./resources/admin/Modules/Support.vue?vue&type=script&lang=js":
 /*!*********************************************************************!*\
   !*** ./resources/admin/Modules/Support.vue?vue&type=script&lang=js ***!
@@ -6291,86 +6371,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Support_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Support.vue?vue&type=script&lang=js */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/admin/Modules/Support.vue?vue&type=script&lang=js");
  /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Support_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__["default"]); 
-
-/***/ }),
-
-/***/ "./resources/admin/Modules/WPCreativeIdeaProductEnquiry/Settings.vue?vue&type=script&lang=js":
-/*!***************************************************************************************************!*\
-  !*** ./resources/admin/Modules/WPCreativeIdeaProductEnquiry/Settings.vue?vue&type=script&lang=js ***!
-  \***************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Settings_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Settings.vue?vue&type=script&lang=js */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/admin/Modules/WPCreativeIdeaProductEnquiry/Settings.vue?vue&type=script&lang=js");
- /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Settings_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__["default"]); 
-
-/***/ }),
-
-/***/ "./resources/admin/Modules/WPCreativeIdeaProductEnquiry/Styles.vue?vue&type=script&lang=js":
-/*!*************************************************************************************************!*\
-  !*** ./resources/admin/Modules/WPCreativeIdeaProductEnquiry/Styles.vue?vue&type=script&lang=js ***!
-  \*************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Styles_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Styles.vue?vue&type=script&lang=js */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/admin/Modules/WPCreativeIdeaProductEnquiry/Styles.vue?vue&type=script&lang=js");
- /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Styles_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__["default"]); 
-
-/***/ }),
-
-/***/ "./resources/admin/Modules/WPCreativeIdeaProductEnquiry/WPCreativeIdeaProductEnquiry.vue?vue&type=script&lang=js":
-/*!***********************************************************************************************************************!*\
-  !*** ./resources/admin/Modules/WPCreativeIdeaProductEnquiry/WPCreativeIdeaProductEnquiry.vue?vue&type=script&lang=js ***!
-  \***********************************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_WPCreativeIdeaProductEnquiry_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./WPCreativeIdeaProductEnquiry.vue?vue&type=script&lang=js */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/admin/Modules/WPCreativeIdeaProductEnquiry/WPCreativeIdeaProductEnquiry.vue?vue&type=script&lang=js");
- /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_WPCreativeIdeaProductEnquiry_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__["default"]); 
-
-/***/ }),
-
-/***/ "./resources/admin/Modules/WPCreativeIdeaProductEnquiry/WPCreativeIdeaProductEnquiryData.vue?vue&type=script&lang=js":
-/*!***************************************************************************************************************************!*\
-  !*** ./resources/admin/Modules/WPCreativeIdeaProductEnquiry/WPCreativeIdeaProductEnquiryData.vue?vue&type=script&lang=js ***!
-  \***************************************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_WPCreativeIdeaProductEnquiryData_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./WPCreativeIdeaProductEnquiryData.vue?vue&type=script&lang=js */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/admin/Modules/WPCreativeIdeaProductEnquiry/WPCreativeIdeaProductEnquiryData.vue?vue&type=script&lang=js");
- /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_WPCreativeIdeaProductEnquiryData_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__["default"]); 
-
-/***/ }),
-
-/***/ "./resources/admin/Modules/WPCreativeIdeaProductEnquiry/_TableSelectionHandler.vue?vue&type=script&lang=js":
-/*!*****************************************************************************************************************!*\
-  !*** ./resources/admin/Modules/WPCreativeIdeaProductEnquiry/_TableSelectionHandler.vue?vue&type=script&lang=js ***!
-  \*****************************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_TableSelectionHandler_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./_TableSelectionHandler.vue?vue&type=script&lang=js */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/admin/Modules/WPCreativeIdeaProductEnquiry/_TableSelectionHandler.vue?vue&type=script&lang=js");
- /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_TableSelectionHandler_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
@@ -6459,6 +6459,91 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/admin/Modules/PinglyProductEnquiry/PinglyProductEnquiry.vue?vue&type=template&id=bdb79dc2":
+/*!*************************************************************************************************************!*\
+  !*** ./resources/admin/Modules/PinglyProductEnquiry/PinglyProductEnquiry.vue?vue&type=template&id=bdb79dc2 ***!
+  \*************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_PinglyProductEnquiry_vue_vue_type_template_id_bdb79dc2__WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_PinglyProductEnquiry_vue_vue_type_template_id_bdb79dc2__WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_PinglyProductEnquiry_vue_vue_type_template_id_bdb79dc2__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./PinglyProductEnquiry.vue?vue&type=template&id=bdb79dc2 */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/admin/Modules/PinglyProductEnquiry/PinglyProductEnquiry.vue?vue&type=template&id=bdb79dc2");
+
+
+/***/ }),
+
+/***/ "./resources/admin/Modules/PinglyProductEnquiry/PinglyProductEnquiryData.vue?vue&type=template&id=900df72e":
+/*!*****************************************************************************************************************!*\
+  !*** ./resources/admin/Modules/PinglyProductEnquiry/PinglyProductEnquiryData.vue?vue&type=template&id=900df72e ***!
+  \*****************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_PinglyProductEnquiryData_vue_vue_type_template_id_900df72e__WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_PinglyProductEnquiryData_vue_vue_type_template_id_900df72e__WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_PinglyProductEnquiryData_vue_vue_type_template_id_900df72e__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./PinglyProductEnquiryData.vue?vue&type=template&id=900df72e */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/admin/Modules/PinglyProductEnquiry/PinglyProductEnquiryData.vue?vue&type=template&id=900df72e");
+
+
+/***/ }),
+
+/***/ "./resources/admin/Modules/PinglyProductEnquiry/Settings.vue?vue&type=template&id=7a6bca0f":
+/*!*************************************************************************************************!*\
+  !*** ./resources/admin/Modules/PinglyProductEnquiry/Settings.vue?vue&type=template&id=7a6bca0f ***!
+  \*************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Settings_vue_vue_type_template_id_7a6bca0f__WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Settings_vue_vue_type_template_id_7a6bca0f__WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Settings_vue_vue_type_template_id_7a6bca0f__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Settings.vue?vue&type=template&id=7a6bca0f */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/admin/Modules/PinglyProductEnquiry/Settings.vue?vue&type=template&id=7a6bca0f");
+
+
+/***/ }),
+
+/***/ "./resources/admin/Modules/PinglyProductEnquiry/Styles.vue?vue&type=template&id=6e62544e":
+/*!***********************************************************************************************!*\
+  !*** ./resources/admin/Modules/PinglyProductEnquiry/Styles.vue?vue&type=template&id=6e62544e ***!
+  \***********************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Styles_vue_vue_type_template_id_6e62544e__WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Styles_vue_vue_type_template_id_6e62544e__WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Styles_vue_vue_type_template_id_6e62544e__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Styles.vue?vue&type=template&id=6e62544e */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/admin/Modules/PinglyProductEnquiry/Styles.vue?vue&type=template&id=6e62544e");
+
+
+/***/ }),
+
+/***/ "./resources/admin/Modules/PinglyProductEnquiry/_TableSelectionHandler.vue?vue&type=template&id=8ed2d28e":
+/*!***************************************************************************************************************!*\
+  !*** ./resources/admin/Modules/PinglyProductEnquiry/_TableSelectionHandler.vue?vue&type=template&id=8ed2d28e ***!
+  \***************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_TableSelectionHandler_vue_vue_type_template_id_8ed2d28e__WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_TableSelectionHandler_vue_vue_type_template_id_8ed2d28e__WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_TableSelectionHandler_vue_vue_type_template_id_8ed2d28e__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./_TableSelectionHandler.vue?vue&type=template&id=8ed2d28e */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/admin/Modules/PinglyProductEnquiry/_TableSelectionHandler.vue?vue&type=template&id=8ed2d28e");
+
+
+/***/ }),
+
 /***/ "./resources/admin/Modules/Support.vue?vue&type=template&id=45a03b82":
 /*!***************************************************************************!*\
   !*** ./resources/admin/Modules/Support.vue?vue&type=template&id=45a03b82 ***!
@@ -6472,91 +6557,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Support_vue_vue_type_template_id_45a03b82__WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Support_vue_vue_type_template_id_45a03b82__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Support.vue?vue&type=template&id=45a03b82 */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/admin/Modules/Support.vue?vue&type=template&id=45a03b82");
-
-
-/***/ }),
-
-/***/ "./resources/admin/Modules/WPCreativeIdeaProductEnquiry/Settings.vue?vue&type=template&id=09bb6022":
-/*!*********************************************************************************************************!*\
-  !*** ./resources/admin/Modules/WPCreativeIdeaProductEnquiry/Settings.vue?vue&type=template&id=09bb6022 ***!
-  \*********************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Settings_vue_vue_type_template_id_09bb6022__WEBPACK_IMPORTED_MODULE_0__.render),
-/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Settings_vue_vue_type_template_id_09bb6022__WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
-/* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Settings_vue_vue_type_template_id_09bb6022__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Settings.vue?vue&type=template&id=09bb6022 */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/admin/Modules/WPCreativeIdeaProductEnquiry/Settings.vue?vue&type=template&id=09bb6022");
-
-
-/***/ }),
-
-/***/ "./resources/admin/Modules/WPCreativeIdeaProductEnquiry/Styles.vue?vue&type=template&id=0cc0d22e":
-/*!*******************************************************************************************************!*\
-  !*** ./resources/admin/Modules/WPCreativeIdeaProductEnquiry/Styles.vue?vue&type=template&id=0cc0d22e ***!
-  \*******************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Styles_vue_vue_type_template_id_0cc0d22e__WEBPACK_IMPORTED_MODULE_0__.render),
-/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Styles_vue_vue_type_template_id_0cc0d22e__WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
-/* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Styles_vue_vue_type_template_id_0cc0d22e__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Styles.vue?vue&type=template&id=0cc0d22e */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/admin/Modules/WPCreativeIdeaProductEnquiry/Styles.vue?vue&type=template&id=0cc0d22e");
-
-
-/***/ }),
-
-/***/ "./resources/admin/Modules/WPCreativeIdeaProductEnquiry/WPCreativeIdeaProductEnquiry.vue?vue&type=template&id=122a791f":
-/*!*****************************************************************************************************************************!*\
-  !*** ./resources/admin/Modules/WPCreativeIdeaProductEnquiry/WPCreativeIdeaProductEnquiry.vue?vue&type=template&id=122a791f ***!
-  \*****************************************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_WPCreativeIdeaProductEnquiry_vue_vue_type_template_id_122a791f__WEBPACK_IMPORTED_MODULE_0__.render),
-/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_WPCreativeIdeaProductEnquiry_vue_vue_type_template_id_122a791f__WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
-/* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_WPCreativeIdeaProductEnquiry_vue_vue_type_template_id_122a791f__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./WPCreativeIdeaProductEnquiry.vue?vue&type=template&id=122a791f */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/admin/Modules/WPCreativeIdeaProductEnquiry/WPCreativeIdeaProductEnquiry.vue?vue&type=template&id=122a791f");
-
-
-/***/ }),
-
-/***/ "./resources/admin/Modules/WPCreativeIdeaProductEnquiry/WPCreativeIdeaProductEnquiryData.vue?vue&type=template&id=2c9b4c69":
-/*!*********************************************************************************************************************************!*\
-  !*** ./resources/admin/Modules/WPCreativeIdeaProductEnquiry/WPCreativeIdeaProductEnquiryData.vue?vue&type=template&id=2c9b4c69 ***!
-  \*********************************************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_WPCreativeIdeaProductEnquiryData_vue_vue_type_template_id_2c9b4c69__WEBPACK_IMPORTED_MODULE_0__.render),
-/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_WPCreativeIdeaProductEnquiryData_vue_vue_type_template_id_2c9b4c69__WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
-/* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_WPCreativeIdeaProductEnquiryData_vue_vue_type_template_id_2c9b4c69__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./WPCreativeIdeaProductEnquiryData.vue?vue&type=template&id=2c9b4c69 */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/admin/Modules/WPCreativeIdeaProductEnquiry/WPCreativeIdeaProductEnquiryData.vue?vue&type=template&id=2c9b4c69");
-
-
-/***/ }),
-
-/***/ "./resources/admin/Modules/WPCreativeIdeaProductEnquiry/_TableSelectionHandler.vue?vue&type=template&id=60fd5499":
-/*!***********************************************************************************************************************!*\
-  !*** ./resources/admin/Modules/WPCreativeIdeaProductEnquiry/_TableSelectionHandler.vue?vue&type=template&id=60fd5499 ***!
-  \***********************************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_TableSelectionHandler_vue_vue_type_template_id_60fd5499__WEBPACK_IMPORTED_MODULE_0__.render),
-/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_TableSelectionHandler_vue_vue_type_template_id_60fd5499__WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
-/* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_TableSelectionHandler_vue_vue_type_template_id_60fd5499__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./_TableSelectionHandler.vue?vue&type=template&id=60fd5499 */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/admin/Modules/WPCreativeIdeaProductEnquiry/_TableSelectionHandler.vue?vue&type=template&id=60fd5499");
 
 
 /***/ }),
@@ -6774,17 +6774,17 @@ var __webpack_exports__ = {};
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Bits_routes__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Bits/routes */ "./resources/admin/Bits/routes.js");
 
-var vueRouter = new window.WPCIPEPlugin.Router({
-  routes: window.WPCIPEPlugin.applyFilters('wpcipe_global_routes', _Bits_routes__WEBPACK_IMPORTED_MODULE_0__["default"])
+var vueRouter = new window.PINGLYPlugin.Router({
+  routes: window.PINGLYPlugin.applyFilters('pingly_global_routes', _Bits_routes__WEBPACK_IMPORTED_MODULE_0__["default"])
 });
-window.WPCIPEPlugin.Vue.prototype.$get = window.WPCIPEPlugin.$get;
-window.WPCIPEPlugin.Vue.prototype.$post = window.WPCIPEPlugin.$post;
-window.WPCIPEPlugin.Vue.prototype.$put = window.WPCIPEPlugin.$put;
-window.WPCIPEPlugin.Vue.prototype.$del = window.WPCIPEPlugin.$del;
-window.WPCIPEPlugin.Vue.prototype.$bus = new window.WPCIPEPlugin.Vue();
+window.PINGLYPlugin.Vue.prototype.$get = window.PINGLYPlugin.$get;
+window.PINGLYPlugin.Vue.prototype.$post = window.PINGLYPlugin.$post;
+window.PINGLYPlugin.Vue.prototype.$put = window.PINGLYPlugin.$put;
+window.PINGLYPlugin.Vue.prototype.$del = window.PINGLYPlugin.$del;
+window.PINGLYPlugin.Vue.prototype.$bus = new window.PINGLYPlugin.Vue();
 document.addEventListener('DOMContentLoaded', function () {
-  new window.WPCIPEPlugin.Vue({
-    el: '#wp_wpcipe_settings_app',
+  new window.PINGLYPlugin.Vue({
+    el: '#wp_pingly_settings_app',
     render: function render(h) {
       return h((__webpack_require__(/*! ./Application */ "./resources/admin/Application.vue")["default"]));
     },

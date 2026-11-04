@@ -1,8 +1,8 @@
-body.wpcipe-modal-open {
+body.pingly-modal-open {
     overflow: hidden;
 }
 
-.wpcipe-button {
+.pingly-button {
     background-color: #046bd2;
     color: #ffffff !important;
     padding: 10px 20px !important;
@@ -11,11 +11,11 @@ body.wpcipe-modal-open {
 }
 
 // when add to cart button then use
-// .cart .wpcipe-button {
+// .cart .pingly-button {
 //     margin-left: 10px;
 // }
 
-.wpcipe-modal-wrapper {
+.pingly-modal-wrapper {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -27,7 +27,7 @@ body.wpcipe-modal-open {
     height: 100%;
     // overflow: auto;
     background-color: rgba(0, 0, 0, 0.5);
-    .wpcipe-modal-content {
+    .pingly-modal-content {
         position: relative;
         top: 15px;
         background-color: #fefefe;
@@ -38,10 +38,10 @@ body.wpcipe-modal-open {
         border-top-left-radius: 20px;
         border-bottom-right-radius: 10px;
         border-bottom-left-radius: 10px;
-        .wpcipe-form-container {
+        .pingly-form-container {
             width: 100%;
             border-radius: 10px;
-            .wpcipe-header {
+            .pingly-header {
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
@@ -50,7 +50,7 @@ body.wpcipe-modal-open {
                 border-top-right-radius: 19px;
                 border-top-left-radius: 19px;
                 padding: 0px 20px;
-                .wpcipe-title {
+                .pingly-title {
                     text-align: center;
                     margin: 0px;
                     color: #ffffff;
@@ -58,7 +58,7 @@ body.wpcipe-modal-open {
                     flex: 1;
                     font-weight: 600;
                 }
-                .wpcipe-view-close {
+                .pingly-view-close {
                     font-size: 22px;
                     font-weight: bold;
                     color: #fff;
@@ -74,7 +74,7 @@ body.wpcipe-modal-open {
                     transition: all 0.3s;
                 } 
             }
-            .wpcipe-form {
+            .pingly-form {
                 display: block;
                 // padding: 30px;
                 label {
@@ -98,11 +98,11 @@ body.wpcipe-modal-open {
                 }
             }
             /* Tabs */
-            .wpcipe-tabs {
+            .pingly-tabs {
                 display: flex;
                 border-bottom: 1px solid #e5e5e5;
                 background: #fff;
-                .wpcipe-tab {
+                .pingly-tab {
                     // flex: 1;
                     // padding: 14px 10px;
                     // border: none;
@@ -138,17 +138,17 @@ body.wpcipe-modal-open {
                 }
             }
             /* Tab Content */
-            .wpcipe-tab-content {
+            .pingly-tab-content {
                 display: none;
                 padding: 30px;
                 &.active {
                     display: block;
                 }
-                .wpcipe-social-numbers {
+                .pingly-social-numbers {
                     display: flex;
                     flex-direction: column;
                     gap: 20px;
-                    .wpcipe-social-number {
+                    .pingly-social-number {
                         display: flex;
                         justify-content: center;
                         align-items: center;
@@ -157,7 +157,7 @@ body.wpcipe-modal-open {
                             margin: 0px;
                             flex: 1;
                         }
-                        .wpcipe-action-btn {
+                        .pingly-action-btn {
                             display: inline-block;
                             padding: 8px 20px;
                             border-radius: 6px;
@@ -220,7 +220,7 @@ body.wpcipe-modal-open {
                     }
                 }
             }
-            .wpcipe-submit {
+            .pingly-submit {
                 width: 100%;
                 padding: 12px;
                 background: #2196f3;
@@ -231,11 +231,11 @@ body.wpcipe-modal-open {
                 cursor: pointer;
                 font-weight: 600;
             }
-            .wpcipe-submit:hover {
+            .pingly-submit:hover {
                 background: #0d8ae0;
             }
         }
-        #wpcipe-loading-view {
+        #pingly-loading-view {
             //border: solid #dddddd;
             //opacity: 0.6;
             position: absolute; /* Positions the overlay relative to its parent container */
@@ -250,14 +250,14 @@ body.wpcipe-modal-open {
             flex-direction: column;
             color: white; /* Optional: for styling overlay content */
             //height: 850px;
-            .wpcipe-loading-title {
+            .pingly-loading-title {
                 font-size: 15px; /* Slightly larger */
                 color: #fff;
                 text-align: center;
                 margin-top: 15px;
                 font-weight: 500;
             }
-            .wpcipe-loading-spinner {
+            .pingly-loading-spinner {
                 width: 35px; /* Fixed width instead of percentage */
                 height: 35px; /* Fixed height instead of percentage */
                 img {
@@ -267,9 +267,9 @@ body.wpcipe-modal-open {
                 }
             }
         }
-        .wpcipe-notice {
+        .pingly-notice {
             display: none;
-            .wpcipe-response-message {
+            .pingly-response-message {
                 background: #fff;
                 padding: 12px 15px;
                 margin: 0px 0px 20px 0px;
@@ -280,8 +280,8 @@ body.wpcipe-modal-open {
            
         }
     }
-    .wpcipe-form {
-        .wpcipe-phone-number {
+    .pingly-form {
+        .pingly-phone-number {
             display: flex;
             align-items: center;
             gap: 8px;
@@ -311,7 +311,7 @@ body.wpcipe-modal-open {
             color: red;
             margin-left: 3px;
         }
-        .wpcipe-subscribe-field {
+        .pingly-subscribe-field {
             display: flex;
             justify-content: flex-start;
             align-items: center;
@@ -320,7 +320,7 @@ body.wpcipe-modal-open {
                 width: 5% !important;
                 margin: 0px !important;
             }
-            .wpcipe-label-subscribe {
+            .pingly-label-subscribe {
                 margin: 0px !important;
                 padding: 0px !important;
             }
@@ -329,7 +329,7 @@ body.wpcipe-modal-open {
 }
 
 // shop page buttons wrapper
-.wpcipe-add-to-cart-wrapper {
+.pingly-add-to-cart-wrapper {
     display: flex;
     flex-wrap: wrap;
     gap: 8px;
@@ -364,19 +364,19 @@ body.wpcipe-modal-open {
             font-size: 14px;
         }
     }
-    .wpcipe-button {    
+    .pingly-button {    
         order: 4;
     }
 }
 
 // Button in cart product row
-.wpcipe-cart-product-row {
+.pingly-cart-product-row {
     display: flex;
     align-items: center;
     gap: 12px;
     margin-bottom: 6px;
     flex-wrap: wrap;
-    .wpcipe-cart-page-btn {
+    .pingly-cart-page-btn {
         background-color: #5467f8;
         padding: 6px 14px;
         font-size: 13px;
@@ -384,7 +384,7 @@ body.wpcipe-modal-open {
         white-space: nowrap;
     }
 }
-.wpcipe-shortcode-btn  {
+.pingly-shortcode-btn  {
     background-color: #5467f8;
     color: #ffffff !important;
     padding: 10px 20px !important;
@@ -392,21 +392,21 @@ body.wpcipe-modal-open {
 }
 
 /* Hide only the label (&nbsp;:) for Enquiry button row */
-.wc-block-components-product-details__name:has(+ .wc-block-components-product-details__value .wpcipe-button) {
+.wc-block-components-product-details__name:has(+ .wc-block-components-product-details__value .pingly-button) {
     display: none !important;
 }
 
 
 /* Hide Enquiry button label in classic cart shortcode */
-dt.variation-nbsp:has(+ dd .wpcipe-button){
+dt.variation-nbsp:has(+ dd .pingly-button){
     display: none !important;
 }
 
-.wpcipe-cart-page-btn {
+.pingly-cart-page-btn {
     margin: 5px 0px 5px 0px !important;
 }
 
-.wpcipe-order-summary-btn {
+.pingly-order-summary-btn {
     margin: 5px 0px 5px 0px !important;
 }
 
@@ -418,21 +418,21 @@ dt.variation-nbsp:has(+ dd .wpcipe-button){
 }
 
 @media only screen and (max-width: 600px) {
-    .wpcipe-modal-wrapper {
-        .wpcipe-modal-content {
+    .pingly-modal-wrapper {
+        .pingly-modal-content {
             width: 95%;
-            .wpcipe-form-container {
-                .wpcipe-tabs {
+            .pingly-form-container {
+                .pingly-tabs {
                     flex-direction: column;
-                    .wpcipe-tab {
+                    .pingly-tab {
                         width: 100%;
                         &.active {
                             border-bottom-color: transparent;
                         }
                     }
                 }
-                .wpcipe-form {
-                    .wpcipe-subscribe-field {
+                .pingly-form {
+                    .pingly-subscribe-field {
                         gap: 10px;
                         margin-bottom: 10px;
                     }

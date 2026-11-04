@@ -1,28 +1,28 @@
 <?php
 
 /*
-Plugin Name: WPCreativeIdea Product Enquiry
+Plugin Name: Pingly Product Enquiry
 Description: A simple product enquiry plugin for WooCommerce with WhatsApp, SMS, and enquiry form support.
 Version: 1.0.2
 Requires at least: 6.0
 Requires PHP: 7.4
 Author: ruhel241
 Author URI: https://profiles.wordpress.org/ruhel241/
-Plugin URI: https://wpcreativeidea.com/wpcreativeidea-product-enquiry/
+Plugin URI: https://pingly.com/pingly-product-enquiry/
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
-Text Domain: wpcreativeidea-product-enquiry
+Text Domain: pingly-product-enquiry
 Domain Path: /languages
 */
 
 
 defined("ABSPATH") or die;
-define('WPCIPE_PLUGIN_DIR_URL', plugin_dir_url(__FILE__));
-define('WPCIPE_PLUGIN_DIR_PATH', plugin_dir_path(__FILE__));
-define('WPCIPE_PLUGIN_VERSION', '1.0.2');
-define('WPCIPE_LITE', 'wpcreativeidea-product-enquiry');
+define('PINGLY_PLUGIN_DIR_URL', plugin_dir_url(__FILE__));
+define('PINGLY_PLUGIN_DIR_PATH', plugin_dir_path(__FILE__));
+define('PINGLY_PLUGIN_VERSION', '1.0.2');
+define('PINGLY_LITE', 'pingly-product-enquiry');
 
-class WPCreativeIdeaProductEnquiryLite
+class PinglyProductEnquiryLite
 {
     /**
      * Initialize the plugin
@@ -67,14 +67,14 @@ class WPCreativeIdeaProductEnquiryLite
      */
     public function adminHooks()
     {
-       // woocommerce settings page add WPCreativeIdea Product Enquiry settings tab
-        add_filter( 'woocommerce_get_settings_pages', array('WPCreativeIdeaProductEnquiry\Classes\Customization', 'WPCreativeIdeaProductEnquiryAddSettings'), 15, 1 );
+       // woocommerce settings page add Pingly Product Enquiry settings tab
+        add_filter( 'woocommerce_get_settings_pages', array('PinglyProductEnquiry\Classes\Customization', 'PinglyProductEnquiryAddSettings'), 15, 1 );
     
-        $ajaxAdminAjaxHandler = new WPCreativeIdeaProductEnquiry\Handler\AdminAjaxHandler();
+        $ajaxAdminAjaxHandler = new PinglyProductEnquiry\Handler\AdminAjaxHandler();
         $ajaxAdminAjaxHandler->registerEndpoints();
         
-        if ( defined('WPCIPE_PRO') && class_exists( \WPCreativeIdeaProductEnquiryPro\Classes\LicenseController::class ) ) {
-            $licenseController = new \WPCreativeIdeaProductEnquiryPro\Classes\LicenseController();
+        if ( defined('PINGLY_PRO') && class_exists( \PinglyProductEnquiryPro\Classes\LicenseController::class ) ) {
+            $licenseController = new \PinglyProductEnquiryPro\Classes\LicenseController();
             $licenseController->registerEndpoints();
 		}
     }
@@ -87,7 +87,7 @@ class WPCreativeIdeaProductEnquiryLite
     }
 
     public function commonHooks() {
-       $ActionHandler = new WPCreativeIdeaProductEnquiry\Handler\ActionHandler();
+       $ActionHandler = new PinglyProductEnquiry\Handler\ActionHandler();
        $ActionHandler->register();
     }
 
@@ -106,19 +106,19 @@ class WPCreativeIdeaProductEnquiryLite
     {
         ?>
         <div class="notice notice-error">
-            <p><?php esc_html_e('WooCommerce WPCreativeIdea Product Enquiry requires WooCommerce to be installed and active.', 'wpcreativeidea-product-enquiry'); ?></p>
+            <p><?php esc_html_e('WooCommerce Pingly Product Enquiry requires WooCommerce to be installed and active.', 'pingly-product-enquiry'); ?></p>
         </div>
         <?php
     }
 };
 
 add_action('plugins_loaded', function () {
-    $WPCreativeIdeaProductEnquiryLite = new WPCreativeIdeaProductEnquiryLite();
-    $WPCreativeIdeaProductEnquiryLite->init();
+    $PinglyProductEnquiryLite = new PinglyProductEnquiryLite();
+    $PinglyProductEnquiryLite->init();
 });
 
 register_activation_hook(__FILE__, function ($network_wide) {
-    require_once(WPCIPE_PLUGIN_DIR_PATH . 'App/Handler/ActivationHandler.php');
-    $activate = new WPCreativeIdeaProductEnquiry\Handler\ActivationHandler();
+    require_once(PINGLY_PLUGIN_DIR_PATH . 'App/Handler/ActivationHandler.php');
+    $activate = new PinglyProductEnquiry\Handler\ActivationHandler();
     $activate->activate($network_wide);
 });

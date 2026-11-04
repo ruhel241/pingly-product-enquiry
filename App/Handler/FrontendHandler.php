@@ -1,21 +1,21 @@
 <?php
 
-namespace WPCreativeIdeaProductEnquiry\Handler;
+namespace PinglyProductEnquiry\Handler;
 
 if (!defined('ABSPATH')) {
     exit;
 }
 
-use WPCreativeIdeaProductEnquiry\Helpers\ArrayHelper as Arr;
-use WPCreativeIdeaProductEnquiry\Models\WPCreativeIdeaProductEnquiry;
-use WPCreativeIdeaProductEnquiry\Helpers\SanitizeValidation;
+use PinglyProductEnquiry\Helpers\ArrayHelper as Arr;
+use PinglyProductEnquiry\Models\PinglyProductEnquiry;
+use PinglyProductEnquiry\Helpers\SanitizeValidation;
 
 class FrontendHandler
 {
     public function register()
     {
-        add_action('wc_ajax_wpcipe_ajax_actions', [$this, 'ajaxRoutes']);
-        add_action('wc_ajax_nopriv_wpcipe_ajax_actions', [$this, 'ajaxRoutes']);
+        add_action('wc_ajax_pingly_ajax_actions', [$this, 'ajaxRoutes']);
+        add_action('wc_ajax_nopriv_pingly_ajax_actions', [$this, 'ajaxRoutes']);
         add_action('wp_footer', [$this, 'initHook']);
         add_action('wp_enqueue_scripts', [$this, 'enqueueScripts']);
         // shop page add enquiry button
@@ -53,8 +53,8 @@ class FrontendHandler
     
     // shop page Enquiry Button
     public function addShopPageProductEnquiryButton() {
-        $WPCreativeIdeaProductEnquirySettings = get_option('wpcipe_settings', []);
-        $settings               = $WPCreativeIdeaProductEnquirySettings['settings'];
+        $PinglyProductEnquirySettings = get_option('pingly_settings', []);
+        $settings               = $PinglyProductEnquirySettings['settings'];
         $shopPageEnable         = Arr::get($settings, 'shop_page_enable', 'yes' );
         $inStockButtonText      = Arr::get($settings, 'in_stock_shop_button_text', 'Enquiry Us');
         $outOfStockButtonText   = Arr::get($settings, 'out_of_stock_shop_button_text', 'Email when stock available');
@@ -81,7 +81,7 @@ class FrontendHandler
 
         /** OUT OF STOCK */
         if ( 'outofstock' === $stockStatus ) {
-            echo '<a href="#" class="button wpcipe-button wpcipe-shop-btn-outofstock" data-product-id="' . esc_attr( $productId ) . '">'
+            echo '<a href="#" class="button pingly-button pingly-shop-btn-outofstock" data-product-id="' . esc_attr( $productId ) . '">'
                 . esc_html( $outOfStockButtonText )
                 . '</a>';
             return;
@@ -89,7 +89,7 @@ class FrontendHandler
 
         /** BACKORDER */
         if ( 'onbackorder' === $stockStatus ) {
-            echo '<a href="#" class="button wpcipe-button wpcipe-shop-btn-backorder" data-product-id="' . esc_attr( $productId ) . '">'
+            echo '<a href="#" class="button pingly-button pingly-shop-btn-backorder" data-product-id="' . esc_attr( $productId ) . '">'
                 . esc_html( $backOrderButtonText )
                 . '</a>';
             return;
@@ -97,7 +97,7 @@ class FrontendHandler
 
         /** IN STOCK */
         if ( 'instock' === $stockStatus ) {
-            echo '<a href="#" class="button wpcipe-button wpcipe-shop-btn-instock" data-product-id="' . esc_attr( $productId ) . '">'
+            echo '<a href="#" class="button pingly-button pingly-shop-btn-instock" data-product-id="' . esc_attr( $productId ) . '">'
                 . esc_html( $inStockButtonText )
                 . '</a>';
             return;
@@ -106,8 +106,8 @@ class FrontendHandler
 
     // single page Enquiry Button
     public function addSinglePageProductEnquiryButton() {
-        $WPCreativeIdeaProductEnquirySettings = get_option('wpcipe_settings', []);
-        $settings               = $WPCreativeIdeaProductEnquirySettings['settings'];
+        $PinglyProductEnquirySettings = get_option('pingly_settings', []);
+        $settings               = $PinglyProductEnquirySettings['settings'];
         $singlePageEnable       = Arr::get($settings, 'single_page_enable', 'yes');
         $inStockButtonText      = Arr::get($settings, 'in_stock_single_button_text', 'Enquiry Us');
         $outOfStockButtonText   = Arr::get($settings, 'out_of_stock_single_button_text', 'Email when stock available');
@@ -135,7 +135,7 @@ class FrontendHandler
         /** OUT OF STOCK */
         if ( $stockStatus === 'outofstock' ) {
             add_filter('woocommerce_get_availability_text', function ($availability) use ($outOfStockButtonText, $productId) {
-                $button = '<br><br><a href="#" class="button wpcipe-button wpcipe-single-btn-outofstock" data-product-id="' . esc_attr($productId) . '">'
+                $button = '<br><br><a href="#" class="button pingly-button pingly-single-btn-outofstock" data-product-id="' . esc_attr($productId) . '">'
                             . esc_html($outOfStockButtonText) .
                         '</a>';
                 return $availability . $button;
@@ -147,7 +147,7 @@ class FrontendHandler
         /** BACKORDER */
         if ( $stockStatus === 'onbackorder' ) {
             add_action('woocommerce_after_add_to_cart_button', function () use ($backOrderButtonText, $productId) {
-                echo '<a href="#" class="button wpcipe-button wpcipe-single-btn-backorder" data-product-id="' . esc_attr($productId) . '">'
+                echo '<a href="#" class="button pingly-button pingly-single-btn-backorder" data-product-id="' . esc_attr($productId) . '">'
                         . esc_html($backOrderButtonText) .
                     '</a>';
             }, 20);
@@ -158,7 +158,7 @@ class FrontendHandler
         /** IN STOCK */
         if ( $stockStatus === 'instock' ) {
             add_action('woocommerce_after_add_to_cart_button', function () use ($inStockButtonText, $productId) {
-                echo '<a href="#" class="button wpcipe-button wpcipe-single-btn-instock" data-product-id="' . esc_attr($productId) . '">'
+                echo '<a href="#" class="button pingly-button pingly-single-btn-instock" data-product-id="' . esc_attr($productId) . '">'
                         . esc_html($inStockButtonText) .
                     '</a>';
             }, 20);
@@ -167,8 +167,8 @@ class FrontendHandler
     }
 
     public function addProductEnquiryButtonCartPageAndOrderSummary($item_data, $cart_item) {
-        $WPCreativeIdeaProductEnquirySettings         = get_option('wpcipe_settings', []);
-        $settings                       = $WPCreativeIdeaProductEnquirySettings['settings'];
+        $PinglyProductEnquirySettings         = get_option('pingly_settings', []);
+        $settings                       = $PinglyProductEnquirySettings['settings'];
         $cartPageEnquiryUsBtnText       = Arr::get($settings, 'cart_page_enquiry_button_text', 'Enquiry us' );
         $cartPageEnquiryUsBtnEnable     = Arr::get($settings, 'cart_page_enquiry_btn_enable', 'yes' );
         $orderSummaryEnquiryUsBtnText   = Arr::get($settings, 'order_summary_enquiry_button_text', 'Enquiry us' );
@@ -181,7 +181,7 @@ class FrontendHandler
         // Detect contexts
         $isCart       = is_cart();
         $isCheckout   = is_checkout();
-        $activeModules     = get_option('wpcipe_active_module', []);
+        $activeModules     = get_option('pingly_active_module', []);
         $isQuickCartPopupPluginActive = defined('QUICKCART_PLUGIN_VERSION') || ( $activeModules['quick_cart_popup_module'] ?? '' ) === 'yes';
        
         $buttonText = "";
@@ -193,7 +193,7 @@ class FrontendHandler
                 return $item_data;
             }
             $buttonText = $cartPageEnquiryUsBtnText;
-            $buttonClass = 'wpcipe-cart-page-btn';
+            $buttonClass = 'pingly-cart-page-btn';
         }
 
         // ---- Checkout Page ----
@@ -202,7 +202,7 @@ class FrontendHandler
                 return $item_data;
             }
             $buttonText = $orderSummaryEnquiryUsBtnText;
-            $buttonClass = 'wpcipe-order-summary-btn';
+            $buttonClass = 'pingly-order-summary-btn';
         }
 
         // ---- Quick Cart Popup ----
@@ -211,14 +211,14 @@ class FrontendHandler
                 return $item_data;
             }
             $buttonText = $orderSummaryEnquiryUsBtnText;
-            $buttonClass = 'wpcipe-order-summary-btn';
+            $buttonClass = 'pingly-order-summary-btn';
         }
 
     
         if ( ! empty($buttonText) ) {
             $item_data[] = [
-                'key'   => __('&nbsp;', 'wpcreativeidea-product-enquiry'),
-                'value' => '<a href="#" class="button wpcipe-button '.esc_attr($buttonClass).'" data-product-slug="' . esc_attr($cart_item['data']->get_slug()) . '"> '.wp_kses_post($buttonText). '</a>'
+                'key'   => __('&nbsp;', 'pingly-product-enquiry'),
+                'value' => '<a href="#" class="button pingly-button '.esc_attr($buttonClass).'" data-product-slug="' . esc_attr($cart_item['data']->get_slug()) . '"> '.wp_kses_post($buttonText). '</a>'
             ];
         }
 
@@ -235,7 +235,7 @@ class FrontendHandler
 
     public function registerShortcodes()
     {   
-        add_shortcode('wpcipe_button', function ($attr) {
+        add_shortcode('pingly_button', function ($attr) {
             $builder =  $this->buttonRender($attr);
             return $builder; 
         });
@@ -243,8 +243,8 @@ class FrontendHandler
 
     public function buttonRender($attr)
     {
-        $WPCreativeIdeaProductEnquirySettings = get_option('wpcipe_settings', []);
-        $settings      = $WPCreativeIdeaProductEnquirySettings['settings'] ?? [];
+        $PinglyProductEnquirySettings = get_option('pingly_settings', []);
+        $settings      = $PinglyProductEnquirySettings['settings'] ?? [];
 
         $buttonText = Arr::get($settings, 'shortcode_enquiry_button_text', 'Enquiry us');
 
@@ -257,7 +257,7 @@ class FrontendHandler
         ob_start();
         ?>
             <a href="#"
-                class="button wpcipe-button wpcipe-shortcode-btn"
+                class="button pingly-button pingly-shortcode-btn"
                 data-product-id="<?php echo intval($attr['product_id']); ?>"
                 data-product-slug="<?php echo esc_attr($attr['product_slug']); ?>">
                 <?php echo esc_html($buttonText); ?>
@@ -271,9 +271,9 @@ class FrontendHandler
      */
     public function ajaxRoutes()
     {
-        if (!check_ajax_referer('wpcipe_public_nonce', 'nonce', false)) {
+        if (!check_ajax_referer('pingly_public_nonce', 'nonce', false)) {
             wp_send_json_error([
-                'message' => __('Invalid nonce', 'wpcreativeidea-product-enquiry')
+                'message' => __('Invalid nonce', 'pingly-product-enquiry')
             ], 403);
         }
 
@@ -288,8 +288,8 @@ class FrontendHandler
         }
 
         $validRoutes = [
-            'wpcipe_details' => 'WPCreativeIdeaProductEnquiryDetails',
-            'wpcipe_form'    => 'WPCreativeIdeaProductEnquiryModalForm'
+            'pingly_details' => 'PinglyProductEnquiryDetails',
+            'pingly_form'    => 'PinglyProductEnquiryModalForm'
         ];
 
         if (!isset($validRoutes[$route])) {
@@ -298,7 +298,7 @@ class FrontendHandler
 
         $validatedData = (new SanitizeValidation)->validateRequestData($rawData);
 
-        do_action('wpcipe_public_ajax_handler_catch', $route);
+        do_action('pingly_public_ajax_handler_catch', $route);
 
         $this->{$validRoutes[$route]}($validatedData);
 
@@ -311,39 +311,39 @@ class FrontendHandler
     public function enqueueScripts()
     {
         wp_enqueue_style(
-            "wpcipe_css",
-            WPCIPE_PLUGIN_DIR_URL . "assets/public/css/wpcreativeidea-product-enquiry.css",
+            "pingly_css",
+            PINGLY_PLUGIN_DIR_URL . "assets/public/css/pingly-product-enquiry.css",
             [],
-            WPCIPE_PLUGIN_VERSION
+            PINGLY_PLUGIN_VERSION
         );
 
         wp_enqueue_script(
-            "wpcipe_public_js",
-            WPCIPE_PLUGIN_DIR_URL . "assets/public/js/wpcreativeidea-product-enquiry.js",
+            "pingly_public_js",
+            PINGLY_PLUGIN_DIR_URL . "assets/public/js/pingly-product-enquiry.js",
             ['jquery'],
-            WPCIPE_PLUGIN_VERSION,
+            PINGLY_PLUGIN_VERSION,
             true
         );
 
         $this->styleHandler();
 
-        $settings          = get_option('wpcipe_settings', []);
-        $activeModules     = get_option('wpcipe_active_module', []);
+        $settings          = get_option('pingly_settings', []);
+        $activeModules     = get_option('pingly_active_module', []);
 
-        wp_localize_script('wpcipe_public_js', 'WPCreativeIdeaProductEnquiryPublicVars', [
+        wp_localize_script('pingly_public_js', 'PinglyProductEnquiryPublicVars', [
             'ajaxurl'            => admin_url('admin-ajax.php'),
             'site_url'           => get_site_url(),
-            'nonce'              => wp_create_nonce('wpcipe_public_nonce'),
+            'nonce'              => wp_create_nonce('pingly_public_nonce'),
             'get_active_modules' => $activeModules,
-            'wpcipe_settings'=> $settings,
+            'pingly_settings'=> $settings,
         ]);
     }
 
-    public function WPCreativeIdeaProductEnquiryModalForm($request)
+    public function PinglyProductEnquiryModalForm($request)
     {
-        if (!check_ajax_referer('wpcipe_public_nonce', 'nonce', false)) {
+        if (!check_ajax_referer('pingly_public_nonce', 'nonce', false)) {
             wp_send_json_error([
-                'message' => __('Invalid nonce', 'wpcreativeidea-product-enquiry')
+                'message' => __('Invalid nonce', 'pingly-product-enquiry')
             ], 403);
         }
 
@@ -355,7 +355,7 @@ class FrontendHandler
         wp_send_json_success([
             'message'   => 'Enquiry form loaded',
             'fragments' => [
-                '.wpcipe-form-container' => $this->enquiryUsHtml($product),
+                '.pingly-form-container' => $this->enquiryUsHtml($product),
             ],
         ]);
     }
@@ -366,15 +366,15 @@ class FrontendHandler
     */
     public function enquireUsModalHandler()
     {   ?>
-            <div class="wpcipe-modal-wrapper" style="display:none;">
-                <div class="wpcipe-modal-content">
+            <div class="pingly-modal-wrapper" style="display:none;">
+                <div class="pingly-modal-content">
                     <?php echo wp_kses($this->enquiryUsHtml(), $this->allowedHtml()); ?>
                     <!-- loading -->
-                    <div id="wpcipe-loading-view" style="display: none;">
-                        <div class="wpcipe-loading-spinner">
-                           <img src="<?php echo esc_url(WPCIPE_PLUGIN_DIR_URL . 'assets/public/images/loading.gif'); ?>" alt="">
+                    <div id="pingly-loading-view" style="display: none;">
+                        <div class="pingly-loading-spinner">
+                           <img src="<?php echo esc_url(PINGLY_PLUGIN_DIR_URL . 'assets/public/images/loading.gif'); ?>" alt="">
                         </div>
-                        <h2 class="wpcipe-loading-title">Loading...</h2>
+                        <h2 class="pingly-loading-title">Loading...</h2>
                     </div>
                 </div>
             </div>
@@ -384,14 +384,14 @@ class FrontendHandler
     public function enquiryUsHtml($product = null) 
     {
         
-        $WPCreativeIdeaProductEnquirySettings = get_option('wpcipe_settings', []);
-        $settings      =  $WPCreativeIdeaProductEnquirySettings['settings'];
+        $PinglyProductEnquirySettings = get_option('pingly_settings', []);
+        $settings      =  $PinglyProductEnquirySettings['settings'];
 
         // -------- SAFE PRODUCT HANDLING --------
         $isDefaultEnquiry = ! ($product instanceof \WC_Product);
 
         if ($isDefaultEnquiry) {
-            $title     = __('General Enquiry', 'wpcreativeidea-product-enquiry');
+            $title     = __('General Enquiry', 'pingly-product-enquiry');
             $productId = 0;
         } else {
             $title     = $product->get_title();
@@ -447,15 +447,15 @@ class FrontendHandler
 
         ob_start();
         ?>
-            <div class="wpcipe-form-container">
-                <div class="wpcipe-header">
-                    <h2 class="wpcipe-title"><?php echo esc_html($buttonText);?></h2>
-                    <span class="wpcipe-view-close">x</span>
+            <div class="pingly-form-container">
+                <div class="pingly-header">
+                    <h2 class="pingly-title"><?php echo esc_html($buttonText);?></h2>
+                    <span class="pingly-view-close">x</span>
                 </div>
                  <!-- Tabs -->
-                <div class="wpcipe-tabs">
+                <div class="pingly-tabs">
                     <?php if ($enquiryFormTabEnable === 'yes'): ?>
-                        <div class="wpcipe-tab <?php echo esc_attr( $activeTab === 'email' ? 'active' : '' ); ?>" data-tab="email">
+                        <div class="pingly-tab <?php echo esc_attr( $activeTab === 'email' ? 'active' : '' ); ?>" data-tab="email">
                             <svg height="16px" width="16px" fill="#666" version="1.1" id="_x32_" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
                                 viewBox="0 0 512 512"  xml:space="preserve">
                                 <g>
@@ -478,13 +478,13 @@ class FrontendHandler
                         </div>
                     <?php endif; ?>
                     <?php if ($whatsappTabEnable === 'yes'): ?> 
-                        <div class="wpcipe-tab <?php echo esc_attr( $activeTab === 'whatsapp' ? 'active' : '' ); ?>" data-tab="whatsapp">
+                        <div class="pingly-tab <?php echo esc_attr( $activeTab === 'whatsapp' ? 'active' : '' ); ?>" data-tab="whatsapp">
                             <svg width="20px" height="20px" viewBox="-2.73 0 1225.016 1225.016" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path fill="#E0E0E0" d="M1041.858 178.02C927.206 63.289 774.753.07 612.325 0 277.617 0 5.232 272.298 5.098 606.991c-.039 106.986 27.915 211.42 81.048 303.476L0 1225.016l321.898-84.406c88.689 48.368 188.547 73.855 290.166 73.896h.258.003c334.654 0 607.08-272.346 607.222-607.023.056-162.208-63.052-314.724-177.689-429.463zm-429.533 933.963h-.197c-90.578-.048-179.402-24.366-256.878-70.339l-18.438-10.93-191.021 50.083 51-186.176-12.013-19.087c-50.525-80.336-77.198-173.175-77.16-268.504.111-278.186 226.507-504.503 504.898-504.503 134.812.056 261.519 52.604 356.814 147.965 95.289 95.36 147.728 222.128 147.688 356.948-.118 278.195-226.522 504.543-504.693 504.543z"/><linearGradient id="a" gradientUnits="userSpaceOnUse" x1="609.77" y1="1190.114" x2="609.77" y2="21.084"><stop offset="0" stop-color="#20b038"/><stop offset="1" stop-color="#60d66a"/></linearGradient><path fill="url(#a)" d="M27.875 1190.114l82.211-300.18c-50.719-87.852-77.391-187.523-77.359-289.602.133-319.398 260.078-579.25 579.469-579.25 155.016.07 300.508 60.398 409.898 169.891 109.414 109.492 169.633 255.031 169.57 409.812-.133 319.406-260.094 579.281-579.445 579.281-.023 0 .016 0 0 0h-.258c-96.977-.031-192.266-24.375-276.898-70.5l-307.188 80.548z"/><image overflow="visible" opacity=".08" width="682" height="639" xlink:href="FCC0802E2AF8A915.png" transform="translate(270.984 291.372)"/><path fill-rule="evenodd" clip-rule="evenodd" fill="#FFF" d="M462.273 349.294c-11.234-24.977-23.062-25.477-33.75-25.914-8.742-.375-18.75-.352-28.742-.352-10 0-26.25 3.758-39.992 18.766-13.75 15.008-52.5 51.289-52.5 125.078 0 73.797 53.75 145.102 61.242 155.117 7.5 10 103.758 166.266 256.203 226.383 126.695 49.961 152.477 40.023 179.977 37.523s88.734-36.273 101.234-71.297c12.5-35.016 12.5-65.031 8.75-71.305-3.75-6.25-13.75-10-28.75-17.5s-88.734-43.789-102.484-48.789-23.75-7.5-33.75 7.516c-10 15-38.727 48.773-47.477 58.773-8.75 10.023-17.5 11.273-32.5 3.773-15-7.523-63.305-23.344-120.609-74.438-44.586-39.75-74.688-88.844-83.438-103.859-8.75-15-.938-23.125 6.586-30.602 6.734-6.719 15-17.508 22.5-26.266 7.484-8.758 9.984-15.008 14.984-25.008 5-10.016 2.5-18.773-1.25-26.273s-32.898-81.67-46.234-111.326z"/><path fill="#FFF" d="M1036.898 176.091C923.562 62.677 772.859.185 612.297.114 281.43.114 12.172 269.286 12.039 600.137 12 705.896 39.633 809.13 92.156 900.13L7 1211.067l318.203-83.438c87.672 47.812 186.383 73.008 286.836 73.047h.255.003c330.812 0 600.109-269.219 600.25-600.055.055-160.343-62.328-311.108-175.649-424.53zm-424.601 923.242h-.195c-89.539-.047-177.344-24.086-253.93-69.531l-18.227-10.805-188.828 49.508 50.414-184.039-11.875-18.867c-49.945-79.414-76.312-171.188-76.273-265.422.109-274.992 223.906-498.711 499.102-498.711 133.266.055 258.516 52 352.719 146.266 94.195 94.266 146.031 219.578 145.992 352.852-.118 274.999-223.923 498.749-498.899 498.749z"/></svg>
                             <?php echo esc_html($whatsappTabText); ?>
                         </div>
                     <?php endif; ?>
                     <?php if ($smsTabEnable === 'yes'): ?>
-                        <div class="wpcipe-tab <?php echo esc_attr( $activeTab === 'sms' ? 'active' : '' ); ?>" data-tab="sms">
+                        <div class="pingly-tab <?php echo esc_attr( $activeTab === 'sms' ? 'active' : '' ); ?>" data-tab="sms">
                             <svg fill="#666" height="16px" width="16px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
                                 viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve">
                                 <path d="M448,0H64C28.6,0,0,28.6,0,64v256c0,35.4,28.6,64,64,64h128l-42.7,128l192-128H448c35.4,0,64-28.6,64-64V64
@@ -496,21 +496,21 @@ class FrontendHandler
                         </div>
                     <?php endif; ?>
                 </div>
-                <div class="wpcipe-tab-content <?php echo esc_attr( $activeTab === 'email' ? 'active' : '' ); ?>" id="wpcipe-tab-email">
+                <div class="pingly-tab-content <?php echo esc_attr( $activeTab === 'email' ? 'active' : '' ); ?>" id="pingly-tab-email">
                     <?php echo wp_kses($this->enquireFormHtml($product, 'email', $enquirySubmitButtonText), $this->allowedHtml()); ?>
                 </div>
-                <div class="wpcipe-tab-content <?php echo esc_attr( $activeTab === 'whatsapp' ? 'active' : '' ); ?>" id="wpcipe-tab-whatsapp">
-                    <div class="wpcipe-tab-box">
+                <div class="pingly-tab-content <?php echo esc_attr( $activeTab === 'whatsapp' ? 'active' : '' ); ?>" id="pingly-tab-whatsapp">
+                    <div class="pingly-tab-box">
                         <p><?php echo esc_html($whatsappTitleText); ?></p>
-                        <div class="wpcipe-social-numbers">
+                        <div class="pingly-social-numbers">
                             <?php 
                                 foreach ($whatsappNumbers as $number) : 
                                     $receiverName   = isset($number['receiver_name']) ? $number['receiver_name'] : 'Support';
                                     $receiverNumber = isset($number['receiver_number']) ? $number['receiver_number'] : '';  
                             ?>
-                                <div class="wpcipe-social-number">
+                                <div class="pingly-social-number">
                                     <p><?php echo esc_html($receiverName); ?></p>
-                                    <a href="<?php echo esc_url( $this->whatsAppApi($receiverName, $receiverNumber, $product, $settings) ); ?>" target="_blank" class="wpcipe-action-btn whatsapp">
+                                    <a href="<?php echo esc_url( $this->whatsAppApi($receiverName, $receiverNumber, $product, $settings) ); ?>" target="_blank" class="pingly-action-btn whatsapp">
                                         <svg width="25px" height="25px" viewBox="-2.73 0 1225.016 1225.016" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path fill="#E0E0E0" d="M1041.858 178.02C927.206 63.289 774.753.07 612.325 0 277.617 0 5.232 272.298 5.098 606.991c-.039 106.986 27.915 211.42 81.048 303.476L0 1225.016l321.898-84.406c88.689 48.368 188.547 73.855 290.166 73.896h.258.003c334.654 0 607.08-272.346 607.222-607.023.056-162.208-63.052-314.724-177.689-429.463zm-429.533 933.963h-.197c-90.578-.048-179.402-24.366-256.878-70.339l-18.438-10.93-191.021 50.083 51-186.176-12.013-19.087c-50.525-80.336-77.198-173.175-77.16-268.504.111-278.186 226.507-504.503 504.898-504.503 134.812.056 261.519 52.604 356.814 147.965 95.289 95.36 147.728 222.128 147.688 356.948-.118 278.195-226.522 504.543-504.693 504.543z"/><linearGradient id="a" gradientUnits="userSpaceOnUse" x1="609.77" y1="1190.114" x2="609.77" y2="21.084"><stop offset="0" stop-color="#20b038"/><stop offset="1" stop-color="#60d66a"/></linearGradient><path fill="url(#a)" d="M27.875 1190.114l82.211-300.18c-50.719-87.852-77.391-187.523-77.359-289.602.133-319.398 260.078-579.25 579.469-579.25 155.016.07 300.508 60.398 409.898 169.891 109.414 109.492 169.633 255.031 169.57 409.812-.133 319.406-260.094 579.281-579.445 579.281-.023 0 .016 0 0 0h-.258c-96.977-.031-192.266-24.375-276.898-70.5l-307.188 80.548z"/><image overflow="visible" opacity=".08" width="682" height="639" xlink:href="FCC0802E2AF8A915.png" transform="translate(270.984 291.372)"/><path fill-rule="evenodd" clip-rule="evenodd" fill="#FFF" d="M462.273 349.294c-11.234-24.977-23.062-25.477-33.75-25.914-8.742-.375-18.75-.352-28.742-.352-10 0-26.25 3.758-39.992 18.766-13.75 15.008-52.5 51.289-52.5 125.078 0 73.797 53.75 145.102 61.242 155.117 7.5 10 103.758 166.266 256.203 226.383 126.695 49.961 152.477 40.023 179.977 37.523s88.734-36.273 101.234-71.297c12.5-35.016 12.5-65.031 8.75-71.305-3.75-6.25-13.75-10-28.75-17.5s-88.734-43.789-102.484-48.789-23.75-7.5-33.75 7.516c-10 15-38.727 48.773-47.477 58.773-8.75 10.023-17.5 11.273-32.5 3.773-15-7.523-63.305-23.344-120.609-74.438-44.586-39.75-74.688-88.844-83.438-103.859-8.75-15-.938-23.125 6.586-30.602 6.734-6.719 15-17.508 22.5-26.266 7.484-8.758 9.984-15.008 14.984-25.008 5-10.016 2.5-18.773-1.25-26.273s-32.898-81.67-46.234-111.326z"/><path fill="#FFF" d="M1036.898 176.091C923.562 62.677 772.859.185 612.297.114 281.43.114 12.172 269.286 12.039 600.137 12 705.896 39.633 809.13 92.156 900.13L7 1211.067l318.203-83.438c87.672 47.812 186.383 73.008 286.836 73.047h.255.003c330.812 0 600.109-269.219 600.25-600.055.055-160.343-62.328-311.108-175.649-424.53zm-424.601 923.242h-.195c-89.539-.047-177.344-24.086-253.93-69.531l-18.227-10.805-188.828 49.508 50.414-184.039-11.875-18.867c-49.945-79.414-76.312-171.188-76.273-265.422.109-274.992 223.906-498.711 499.102-498.711 133.266.055 258.516 52 352.719 146.266 94.195 94.266 146.031 219.578 145.992 352.852-.118 274.999-223.923 498.749-498.899 498.749z"/></svg>
                                         <?php echo esc_html($whatsappButtonText); ?>
                                     </a>
@@ -519,18 +519,18 @@ class FrontendHandler
                         </div>
                     </div>
                 </div>
-                <div class="wpcipe-tab-content <?php echo $activeTab === 'sms' ? 'active' : ''; ?>" id="wpcipe-tab-sms">
-                    <div class="wpcipe-tab-box">
+                <div class="pingly-tab-content <?php echo $activeTab === 'sms' ? 'active' : ''; ?>" id="pingly-tab-sms">
+                    <div class="pingly-tab-box">
                         <p><?php echo esc_html($smsTitleText); ?></p>
-                        <div class="wpcipe-social-numbers">
+                        <div class="pingly-social-numbers">
                             <?php 
                                 foreach ($smsNumbers as $number) : 
                                     $receiverName   = isset($number['receiver_name']) ? $number['receiver_name'] : 'Support';
                                     $receiverNumber = isset($number['receiver_number']) ? $number['receiver_number'] : '';  
                             ?>
-                                <div class="wpcipe-social-number">
+                                <div class="pingly-social-number">
                                     <p><?php echo esc_html($receiverName); ?></p>
-                                    <a href="<?php echo esc_url($this->smsLink($receiverName, $receiverNumber, $product, $settings)); ?>" class="wpcipe-action-btn sms">
+                                    <a href="<?php echo esc_url($this->smsLink($receiverName, $receiverNumber, $product, $settings)); ?>" class="pingly-action-btn sms">
                                        <svg fill="#fff" height="16px" width="16px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve">
                                             <path d="M448,0H64C28.6,0,0,28.6,0,64v256c0,35.4,28.6,64,64,64h128l-42.7,128l192-128H448c35.4,0,64-28.6,64-64V64
                                             C512,28.6,483.4,0,448,0z M128,234.7c-23.6,0-42.7-19.1-42.7-42.7s19.1-42.7,42.7-42.7s42.7,19.1,42.7,42.7S151.6,234.7,128,234.7z
@@ -544,7 +544,7 @@ class FrontendHandler
                         </div>
                     </div>
                 </div>
-                <div class="wpcipe-tab-content <?php echo empty($activeTab) ? 'active' : ''; ?>" id="wpcipe-tab-empty">
+                <div class="pingly-tab-content <?php echo empty($activeTab) ? 'active' : ''; ?>" id="pingly-tab-empty">
                     <p>No enquiry options are available at the moment. Please check back shortly.</p>
                 </div>
             </div>
@@ -564,39 +564,39 @@ class FrontendHandler
         ob_start();
         
       ?>
-        <div class="wpcipe-notice">
-            <p class="wpcipe-response-message"></p>
+        <div class="pingly-notice">
+            <p class="pingly-response-message"></p>
         </div>
-        <form action="#" method="post" class="wpcipe-form">
-            <div class="wpcipe-form-field">
-                <label class="wpcipe-label-name" for="wpcipe-name-<?php echo esc_attr($tab);?>">Your Name <span class="queb-required-filed">*</span></label>
+        <form action="#" method="post" class="pingly-form">
+            <div class="pingly-form-field">
+                <label class="pingly-label-name" for="pingly-name-<?php echo esc_attr($tab);?>">Your Name <span class="queb-required-filed">*</span></label>
                 <input type="text" name="name"
-                    id="wpcipe-name-<?php echo esc_attr($tab);?>"
+                    id="pingly-name-<?php echo esc_attr($tab);?>"
                     placeholder="Enter Your Name"
                     value="<?php echo esc_attr($userName); ?>"
                     <?php echo $userName ? '' : 'required'; ?>>
             </div>
-            <div class="wpcipe-form-field">
-                <label class="wpcipe-label-email" for="wpcipe-email-<?php echo esc_attr($tab);?>">
+            <div class="pingly-form-field">
+                <label class="pingly-label-email" for="pingly-email-<?php echo esc_attr($tab);?>">
                     Email Address
                     <?php if ($tab == 'email') : ?>
                         <span class="queb-required-filed">*</span>
                     <?php endif; ?>
                 </label>
                 <input type="email" name="email"
-                    id="wpcipe-email-<?php echo esc_attr($tab);?>"
+                    id="pingly-email-<?php echo esc_attr($tab);?>"
                     placeholder="Email Address"
                     value="<?php echo esc_attr($userEmail); ?>"
                     <?php echo ($tab == 'email') ? 'required' : ''; ?>>
             </div>
-            <div class="wpcipe-form-field">
-                <label class="wpcipe-label-phone" for="wpcipe-phone-<?php echo esc_attr($tab);?>">
+            <div class="pingly-form-field">
+                <label class="pingly-label-phone" for="pingly-phone-<?php echo esc_attr($tab);?>">
                     Phone Number
                 </label>
                 <?php
                     $getCountries = $this->getCountries();
                 ?>
-                <div class="wpcipe-phone-number">
+                <div class="pingly-phone-number">
                     <select name="country_code">
                         <option value=""> Select Country</option>
                         <?php foreach($getCountries as $country) : ?>
@@ -608,24 +608,24 @@ class FrontendHandler
                         <?php endforeach; ?>
                     </select>
                     <input type="number" name="phone_number"
-                        id="wpcipe-phone-<?php echo esc_attr($tab);?>"
+                        id="pingly-phone-<?php echo esc_attr($tab);?>"
                         placeholder="Enter Your Phone Number"
                         pattern="[0-9]*">
                 </div>
             </div>
-            <div class="wpcipe-form-field">
+            <div class="pingly-form-field">
                 <input type="hidden" name="product_id" value="<?php echo esc_attr($productId); ?>">
             </div>
-            <div class="wpcipe-form-field">
-                <label class="wpcipe-label-enquiry" for="wpcipe-<?php echo esc_attr($tab);?>">Enquiry <span class="queb-required-filed">*</span></label>
-                <textarea name="enquiry" id="wpcipe-<?php echo esc_attr($tab);?>" placeholder="Write Your Enquiry..." required></textarea>
+            <div class="pingly-form-field">
+                <label class="pingly-label-enquiry" for="pingly-<?php echo esc_attr($tab);?>">Enquiry <span class="queb-required-filed">*</span></label>
+                <textarea name="enquiry" id="pingly-<?php echo esc_attr($tab);?>" placeholder="Write Your Enquiry..." required></textarea>
             </div>
-            <div class="wpcipe-form-field wpcipe-subscribe-field">
+            <div class="pingly-form-field pingly-subscribe-field">
                 <input type="checkbox" id="subscribe-<?php echo esc_attr($tab);?>" name="subscribe" value="yes">
-                <label class="wpcipe-label-subscribe" for="subscribe-<?php echo esc_attr($tab);?>">Subscribe to our newsletter for updates and offers.</label>
+                <label class="pingly-label-subscribe" for="subscribe-<?php echo esc_attr($tab);?>">Subscribe to our newsletter for updates and offers.</label>
             </div>
-            <div class="wpcipe-form-field wpcipe-submit-btn">
-                <button type="submit" class="wpcipe-submit"><?php echo esc_html($submitButtonText); ?></button>
+            <div class="pingly-form-field pingly-submit-btn">
+                <button type="submit" class="pingly-submit"><?php echo esc_html($submitButtonText); ?></button>
             </div>
         </form>
         <?php
@@ -687,17 +687,17 @@ class FrontendHandler
     /**
      * Handle form submission
      */
-    public function WPCreativeIdeaProductEnquiryDetails($request)
+    public function PinglyProductEnquiryDetails($request)
     {
-        if (!check_ajax_referer('wpcipe_public_nonce', 'nonce', false)) {
+        if (!check_ajax_referer('pingly_public_nonce', 'nonce', false)) {
             wp_send_json_error([
-                'message' => __('Invalid nonce', 'wpcreativeidea-product-enquiry')
+                'message' => __('Invalid nonce', 'pingly-product-enquiry')
             ], 403);
         }
     
-        $WPCreativeIdeaProductEnquiry = new WPCreativeIdeaProductEnquiry();
-        $WPCreativeIdeaProductEnquirySettings = get_option('wpcipe_settings', []);
-        $settings      =  $WPCreativeIdeaProductEnquirySettings['settings'];
+        $PinglyProductEnquiry = new PinglyProductEnquiry();
+        $PinglyProductEnquirySettings = get_option('pingly_settings', []);
+        $settings      =  $PinglyProductEnquirySettings['settings'];
         
         // If you stringified in JS, decode here
         $details = Arr::get($request, 'details', []);
@@ -712,7 +712,7 @@ class FrontendHandler
         if ($type === 'email') {
             if (empty($details['name']) || empty($details['email']) || empty($details['enquiry'])) {
                 wp_send_json_error([
-                    'message' => __('Name, Email and Enquiry are required.', 'wpcreativeidea-product-enquiry'),
+                    'message' => __('Name, Email and Enquiry are required.', 'pingly-product-enquiry'),
                 ]);
             }
         }
@@ -720,7 +720,7 @@ class FrontendHandler
         if ($type === 'sms') {
             if (empty($details['name']) || empty($details['phone_number']) || empty($details['enquiry'])) {
                 wp_send_json_error([
-                    'message' => __('Name, Phone number and Enquiry are required.', 'wpcreativeidea-product-enquiry'),
+                    'message' => __('Name, Phone number and Enquiry are required.', 'pingly-product-enquiry'),
                 ]);
             }
         }
@@ -755,15 +755,15 @@ class FrontendHandler
         ];
 
         /* INSERT DATABASE */
-        $insertId = $WPCreativeIdeaProductEnquiry->insertGetId($data);
+        $insertId = $PinglyProductEnquiry->insertGetId($data);
 
         if (!$insertId) {
             wp_send_json_error([
-                'message' => __('Enquiry could not be saved. Please try again.', 'wpcreativeidea-product-enquiry'),
+                'message' => __('Enquiry could not be saved. Please try again.', 'pingly-product-enquiry'),
             ]);
         }
 
-        $getEnquiry = $WPCreativeIdeaProductEnquiry->getDetail($insertId);
+        $getEnquiry = $PinglyProductEnquiry->getDetail($insertId);
       
         // SMS status
         $status = 'not_sent';
@@ -776,7 +776,7 @@ class FrontendHandler
             }
         }
        
-        $WPCreativeIdeaProductEnquiry->update($getEnquiry->id, [
+        $PinglyProductEnquiry->update($getEnquiry->id, [
             'status'     => $status,
             'updated_at'=> gmdate('Y-m-d H:i:s'),
         ]);
@@ -784,7 +784,7 @@ class FrontendHandler
         /* SUCCESS RESPONSE */
 		$message = sprintf(
 			/* translators: %s: Name of the person who submitted the enquiry. */
-			__('Thank you %s. Your enquiry has been received successfully.', 'wpcreativeidea-product-enquiry'),
+			__('Thank you %s. Your enquiry has been received successfully.', 'pingly-product-enquiry'),
 			esc_html($data['name'])
 		);
 
@@ -833,7 +833,7 @@ class FrontendHandler
         // Product-safe handling
         $productTitle = ($product instanceof \WC_Product)
             ? $product->get_name()
-            : __('General Enquiry', 'wpcreativeidea-product-enquiry');
+            : __('General Enquiry', 'pingly-product-enquiry');
 
         $productUrl = ($product instanceof \WC_Product)
             ? get_permalink($product->get_id())
@@ -873,7 +873,7 @@ class FrontendHandler
         // Product-safe handling
         $productTitle = ($product instanceof \WC_Product)
             ? $product->get_name()
-            : __('General Enquiry', 'wpcreativeidea-product-enquiry');
+            : __('General Enquiry', 'pingly-product-enquiry');
 
         $productUrl = ($product instanceof \WC_Product)
             ? get_permalink($product->get_id())
@@ -1149,12 +1149,12 @@ class FrontendHandler
      */
     public function styleHandler()
     {
-        $WPCreativeIdeaProductEnquirySettings = get_option( 'wpcipe_settings', [] );
+        $PinglyProductEnquirySettings = get_option( 'pingly_settings', [] );
 
         $styles = (
-            isset( $WPCreativeIdeaProductEnquirySettings['styles'] ) &&
-            is_array( $WPCreativeIdeaProductEnquirySettings['styles'] )
-        ) ? $WPCreativeIdeaProductEnquirySettings['styles'] : [];
+            isset( $PinglyProductEnquirySettings['styles'] ) &&
+            is_array( $PinglyProductEnquirySettings['styles'] )
+        ) ? $PinglyProductEnquirySettings['styles'] : [];
 
         // Allow only valid HEX color values.
         $sanitize_color = static function ( $color ) {
@@ -1168,17 +1168,17 @@ class FrontendHandler
         };
 
         $colors = [
-            'instock_shop_button_color'             => '.wpcipe-shop-btn-instock',
-            'out_of_stock_shop_button_color'        => '.wpcipe-shop-btn-outofstock',
-            'backorder_shop_button_color'           => '.wpcipe-shop-btn-backorder',
-            'instock_single_button_color'           => '.wpcipe-single-btn-instock',
-            'out_of_stock_single_button_color'      => '.wpcipe-single-btn-outofstock',
-            'backorder_single_button_color'         => '.wpcipe-single-btn-backorder',
-            'header_background_color'               => '.wpcipe-header',
-            'submit_button_background_color'        => '.wpcipe-submit',
-            'shortcode_enquiry_us_button_color'     => '.wpcipe-shortcode-btn',
-            'cart_page_enquiry_us_button_color'     => '.wpcipe-cart-page-btn',
-            'order_summary_enquiry_us_button_color' => '.wpcipe-order-summary-btn',
+            'instock_shop_button_color'             => '.pingly-shop-btn-instock',
+            'out_of_stock_shop_button_color'        => '.pingly-shop-btn-outofstock',
+            'backorder_shop_button_color'           => '.pingly-shop-btn-backorder',
+            'instock_single_button_color'           => '.pingly-single-btn-instock',
+            'out_of_stock_single_button_color'      => '.pingly-single-btn-outofstock',
+            'backorder_single_button_color'         => '.pingly-single-btn-backorder',
+            'header_background_color'               => '.pingly-header',
+            'submit_button_background_color'        => '.pingly-submit',
+            'shortcode_enquiry_us_button_color'     => '.pingly-shortcode-btn',
+            'cart_page_enquiry_us_button_color'     => '.pingly-cart-page-btn',
+            'order_summary_enquiry_us_button_color' => '.pingly-order-summary-btn',
         ];
 
         $custom_css = '';
@@ -1205,18 +1205,18 @@ class FrontendHandler
 
         if ( '' !== $active_tab_color ) {
 
-            $custom_css .= "\n.wpcipe-tabs .wpcipe-tab.active {\n";
+            $custom_css .= "\n.pingly-tabs .pingly-tab.active {\n";
             $custom_css .= '    color: ' . $active_tab_color . " !important;\n";
             $custom_css .= '    border-bottom-color: ' . $active_tab_color . " !important;\n";
             $custom_css .= "}\n";
 
-            $custom_css .= ".wpcipe-tabs .wpcipe-tab.active svg {\n";
+            $custom_css .= ".pingly-tabs .pingly-tab.active svg {\n";
             $custom_css .= '    fill: ' . $active_tab_color . " !important;\n";
             $custom_css .= "}\n";
         }
 
         if ( '' !== $custom_css ) {
-            wp_add_inline_style( 'wpcipe_css', $custom_css );
+            wp_add_inline_style( 'pingly_css', $custom_css );
         }
     }
 }

@@ -1,12 +1,12 @@
 <?php
 
-namespace WPCreativeIdeaProductEnquiry\Classes;
+namespace PinglyProductEnquiry\Classes;
 
 class Customization 
 {
-    public static function WPCreativeIdeaProductEnquiryAddSettings($settings)
+    public static function PinglyProductEnquiryAddSettings($settings)
     {
-        $settings[] = include_once WPCIPE_PLUGIN_DIR_PATH . 'App/Classes/WPCreativeIdeaProductEnquirySettings.php';
+        $settings[] = include_once PINGLY_PLUGIN_DIR_PATH . 'App/Classes/PinglyProductEnquirySettings.php';
 
         return $settings ;
     }

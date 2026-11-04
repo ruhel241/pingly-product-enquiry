@@ -1,12 +1,12 @@
 <template>
-  <div class="wpcipe-app-wrapper">
+  <div class="pingly-app-wrapper">
     <el-row>
       <el-col :span="4">
         <Navigation/>
       </el-col>
       <el-col :span="20">
-        <div class="wpcipe-header"></div>
-        <div class="wpcipe-body">
+        <div class="pingly-header"></div>
+        <div class="pingly-body">
           <router-view :key="$route.fullPath"></router-view>
         </div>
       </el-col>

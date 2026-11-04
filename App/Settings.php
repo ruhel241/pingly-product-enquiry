@@ -1,6 +1,6 @@
 <?php
 
-namespace WPCreativeIdeaProductEnquiry;
+namespace PinglyProductEnquiry;
 
 if (!defined('ABSPATH')) {
     exit;
@@ -11,7 +11,7 @@ class Settings
     public function getConfigs()
     {
         $configs = [
-            'wpcipe_settings' => [
+            'pingly_settings' => [
                 'settings' => [
                     'shop_page_enable'                     => 'yes',
                     'in_stock_shop_button_text'            => 'Enquiry Us',
@@ -62,32 +62,32 @@ class Settings
                     'order_summary_enquiry_button_color' => '#5467f8',
 
                 ],
-                'wpcreativeidea-product-enquiry' => [
+                'pingly-product-enquiry' => [
                     'details' => []
                 ]
             ],
         ];
 
-        return apply_filters('wpcipe/configs', $configs);
+        return apply_filters('pingly/configs', $configs);
     }
 
     public function getActiveModule() {
-        $wpcipeActiveModule = [
-            'wpcipe_module' => 'yes',
+        $pinglyActiveModule = [
+            'pingly_module' => 'yes',
         ];
 
-        return apply_filters('wpcipe/active_module', $wpcipeActiveModule);
+        return apply_filters('pingly/active_module', $pinglyActiveModule);
     }
 
-    public function wpcipeLicense() {
-        $wpcipeLicense = [
+    public function pinglyLicense() {
+        $pinglyLicense = [
             'license_key' => '',
             'price_id'    => '',
             'expires'     => '',
             'status'      => '',
         ];
         
-        return apply_filters('wpcipe/get_license', $wpcipeLicense);
+        return apply_filters('pingly/get_license', $pinglyLicense);
     }
 }
 

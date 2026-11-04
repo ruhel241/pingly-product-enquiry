@@ -1,8 +1,8 @@
 
 {
-  "name": "wpcreativeidea-product-enquiry",
+  "name": "pingly-product-enquiry",
   "version": "1.0.2",
-  "description": "WPCreativeIdea Product Enquiry",
+  "description": "Pingly Product Enquiry",
   "main": "index.js",
   "scripts": {
     "dev": "mix",
@@ -11,14 +11,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ruhel241/wpcreativeidea-product-enquiry.git"
+    "url": "git+https://github.com/ruhel241/pingly-product-enquiry.git"
   },
   "author": "ruhel241",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/ruhel241/wpcreativeidea-product-enquiry/issues"
+    "url": "https://github.com/ruhel241/pingly-product-enquiry/issues"
   },
-  "homepage": "https://github.com/ruhel241/wpcreativeidea-product-enquiry#readme",
+  "homepage": "https://github.com/ruhel241/pingly-product-enquiry#readme",
   "dependencies": {
     "@wordpress/hooks": "^4.2.0",
     "clipboard": "^2.0.11",

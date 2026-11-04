@@ -1,13 +1,13 @@
 <?php
 
-namespace WPCreativeIdeaProductEnquiry\Database;
+namespace PinglyProductEnquiry\Database;
 
 if (!defined('ABSPATH')) {
     exit;
 }
 
 require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
-use WPCreativeIdeaProductEnquiry\Database\Migrations\WPCreativeIdeaProductEnquiryMigrator;
+use PinglyProductEnquiry\Database\Migrations\PinglyProductEnquiryMigrator;
 
 class DBMigrator
 {
@@ -34,8 +34,8 @@ class DBMigrator
 
     private static function migrate()
     {
-        require_once(WPCIPE_PLUGIN_DIR_PATH . 'App/Database/Migrations/WPCreativeIdeaProductEnquiryMigrator.php');
+        require_once(PINGLY_PLUGIN_DIR_PATH . 'App/Database/Migrations/PinglyProductEnquiryMigrator.php');
 
-        WPCreativeIdeaProductEnquiryMigrator::migrate();
+        PinglyProductEnquiryMigrator::migrate();
     }
 }

@@ -1,15 +1,15 @@
-body.wpcipe-modal-open {
+body.pingly-modal-open {
   overflow: hidden;
 }
 
-.wpcipe-button {
+.pingly-button {
   background-color: #046bd2;
   color: #ffffff !important;
   padding: 10px 20px !important;
   text-decoration: none !important;
 }
 
-.wpcipe-modal-wrapper {
+.pingly-modal-wrapper {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -21,7 +21,7 @@ body.wpcipe-modal-open {
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
 }
-.wpcipe-modal-wrapper .wpcipe-modal-content {
+.pingly-modal-wrapper .pingly-modal-content {
   position: relative;
   top: 15px;
   background-color: #fefefe;
@@ -33,11 +33,11 @@ body.wpcipe-modal-open {
   border-bottom-right-radius: 10px;
   border-bottom-left-radius: 10px;
 }
-.wpcipe-modal-wrapper .wpcipe-modal-content .wpcipe-form-container {
+.pingly-modal-wrapper .pingly-modal-content .pingly-form-container {
   width: 100%;
   border-radius: 10px;
 }
-.wpcipe-modal-wrapper .wpcipe-modal-content .wpcipe-form-container .wpcipe-header {
+.pingly-modal-wrapper .pingly-modal-content .pingly-form-container .pingly-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -47,7 +47,7 @@ body.wpcipe-modal-open {
   border-top-left-radius: 19px;
   padding: 0px 20px;
 }
-.wpcipe-modal-wrapper .wpcipe-modal-content .wpcipe-form-container .wpcipe-header .wpcipe-title {
+.pingly-modal-wrapper .pingly-modal-content .pingly-form-container .pingly-header .pingly-title {
   text-align: center;
   margin: 0px;
   color: #ffffff;
@@ -55,7 +55,7 @@ body.wpcipe-modal-open {
   flex: 1;
   font-weight: 600;
 }
-.wpcipe-modal-wrapper .wpcipe-modal-content .wpcipe-form-container .wpcipe-header .wpcipe-view-close {
+.pingly-modal-wrapper .pingly-modal-content .pingly-form-container .pingly-header .pingly-view-close {
   font-size: 22px;
   font-weight: bold;
   color: #fff;
@@ -70,17 +70,17 @@ body.wpcipe-modal-open {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
   transition: all 0.3s;
 }
-.wpcipe-modal-wrapper .wpcipe-modal-content .wpcipe-form-container .wpcipe-form {
+.pingly-modal-wrapper .pingly-modal-content .pingly-form-container .pingly-form {
   display: block;
 }
-.wpcipe-modal-wrapper .wpcipe-modal-content .wpcipe-form-container .wpcipe-form label {
+.pingly-modal-wrapper .pingly-modal-content .pingly-form-container .pingly-form label {
   font-weight: bold;
   margin-bottom: 5px;
   display: block;
   color: #333;
 }
-.wpcipe-modal-wrapper .wpcipe-modal-content .wpcipe-form-container .wpcipe-form input,
-.wpcipe-modal-wrapper .wpcipe-modal-content .wpcipe-form-container .wpcipe-form textarea {
+.pingly-modal-wrapper .pingly-modal-content .pingly-form-container .pingly-form input,
+.pingly-modal-wrapper .pingly-modal-content .pingly-form-container .pingly-form textarea {
   width: 100%;
   padding: 12px;
   margin-bottom: 15px;
@@ -88,18 +88,18 @@ body.wpcipe-modal-open {
   border: 1px solid #ccc;
   font-size: 16px;
 }
-.wpcipe-modal-wrapper .wpcipe-modal-content .wpcipe-form-container .wpcipe-form textarea {
+.pingly-modal-wrapper .pingly-modal-content .pingly-form-container .pingly-form textarea {
   height: 150px;
 }
-.wpcipe-modal-wrapper .wpcipe-modal-content .wpcipe-form-container {
+.pingly-modal-wrapper .pingly-modal-content .pingly-form-container {
   /* Tabs */
 }
-.wpcipe-modal-wrapper .wpcipe-modal-content .wpcipe-form-container .wpcipe-tabs {
+.pingly-modal-wrapper .pingly-modal-content .pingly-form-container .pingly-tabs {
   display: flex;
   border-bottom: 1px solid #e5e5e5;
   background: #fff;
 }
-.wpcipe-modal-wrapper .wpcipe-modal-content .wpcipe-form-container .wpcipe-tabs .wpcipe-tab {
+.pingly-modal-wrapper .pingly-modal-content .pingly-form-container .pingly-tabs .pingly-tab {
   flex: 1;
   /* padding: 14px 10px; */
   border: none;
@@ -118,38 +118,38 @@ body.wpcipe-modal-open {
   padding-left: 5px;
   padding-right: 5px;
 }
-.wpcipe-modal-wrapper .wpcipe-modal-content .wpcipe-form-container .wpcipe-tabs .wpcipe-tab.active {
+.pingly-modal-wrapper .pingly-modal-content .pingly-form-container .pingly-tabs .pingly-tab.active {
   color: #3b3bff;
   border-bottom-color: #3b3bff;
   background: #ededed;
   font-weight: 600;
 }
-.wpcipe-modal-wrapper .wpcipe-modal-content .wpcipe-form-container {
+.pingly-modal-wrapper .pingly-modal-content .pingly-form-container {
   /* Tab Content */
 }
-.wpcipe-modal-wrapper .wpcipe-modal-content .wpcipe-form-container .wpcipe-tab-content {
+.pingly-modal-wrapper .pingly-modal-content .pingly-form-container .pingly-tab-content {
   display: none;
   padding: 30px;
 }
-.wpcipe-modal-wrapper .wpcipe-modal-content .wpcipe-form-container .wpcipe-tab-content.active {
+.pingly-modal-wrapper .pingly-modal-content .pingly-form-container .pingly-tab-content.active {
   display: block;
 }
-.wpcipe-modal-wrapper .wpcipe-modal-content .wpcipe-form-container .wpcipe-tab-content .wpcipe-social-numbers {
+.pingly-modal-wrapper .pingly-modal-content .pingly-form-container .pingly-tab-content .pingly-social-numbers {
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
-.wpcipe-modal-wrapper .wpcipe-modal-content .wpcipe-form-container .wpcipe-tab-content .wpcipe-social-numbers .wpcipe-social-number {
+.pingly-modal-wrapper .pingly-modal-content .pingly-form-container .pingly-tab-content .pingly-social-numbers .pingly-social-number {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 20px;
 }
-.wpcipe-modal-wrapper .wpcipe-modal-content .wpcipe-form-container .wpcipe-tab-content .wpcipe-social-numbers .wpcipe-social-number p {
+.pingly-modal-wrapper .pingly-modal-content .pingly-form-container .pingly-tab-content .pingly-social-numbers .pingly-social-number p {
   margin: 0px;
   flex: 1;
 }
-.wpcipe-modal-wrapper .wpcipe-modal-content .wpcipe-form-container .wpcipe-tab-content .wpcipe-social-numbers .wpcipe-social-number .wpcipe-action-btn {
+.pingly-modal-wrapper .pingly-modal-content .pingly-form-container .pingly-tab-content .pingly-social-numbers .pingly-social-number .pingly-action-btn {
   display: inline-block;
   padding: 8px 20px;
   border-radius: 6px;
@@ -157,7 +157,7 @@ body.wpcipe-modal-open {
   text-decoration: none;
   font-weight: 600;
 }
-.wpcipe-modal-wrapper .wpcipe-modal-content .wpcipe-form-container .wpcipe-tab-content .wpcipe-social-numbers .wpcipe-social-number .wpcipe-action-btn.whatsapp {
+.pingly-modal-wrapper .pingly-modal-content .pingly-form-container .pingly-tab-content .pingly-social-numbers .pingly-social-number .pingly-action-btn.whatsapp {
   background: #25D366;
   color: #fff;
   padding: 12px 18px;
@@ -172,16 +172,16 @@ body.wpcipe-modal-open {
   z-index: 9999;
   transition: all 0.3s ease;
 }
-.wpcipe-modal-wrapper .wpcipe-modal-content .wpcipe-form-container .wpcipe-tab-content .wpcipe-social-numbers .wpcipe-social-number .wpcipe-action-btn.whatsapp:hover {
+.pingly-modal-wrapper .pingly-modal-content .pingly-form-container .pingly-tab-content .pingly-social-numbers .pingly-social-number .pingly-action-btn.whatsapp:hover {
   background: #128C7E;
   color: #fff;
   transform: translateY(-2px);
   box-shadow: 0 8px 20px rgba(37, 211, 102, 0.35);
 }
-.wpcipe-modal-wrapper .wpcipe-modal-content .wpcipe-form-container .wpcipe-tab-content .wpcipe-social-numbers .wpcipe-social-number .wpcipe-action-btn.whatsapp:active {
+.pingly-modal-wrapper .pingly-modal-content .pingly-form-container .pingly-tab-content .pingly-social-numbers .pingly-social-number .pingly-action-btn.whatsapp:active {
   transform: translateY(0);
 }
-.wpcipe-modal-wrapper .wpcipe-modal-content .wpcipe-form-container .wpcipe-tab-content .wpcipe-social-numbers .wpcipe-social-number .wpcipe-action-btn.sms {
+.pingly-modal-wrapper .pingly-modal-content .pingly-form-container .pingly-tab-content .pingly-social-numbers .pingly-social-number .pingly-action-btn.sms {
   background: #2196F3;
   color: #fff;
   padding: 12px 18px;
@@ -195,20 +195,20 @@ body.wpcipe-modal-open {
   box-shadow: 0 5px 15px rgba(33, 150, 243, 0.25);
   transition: all 0.3s ease;
 }
-.wpcipe-modal-wrapper .wpcipe-modal-content .wpcipe-form-container .wpcipe-tab-content .wpcipe-social-numbers .wpcipe-social-number .wpcipe-action-btn.sms:hover, .wpcipe-modal-wrapper .wpcipe-modal-content .wpcipe-form-container .wpcipe-tab-content .wpcipe-social-numbers .wpcipe-social-number .wpcipe-action-btn.sms:focus {
+.pingly-modal-wrapper .pingly-modal-content .pingly-form-container .pingly-tab-content .pingly-social-numbers .pingly-social-number .pingly-action-btn.sms:hover, .pingly-modal-wrapper .pingly-modal-content .pingly-form-container .pingly-tab-content .pingly-social-numbers .pingly-social-number .pingly-action-btn.sms:focus {
   background: #1976D2;
   color: #fff;
   text-decoration: none;
   transform: translateY(-2px);
   box-shadow: 0 8px 20px rgba(33, 150, 243, 0.35);
 }
-.wpcipe-modal-wrapper .wpcipe-modal-content .wpcipe-form-container .wpcipe-tab-content .wpcipe-social-numbers .wpcipe-social-number .wpcipe-action-btn.sms:active {
+.pingly-modal-wrapper .pingly-modal-content .pingly-form-container .pingly-tab-content .pingly-social-numbers .pingly-social-number .pingly-action-btn.sms:active {
   transform: translateY(0);
 }
-.wpcipe-modal-wrapper .wpcipe-modal-content .wpcipe-form-container .wpcipe-tab-content .wpcipe-social-numbers .wpcipe-social-number .wpcipe-action-btn.sms svg {
+.pingly-modal-wrapper .pingly-modal-content .pingly-form-container .pingly-tab-content .pingly-social-numbers .pingly-social-number .pingly-action-btn.sms svg {
   margin-top: 4px;
 }
-.wpcipe-modal-wrapper .wpcipe-modal-content .wpcipe-form-container .wpcipe-submit {
+.pingly-modal-wrapper .pingly-modal-content .pingly-form-container .pingly-submit {
   width: 100%;
   padding: 12px;
   background: #2196f3;
@@ -219,10 +219,10 @@ body.wpcipe-modal-open {
   cursor: pointer;
   font-weight: 600;
 }
-.wpcipe-modal-wrapper .wpcipe-modal-content .wpcipe-form-container .wpcipe-submit:hover {
+.pingly-modal-wrapper .pingly-modal-content .pingly-form-container .pingly-submit:hover {
   background: #0d8ae0;
 }
-.wpcipe-modal-wrapper .wpcipe-modal-content #wpcipe-loading-view {
+.pingly-modal-wrapper .pingly-modal-content #pingly-loading-view {
   position: absolute; /* Positions the overlay relative to its parent container */
   top: 0;
   left: 0;
@@ -235,26 +235,26 @@ body.wpcipe-modal-open {
   flex-direction: column;
   color: white; /* Optional: for styling overlay content */
 }
-.wpcipe-modal-wrapper .wpcipe-modal-content #wpcipe-loading-view .wpcipe-loading-title {
+.pingly-modal-wrapper .pingly-modal-content #pingly-loading-view .pingly-loading-title {
   font-size: 15px; /* Slightly larger */
   color: #fff;
   text-align: center;
   margin-top: 15px;
   font-weight: 500;
 }
-.wpcipe-modal-wrapper .wpcipe-modal-content #wpcipe-loading-view .wpcipe-loading-spinner {
+.pingly-modal-wrapper .pingly-modal-content #pingly-loading-view .pingly-loading-spinner {
   width: 35px; /* Fixed width instead of percentage */
   height: 35px; /* Fixed height instead of percentage */
 }
-.wpcipe-modal-wrapper .wpcipe-modal-content #wpcipe-loading-view .wpcipe-loading-spinner img {
+.pingly-modal-wrapper .pingly-modal-content #pingly-loading-view .pingly-loading-spinner img {
   background-color: white;
   padding: 5px;
   border-radius: 3px;
 }
-.wpcipe-modal-wrapper .wpcipe-modal-content .wpcipe-notice {
+.pingly-modal-wrapper .pingly-modal-content .pingly-notice {
   display: none;
 }
-.wpcipe-modal-wrapper .wpcipe-modal-content .wpcipe-notice .wpcipe-response-message {
+.pingly-modal-wrapper .pingly-modal-content .pingly-notice .pingly-response-message {
   background: #fff;
   padding: 12px 15px;
   margin: 0px 0px 20px 0px;
@@ -262,14 +262,14 @@ body.wpcipe-modal-open {
   font-weight: 600;
   box-shadow: 0px 4px 15px rgba(100, 100, 111, 0.2);
 }
-.wpcipe-modal-wrapper .wpcipe-form .wpcipe-phone-number {
+.pingly-modal-wrapper .pingly-form .pingly-phone-number {
   display: flex;
   align-items: center;
   gap: 8px;
   width: 100%;
   margin-bottom: 15px;
 }
-.wpcipe-modal-wrapper .wpcipe-form .wpcipe-phone-number select {
+.pingly-modal-wrapper .pingly-form .pingly-phone-number select {
   width: 22%;
   min-width: 120px;
   padding: 10px 8px;
@@ -280,7 +280,7 @@ body.wpcipe-modal-open {
   cursor: pointer;
   background-image: none !important;
 }
-.wpcipe-modal-wrapper .wpcipe-form .wpcipe-phone-number input[type=number] {
+.pingly-modal-wrapper .pingly-form .pingly-phone-number input[type=number] {
   flex: 1;
   padding: 10px 12px;
   border: 1px solid #d1d5db;
@@ -288,33 +288,33 @@ body.wpcipe-modal-open {
   font-size: 14px;
   margin-bottom: 0px !important;
 }
-.wpcipe-modal-wrapper .wpcipe-form .queb-required-filed {
+.pingly-modal-wrapper .pingly-form .queb-required-filed {
   color: red;
   margin-left: 3px;
 }
-.wpcipe-modal-wrapper .wpcipe-form .wpcipe-subscribe-field {
+.pingly-modal-wrapper .pingly-form .pingly-subscribe-field {
   display: flex;
   justify-content: flex-start;
   align-items: center;
   margin-bottom: 30px;
 }
-.wpcipe-modal-wrapper .wpcipe-form .wpcipe-subscribe-field input {
+.pingly-modal-wrapper .pingly-form .pingly-subscribe-field input {
   width: 5% !important;
   margin: 0px !important;
 }
-.wpcipe-modal-wrapper .wpcipe-form .wpcipe-subscribe-field .wpcipe-label-subscribe {
+.pingly-modal-wrapper .pingly-form .pingly-subscribe-field .pingly-label-subscribe {
   margin: 0px !important;
   padding: 0px !important;
 }
 
-.wpcipe-add-to-cart-wrapper {
+.pingly-add-to-cart-wrapper {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
   align-items: stretch;
   margin-top: 10px;
 }
-.wpcipe-add-to-cart-wrapper a, .wpcipe-add-to-cart-wrapper button {
+.pingly-add-to-cart-wrapper a, .pingly-add-to-cart-wrapper button {
   flex: 1 1 calc(50% - 8px);
   text-align: center;
   margin: 0 !important;
@@ -335,24 +335,24 @@ body.wpcipe-modal-open {
   cursor: pointer;
 }
 @media (max-width: 600px) {
-  .wpcipe-add-to-cart-wrapper a, .wpcipe-add-to-cart-wrapper button {
+  .pingly-add-to-cart-wrapper a, .pingly-add-to-cart-wrapper button {
     flex: 1 1 100%;
     width: 100%;
     font-size: 14px;
   }
 }
-.wpcipe-add-to-cart-wrapper .wpcipe-button {
+.pingly-add-to-cart-wrapper .pingly-button {
   order: 4;
 }
 
-.wpcipe-cart-product-row {
+.pingly-cart-product-row {
   display: flex;
   align-items: center;
   gap: 12px;
   margin-bottom: 6px;
   flex-wrap: wrap;
 }
-.wpcipe-cart-product-row .wpcipe-cart-page-btn {
+.pingly-cart-product-row .pingly-cart-page-btn {
   background-color: #5467f8;
   padding: 6px 14px;
   font-size: 13px;
@@ -360,7 +360,7 @@ body.wpcipe-modal-open {
   white-space: nowrap;
 }
 
-.wpcipe-shortcode-btn {
+.pingly-shortcode-btn {
   background-color: #5467f8;
   color: #ffffff !important;
   padding: 10px 20px !important;
@@ -368,20 +368,20 @@ body.wpcipe-modal-open {
 }
 
 /* Hide only the label (&nbsp;:) for Enquiry button row */
-.wc-block-components-product-details__name:has(+ .wc-block-components-product-details__value .wpcipe-button) {
+.wc-block-components-product-details__name:has(+ .wc-block-components-product-details__value .pingly-button) {
   display: none !important;
 }
 
 /* Hide Enquiry button label in classic cart shortcode */
-dt.variation-nbsp:has(+ dd .wpcipe-button) {
+dt.variation-nbsp:has(+ dd .pingly-button) {
   display: none !important;
 }
 
-.wpcipe-cart-page-btn {
+.pingly-cart-page-btn {
   margin: 5px 0px 5px 0px !important;
 }
 
-.wpcipe-order-summary-btn {
+.pingly-order-summary-btn {
   margin: 5px 0px 5px 0px !important;
 }
 
@@ -390,19 +390,19 @@ dt.variation-nbsp:has(+ dd .wpcipe-button) {
 }
 
 @media only screen and (max-width: 600px) {
-  .wpcipe-modal-wrapper .wpcipe-modal-content {
+  .pingly-modal-wrapper .pingly-modal-content {
     width: 95%;
   }
-  .wpcipe-modal-wrapper .wpcipe-modal-content .wpcipe-form-container .wpcipe-tabs {
+  .pingly-modal-wrapper .pingly-modal-content .pingly-form-container .pingly-tabs {
     flex-direction: column;
   }
-  .wpcipe-modal-wrapper .wpcipe-modal-content .wpcipe-form-container .wpcipe-tabs .wpcipe-tab {
+  .pingly-modal-wrapper .pingly-modal-content .pingly-form-container .pingly-tabs .pingly-tab {
     width: 100%;
   }
-  .wpcipe-modal-wrapper .wpcipe-modal-content .wpcipe-form-container .wpcipe-tabs .wpcipe-tab.active {
+  .pingly-modal-wrapper .pingly-modal-content .pingly-form-container .pingly-tabs .pingly-tab.active {
     border-bottom-color: transparent;
   }
-  .wpcipe-modal-wrapper .wpcipe-modal-content .wpcipe-form-container .wpcipe-form .wpcipe-subscribe-field {
+  .pingly-modal-wrapper .pingly-modal-content .pingly-form-container .pingly-form .pingly-subscribe-field {
     gap: 10px;
     margin-bottom: 10px;
   }

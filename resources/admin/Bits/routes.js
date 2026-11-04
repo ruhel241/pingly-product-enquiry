@@ -1,4 +1,4 @@
-import WPCreativeIdeaProductEnquiry from '../Modules/WPCreativeIdeaProductEnquiry/WPCreativeIdeaProductEnquiry.vue';
+import PinglyProductEnquiry from '../Modules/PinglyProductEnquiry/PinglyProductEnquiry.vue';
 import LicenseManagement from '../Modules/LicenseManagement';
 import Documentation from '../Modules/Documentation.vue';
 import Support from "../Modules/Support.vue";
@@ -7,7 +7,7 @@ export default [
     {
         name: '',
         path: '/',
-        component: WPCreativeIdeaProductEnquiry,
+        component: PinglyProductEnquiry,
         exact: true,
     },
     

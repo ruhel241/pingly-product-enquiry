@@ -38,11 +38,11 @@
                     selectedIds.push(selection.id);
                 });
                 this.$post({
-                    action: 'wpcipe_admin_ajax',
+                    action: 'pingly_admin_ajax',
                     route: 'maybe_delete_details',
                     details_ids: selectedIds,
                     action_type: type,
-                    nonce: window.WPCreativeIdeaProductEnquiryAdminVars.nonce
+                    nonce: window.PinglyProductEnquiryAdminVars.nonce
                 })
                     .then(response => {
                         this.$notify({

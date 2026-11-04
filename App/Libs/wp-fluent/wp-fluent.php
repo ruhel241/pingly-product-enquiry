@@ -3,21 +3,21 @@
 // Autoload plugin.
 require 'autoload.php';
 
-if (! function_exists('WPCIPE_DB')) {
+if (! function_exists('PINGLY_DB')) {
     /**
      * @return \WpFluent\QueryBuilder\QueryBuilderHandler
      */
-    function WPCIPE_DB() {
-        static $WPCIPE_DB;
+    function PINGLY_DB() {
+        static $PINGLY_DB;
 
-        if (! $WPCIPE_DB) {
+        if (! $PINGLY_DB) {
             global $wpdb;
 
             $connection = new \WpFluent\Connection($wpdb, ['prefix' => $wpdb->prefix]);
 
-            $WPCIPE_DB = new \WpFluent\QueryBuilder\QueryBuilderHandler($connection);
+            $PINGLY_DB = new \WpFluent\QueryBuilder\QueryBuilderHandler($connection);
         }
 
-        return $WPCIPE_DB;
+        return $PINGLY_DB;
     }
 }

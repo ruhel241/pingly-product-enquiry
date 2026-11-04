@@ -1,6 +1,6 @@
 <?php
 
-namespace WPCreativeIdeaProductEnquiry\Helpers;
+namespace PinglyProductEnquiry\Helpers;
 
 class SanitizeValidation
 {

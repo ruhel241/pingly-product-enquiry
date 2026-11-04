@@ -1,12 +1,12 @@
 <template>
-  <div class="wpcipe-main-navigation">
+  <div class="pingly-main-navigation">
     <div class="logo">
-      <h1>Product Enquiry</h1>
+      <h1>Pingly Product Enquiry</h1>
     </div>
     <el-menu
         :router="true"
         mode="horizontal"
-        class="wpcipe-navbar"
+        class="pingly-navbar"
         :default-active="active"
         @select="handleSelect"
     >
@@ -28,13 +28,13 @@ export default {
   props: [''],
   data() {
     return {
-      active: localStorage.getItem('wpcipe_active_menu') || '/',
+      active: localStorage.getItem('pingly_active_menu') || '/',
       allMenuItems: []
     };
   },
   computed: {
     visibleItems() {
-        const hasPro = !!window.WPCreativeIdeaProductEnquiryAdminVars?.has_pro;
+        const hasPro = !!window.PinglyProductEnquiryAdminVars?.has_pro;
 
         return this.allMenuItems.filter((item) => {
             // License menu only for Pro version
@@ -78,12 +78,12 @@ export default {
     
     setMenus() {
       // Get all menu items with filters applied
-      this.allMenuItems = this.applyFilters('wpcipe_top_menus', this.defaultRoutes() );
+      this.allMenuItems = this.applyFilters('pingly_top_menus', this.defaultRoutes() );
     },
 
     handleSelect(key) {
       this.active = key;
-      localStorage.setItem('wpcipe_active_menu', this.active)
+      localStorage.setItem('pingly_active_menu', this.active)
     },
   },
   mounted() {

@@ -1,14 +1,14 @@
 <?php
 
-namespace WPCreativeIdeaProductEnquiry\Database\Migrations;
+namespace PinglyProductEnquiry\Database\Migrations;
 
 if (!defined('ABSPATH')) {
     exit;
 }
 
-class WPCreativeIdeaProductEnquiryMigrator
+class PinglyProductEnquiryMigrator
 {
-    static $tableName = 'wpcipe_product_enquiry';
+    static $tableName = 'pingly_product_enquiry';
 
     public static function migrate()
     {

@@ -1,6 +1,6 @@
 <template>
-  <div class="wpcipe-settings-wrapper" v-loading="fetching" element-loading-spinner="el-icon-loading">
-    <div class="wpcipe-settings-content">
+  <div class="pingly-settings-wrapper" v-loading="fetching" element-loading-spinner="el-icon-loading">
+    <div class="pingly-settings-content">
       <div class="setting-title">
         <h3>Enquiry Shop Page Button Styles</h3>
       </div>
@@ -26,7 +26,7 @@
         />
       </div>
     </div>
-    <div class="wpcipe-settings-content">
+    <div class="pingly-settings-content">
       <div class="setting-title">
         <h3>Enquiry Single Page Button Styles</h3>
       </div>
@@ -52,7 +52,7 @@
         />
       </div>
     </div>
-    <div class="wpcipe-settings-content">
+    <div class="pingly-settings-content">
       <div class="setting-title">
         <h3>Enquiry Form Styles</h3>
       </div>
@@ -78,7 +78,7 @@
         />
       </div>
     </div>
-    <div class="wpcipe-settings-content">
+    <div class="pingly-settings-content">
       <div class="setting-title">
         <h3> ShortCode Enquiry Button Style</h3>
       </div>
@@ -91,7 +91,7 @@
       </div>
     </div>
    
-    <div class="wpcipe-settings-content">
+    <div class="pingly-settings-content">
       <div class="setting-title">
         <h3>Cart Page Enquiry Button Style</h3>
       </div>
@@ -103,7 +103,7 @@
         />
       </div>
     </div>
-    <div class="wpcipe-settings-content">
+    <div class="pingly-settings-content">
       <div class="setting-title">
         <h3>Order Summary Enquiry Button Style</h3>
       </div>

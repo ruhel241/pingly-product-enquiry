@@ -1,8 +1,8 @@
 <?php
 
-namespace WPCreativeIdeaProductEnquiry\Helpers;
+namespace PinglyProductEnquiry\Helpers;
 
-//use WPCreativeIdeaProductEnquiry\Helpers\ArrayAccess;
+//use PinglyProductEnquiry\Helpers\ArrayAccess;
 
 if (!defined('ABSPATH')) exit; // Exit if accessed directly
 

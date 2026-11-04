@@ -1,6 +1,6 @@
 <?php
 
-namespace WPCreativeIdeaProductEnquiry\Classes;
+namespace PinglyProductEnquiry\Classes;
 
 use WC_Settings_Page;
 
@@ -10,7 +10,7 @@ if (!defined('ABSPATH')) exit; // Exit if accessed directly
  *
  * @since 1.0.2
  */
-class WPCreativeIdeaProductEnquirySettings extends WC_Settings_Page
+class PinglyProductEnquirySettings extends WC_Settings_Page
 {
     /**
      * Setup settings class
@@ -19,8 +19,8 @@ class WPCreativeIdeaProductEnquirySettings extends WC_Settings_Page
      */
     public function __construct()
     {
-        $this->id = 'wpcreativeidea-product-enquiry';
-        $this->label = __('Product Enquiry', 'wpcreativeidea-product-enquiry');
+        $this->id = 'pingly-product-enquiry';
+        $this->label = __('Pingly Product Enquiry', 'pingly-product-enquiry');
 
         add_filter('woocommerce_settings_tabs_array', array($this, 'add_settings_page'), 20);
         add_action('woocommerce_settings_' . $this->id, array($this, 'output'));
@@ -36,7 +36,7 @@ class WPCreativeIdeaProductEnquirySettings extends WC_Settings_Page
      */
     public function output()
     {
-        echo wp_kses_post('<div id="wp_wpcipe_settings_app"></div>');
+        echo wp_kses_post('<div id="wp_pingly_settings_app"></div>');
     }
 
     public function enqueueAdminScripts()
@@ -46,26 +46,26 @@ class WPCreativeIdeaProductEnquirySettings extends WC_Settings_Page
         
         if ($currentTab === $this->id) {
 
-            $assetsUrl = WPCIPE_PLUGIN_DIR_URL . 'assets/';
+            $assetsUrl = PINGLY_PLUGIN_DIR_URL . 'assets/';
 
-            wp_enqueue_script('wpcipe_admin_boot', $assetsUrl . 'admin/js/boot.js', array('jquery'), WPCIPE_PLUGIN_VERSION, false);
-            wp_enqueue_script('wpcipe_admin_app', $assetsUrl . 'admin/js/start.js', array('jquery'), WPCIPE_PLUGIN_VERSION, false);
-            wp_enqueue_style('wpcipe_admin_css', $assetsUrl . 'admin/css/admin.css', array(), WPCIPE_PLUGIN_VERSION);
+            wp_enqueue_script('pingly_admin_boot', $assetsUrl . 'admin/js/boot.js', array('jquery'), PINGLY_PLUGIN_VERSION, false);
+            wp_enqueue_script('pingly_admin_app', $assetsUrl . 'admin/js/start.js', array('jquery'), PINGLY_PLUGIN_VERSION, false);
+            wp_enqueue_style('pingly_admin_css', $assetsUrl . 'admin/css/admin.css', array(), PINGLY_PLUGIN_VERSION);
 
-            wp_localize_script('wpcipe_admin_app', 'WPCreativeIdeaProductEnquiryAdminVars', array(
+            wp_localize_script('pingly_admin_app', 'PinglyProductEnquiryAdminVars', array(
                 'assets_url'  => $assetsUrl,
                 'images_url'  => $assetsUrl.'admin/images/',
                 'ajaxurl'     => admin_url('admin-ajax.php'),
                 'admin_url'   => admin_url('post.php'),
-                'slug'        => 'wpcreativeidea-product-enquiry',
+                'slug'        => 'pingly-product-enquiry',
                 'site_url'    => get_site_url(),
-                'nonce'       => wp_create_nonce('wpcipe_nonce'),
+                'nonce'       => wp_create_nonce('pingly_nonce'),
                 'server_time' => current_time('mysql'),
                 'woo_active'  => defined('WC_VERSION'),
-                'has_pro'     => defined('WPCIPE_PRO')
+                'has_pro'     => defined('PINGLY_PRO')
             ));
         }
     }
 }
 
-return new WPCreativeIdeaProductEnquirySettings();
+return new PinglyProductEnquirySettings();

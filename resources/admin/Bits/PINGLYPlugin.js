@@ -12,7 +12,7 @@ import {
 
 Vue.use(Router);
 
-export default class WPCIPEPlugin {
+export default class PINGLYPlugin {
     constructor() {
         // this.Router = new Router({
         //     mode: 'history',
@@ -24,11 +24,11 @@ export default class WPCIPEPlugin {
         this.addAction = addAction;
         this.applyFilters = applyFilters;
         this.removeAllActions = removeAllActions;
-        this.appVars = window.WPCreativeIdeaProductEnquiryAdminVars;
+        this.appVars = window.PinglyProductEnquiryAdminVars;
         
         // Create a reactive data object for module status
         // this.moduleStatus = Vue.observable({
-        //     ...window.WPCreativeIdeaProductEnquiryAdminVars.get_active_modules
+        //     ...window.PinglyProductEnquiryAdminVars.get_active_modules
         // });
         
         this.Vue = this.extendVueConstructor();
@@ -38,7 +38,7 @@ export default class WPCIPEPlugin {
     // updateModuleStatus(type, status) {
     //     Vue.set(this.moduleStatus, type, status);
     //     // Also trigger a custom event for components that might need it
-    //     this.doAction('wpcipe_module_status_changed', type, status);
+    //     this.doAction('pingly_module_status_changed', type, status);
     // }
 
     extendVueConstructor() {
@@ -84,7 +84,7 @@ export default class WPCIPEPlugin {
                 },
 
                 // $t(string) {
-                //     return window.WPCreativeIdeaProductEnquiryAdminVars.i18n[string] || string;
+                //     return window.PinglyProductEnquiryAdminVars.i18n[string] || string;
                 // },
 
                 // Updated method to use reactive module status
@@ -123,7 +123,7 @@ export default class WPCIPEPlugin {
             return;
         }
 
-        this.addFilter('wpcipe_top_menus', this.appVars.slug, function (menus) {
+        this.addFilter('pingly_top_menus', this.appVars.slug, function (menus) {
             menus = menus.filter(m => m.route !== route.name);
             menus.push({
                 route: route.name,
@@ -132,7 +132,7 @@ export default class WPCIPEPlugin {
             return menus;
         });
 
-        this.addFilter('wpcipe_global_routes', this.appVars.slug, function (routes) {
+        this.addFilter('pingly_global_routes', this.appVars.slug, function (routes) {
             routes = routes.filter(r => r.name !== route.name);
             routes.push(route);
             return routes;
@@ -140,9 +140,9 @@ export default class WPCIPEPlugin {
     }
 
     request(method, route, data = {}) {
-        const url = `${window.WPCreativeIdeaProductEnquiryAdminVars.rest.url}/${route}`;
+        const url = `${window.PinglyProductEnquiryAdminVars.rest.url}/${route}`;
 
-        const headers = { 'X-WP-Nonce': window.WPCreativeIdeaProductEnquiryAdminVars.rest.nonce };
+        const headers = { 'X-WP-Nonce': window.PinglyProductEnquiryAdminVars.rest.nonce };
 
         if (['PUT', 'PATCH', 'DELETE'].indexOf(method.toUpperCase()) !== -1) {
             headers['X-HTTP-Method-Override'] = method;
@@ -164,23 +164,23 @@ export default class WPCIPEPlugin {
     }
 
     $get(options) {
-        return window.jQuery.get(window.WPCreativeIdeaProductEnquiryAdminVars.ajaxurl, options);
+        return window.jQuery.get(window.PinglyProductEnquiryAdminVars.ajaxurl, options);
     }
 
     $post(options) {
-        return window.jQuery.post(window.WPCreativeIdeaProductEnquiryAdminVars.ajaxurl, options);
+        return window.jQuery.post(window.PinglyProductEnquiryAdminVars.ajaxurl, options);
     }
 
     $put(options) {
         return window.jQuery.ajax({
-            url: window.WPCreativeIdeaProductEnquiryAdminVars.ajaxurl,
+            url: window.PinglyProductEnquiryAdminVars.ajaxurl,
             type: 'PUT',
             data: options,
         });
     }
 
     $del(options) {
-        return window.jQuery.post(window.WPCreativeIdeaProductEnquiryAdminVars.ajaxurl, options);
+        return window.jQuery.post(window.PinglyProductEnquiryAdminVars.ajaxurl, options);
     }
 
     ucFirst(text) {

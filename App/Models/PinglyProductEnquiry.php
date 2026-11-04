@@ -1,10 +1,10 @@
 <?php
 
-namespace WPCreativeIdeaProductEnquiry\Models;
+namespace PinglyProductEnquiry\Models;
 
-class WPCreativeIdeaProductEnquiry {
+class PinglyProductEnquiry {
 
-    protected $table = 'wpcipe_product_enquiry';
+    protected $table = 'pingly_product_enquiry';
    
     public function getDetails($request) {
         $search       = sanitize_text_field($request['search']);
@@ -12,7 +12,7 @@ class WPCreativeIdeaProductEnquiry {
         $perPage      = sanitize_text_field($request['per_page']);
         $offset       = $perPage * ($currentPage - 1);
 
-        $detailsQuery = WPCIPE_Query()->table($this->table)
+        $detailsQuery = PINGLY_Query()->table($this->table)
                     ->orderBy('id', 'DESC')
                     ->offset($offset)
                     ->limit($perPage);
@@ -52,29 +52,29 @@ class WPCreativeIdeaProductEnquiry {
     public function getDetail($id) {
         $id = sanitize_text_field($id);
 
-        $detail = WPCIPE_Query()->table($this->table)->where('id', $id)->first();
+        $detail = PINGLY_Query()->table($this->table)->where('id', $id)->first();
 
         return $detail;
     }
 
     public function deleteInfo($detailsIds) {
-        $details = WPCIPE_Query()->table($this->table)->whereIn('id', $detailsIds)->get();
+        $details = PINGLY_Query()->table($this->table)->whereIn('id', $detailsIds)->get();
 
         foreach ($details as $detail) {
-            WPCIPE_Query()->table($this->table)->where('id', $detail->id)->delete();
+            PINGLY_Query()->table($this->table)->where('id', $detail->id)->delete();
         }
     }
 
     public function insertGetId($data) {
 
-        $save = WPCIPE_Query()->table($this->table)->insert($data);
+        $save = PINGLY_Query()->table($this->table)->insert($data);
 
         return $save;
     }
 
     public function update($id, $data) {
 
-       $update =  WPCIPE_Query()->table($this->table)
+       $update =  PINGLY_Query()->table($this->table)
                     ->where('id', $id)
                     ->update($data);
        

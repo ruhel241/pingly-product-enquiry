@@ -1,29 +1,29 @@
 <?php
 
-namespace WPCreativeIdeaProductEnquiry\Handler;
+namespace PinglyProductEnquiry\Handler;
 
-use WPCreativeIdeaProductEnquiry\Settings;
-use WPCreativeIdeaProductEnquiry\Models\WPCreativeIdeaProductEnquiry;
-use WPCreativeIdeaProductEnquiry\Helpers\SanitizeValidation;
+use PinglyProductEnquiry\Settings;
+use PinglyProductEnquiry\Models\PinglyProductEnquiry;
+use PinglyProductEnquiry\Helpers\SanitizeValidation;
 
 class AdminAjaxHandler
 {
     public function registerEndpoints()
     {
-        add_action('wp_ajax_wpcipe_admin_ajax', array($this, 'ajaxRoutes'));
+        add_action('wp_ajax_pingly_admin_ajax', array($this, 'ajaxRoutes'));
     }
 
     public function ajaxRoutes()
     {
-        if (!check_ajax_referer('wpcipe_nonce', 'nonce', false)) {
+        if (!check_ajax_referer('pingly_nonce', 'nonce', false)) {
             wp_send_json_error([
-                'message' => __('Invalid nonce', 'wpcreativeidea-product-enquiry')
+                'message' => __('Invalid nonce', 'pingly-product-enquiry')
             ], 403);
         }
 
         if (!current_user_can('manage_options')) {
             wp_send_json_error([
-                'message' => __('Unauthorized access', 'wpcreativeidea-product-enquiry')
+                'message' => __('Unauthorized access', 'pingly-product-enquiry')
             ], 403);
         }
 
@@ -43,8 +43,8 @@ class AdminAjaxHandler
             'enable_active_module'   => 'enableActiveModule',
             'get_active_module'      => 'getActiveModule',
             'reset_settings'         => 'resetSettings',
-            'get_wpcipe_details'     => 'getWPCreativeIdeaProductEnquiryDetails',
-            'get_wpcipe_detail_view' => 'getDetailView',
+            'get_pingly_details'     => 'getPinglyProductEnquiryDetails',
+            'get_pingly_detail_view' => 'getDetailView',
             'maybe_delete_details'   => 'maybeDeleteDetails',
         ];
 
@@ -54,7 +54,7 @@ class AdminAjaxHandler
 
         $validatedData = (new SanitizeValidation)->validateRequestData($rawData);
 
-        do_action('wpcipe_admin_ajax_handler_catch', $route);
+        do_action('pingly_admin_ajax_handler_catch', $route);
 
         $this->{$validRoutes[$route]}($validatedData);
 
@@ -63,15 +63,15 @@ class AdminAjaxHandler
 
     public function getSettings($request)
     {
-        if (!check_ajax_referer('wpcipe_nonce', 'nonce', false)) {
+        if (!check_ajax_referer('pingly_nonce', 'nonce', false)) {
             wp_send_json_error([
-                'message' => __('Invalid nonce', 'wpcreativeidea-product-enquiry')
+                'message' => __('Invalid nonce', 'pingly-product-enquiry')
             ], 403);
         }
 
         if (!current_user_can('manage_options')) {
             wp_send_json_error([
-                'message' => __('Unauthorized access', 'wpcreativeidea-product-enquiry')
+                'message' => __('Unauthorized access', 'pingly-product-enquiry')
             ], 403);
         }
 
@@ -83,7 +83,7 @@ class AdminAjaxHandler
         // Whitelist check
         if (!isset($getConfigs[$type][$tab])) {
             wp_send_json_error([
-                'message' => __('Invalid settings type or tab', 'wpcreativeidea-product-enquiry')
+                'message' => __('Invalid settings type or tab', 'pingly-product-enquiry')
             ], 400);
         }
 
@@ -96,15 +96,15 @@ class AdminAjaxHandler
 
     public function saveSettings($request)
     {
-        if (!check_ajax_referer('wpcipe_nonce', 'nonce', false)) {
+        if (!check_ajax_referer('pingly_nonce', 'nonce', false)) {
             wp_send_json_error([
-                'message' => __('Invalid nonce', 'wpcreativeidea-product-enquiry')
+                'message' => __('Invalid nonce', 'pingly-product-enquiry')
             ], 403);
         }
 
         if (!current_user_can('manage_options')) {
             wp_send_json_error([
-                'message' => __('Unauthorized access', 'wpcreativeidea-product-enquiry')
+                'message' => __('Unauthorized access', 'pingly-product-enquiry')
             ], 403);
         }
 
@@ -116,7 +116,7 @@ class AdminAjaxHandler
         // Whitelist check
         if (!isset($getConfigs[$type][$tab])) {
             wp_send_json_error([
-                'message' => __('Invalid settings type or tab', 'wpcreativeidea-product-enquiry')
+                'message' => __('Invalid settings type or tab', 'pingly-product-enquiry')
             ], 400);
         }
 
@@ -125,7 +125,7 @@ class AdminAjaxHandler
 
         if (!is_array($newSettings)) {
             wp_send_json_error([
-                'message' => __('Invalid settings data', 'wpcreativeidea-product-enquiry')
+                'message' => __('Invalid settings data', 'pingly-product-enquiry')
             ], 400);
         }
 
@@ -143,7 +143,7 @@ class AdminAjaxHandler
         wp_send_json_success([
 			'message'  => sprintf(
 				/* translators: %s: Settings tab name, e.g. "General" or "Email". */
-				__('%s saved successfully', 'wpcreativeidea-product-enquiry'),
+				__('%s saved successfully', 'pingly-product-enquiry'),
 				ucfirst($tab)
 			),
 			'settings' => $currentSettings,
@@ -152,15 +152,15 @@ class AdminAjaxHandler
 
     public function enableActiveModule($request)
     {
-        if (!check_ajax_referer('wpcipe_nonce', 'nonce', false)) {
+        if (!check_ajax_referer('pingly_nonce', 'nonce', false)) {
             wp_send_json_error([
-                'message' => __('Invalid nonce', 'wpcreativeidea-product-enquiry')
+                'message' => __('Invalid nonce', 'pingly-product-enquiry')
             ], 403);
         }
 
         if (!current_user_can('manage_options')) {
             wp_send_json_error([
-                'message' => __('Unauthorized access', 'wpcreativeidea-product-enquiry')
+                'message' => __('Unauthorized access', 'pingly-product-enquiry')
             ], 403);
         }
 
@@ -170,26 +170,26 @@ class AdminAjaxHandler
         // Only yes/no allowed
         if (!in_array($status, ['yes', 'no'], true)) {
             wp_send_json_error([
-                'message' => __('Invalid status', 'wpcreativeidea-product-enquiry')
+                'message' => __('Invalid status', 'pingly-product-enquiry')
             ], 400);
         }
 
         $defaultModules   = (new Settings())->getActiveModule();
-        $wpcipeActiveModule = get_option('wpcipe_active_module', $defaultModules);
+        $pinglyActiveModule = get_option('pingly_active_module', $defaultModules);
 
         // Whitelist check
-        if (!isset($wpcipeActiveModule[$type])) {
+        if (!isset($pinglyActiveModule[$type])) {
             wp_send_json_error([
-                'message' => __('Invalid module type', 'wpcreativeidea-product-enquiry')
+                'message' => __('Invalid module type', 'pingly-product-enquiry')
             ], 400);
         }
 
-        $wpcipeActiveModule[$type] = $status;
-        update_option('wpcipe_active_module', $wpcipeActiveModule);
+        $pinglyActiveModule[$type] = $status;
+        update_option('pingly_active_module', $pinglyActiveModule);
 
         $message = ($status === 'no')
-            ? __('Successfully disabled active module', 'wpcreativeidea-product-enquiry')
-            : __('Successfully enabled active module', 'wpcreativeidea-product-enquiry');
+            ? __('Successfully disabled active module', 'pingly-product-enquiry')
+            : __('Successfully enabled active module', 'pingly-product-enquiry');
 
         wp_send_json_success([
             'message'       => $message,
@@ -199,46 +199,46 @@ class AdminAjaxHandler
 
     public function getActiveModule($request)
     {
-        if (!check_ajax_referer('wpcipe_nonce', 'nonce', false)) {
+        if (!check_ajax_referer('pingly_nonce', 'nonce', false)) {
             wp_send_json_error([
-                'message' => __('Invalid nonce', 'wpcreativeidea-product-enquiry')
+                'message' => __('Invalid nonce', 'pingly-product-enquiry')
             ], 403);
         }
 
         if (!current_user_can('manage_options')) {
             wp_send_json_error([
-                'message' => __('Unauthorized access', 'wpcreativeidea-product-enquiry')
+                'message' => __('Unauthorized access', 'pingly-product-enquiry')
             ], 403);
         }
 
         $type = $request['type'] ?? '';
 
         $defaultModules   = (new Settings())->getActiveModule();
-        $wpcipeActiveModule = get_option('wpcipe_active_module', $defaultModules);
+        $pinglyActiveModule = get_option('pingly_active_module', $defaultModules);
 
-        if (!isset($wpcipeActiveModule[$type])) {
+        if (!isset($pinglyActiveModule[$type])) {
             wp_send_json_error([
-                'message' => __('Invalid module type', 'wpcreativeidea-product-enquiry')
+                'message' => __('Invalid module type', 'pingly-product-enquiry')
             ], 400);
         }
 
         wp_send_json_success([
-            'message'       => __('Enable active module', 'wpcreativeidea-product-enquiry'),
-            'active_module' => $wpcipeActiveModule[$type],
+            'message'       => __('Enable active module', 'pingly-product-enquiry'),
+            'active_module' => $pinglyActiveModule[$type],
         ]);
     }
 
     public function resetSettings($request)
     {
-        if (!check_ajax_referer('wpcipe_nonce', 'nonce', false)) {
+        if (!check_ajax_referer('pingly_nonce', 'nonce', false)) {
             wp_send_json_error([
-                'message' => __('Invalid nonce', 'wpcreativeidea-product-enquiry')
+                'message' => __('Invalid nonce', 'pingly-product-enquiry')
             ], 403);
         }
 
         if (!current_user_can('manage_options')) {
             wp_send_json_error([
-                'message' => __('Unauthorized access', 'wpcreativeidea-product-enquiry')
+                'message' => __('Unauthorized access', 'pingly-product-enquiry')
             ], 403);
         }
 
@@ -250,7 +250,7 @@ class AdminAjaxHandler
         // Whitelist check
         if (!isset($getDefaultConfigs[$type][$tab]) || !is_array($getDefaultConfigs[$type][$tab])) {
             wp_send_json_error([
-                'message' => __('Invalid reset request', 'wpcreativeidea-product-enquiry')
+                'message' => __('Invalid reset request', 'pingly-product-enquiry')
             ], 400);
         }
 
@@ -268,7 +268,7 @@ class AdminAjaxHandler
        wp_send_json_success([
 			'message'  => sprintf(
 				/* translators: %s: Settings tab name, e.g. "General" or "Email". */
-				__('Reset %s successfully', 'wpcreativeidea-product-enquiry'),
+				__('Reset %s successfully', 'pingly-product-enquiry'),
 				ucfirst($tab)
 			),
 			'settings' => $currentSettings,
@@ -276,40 +276,40 @@ class AdminAjaxHandler
     }
 
     // Get Product Enquiry addon Details
-    public function getWPCreativeIdeaProductEnquiryDetails($request)
+    public function getPinglyProductEnquiryDetails($request)
     {
-        if (!check_ajax_referer('wpcipe_nonce', 'nonce', false)) {
+        if (!check_ajax_referer('pingly_nonce', 'nonce', false)) {
             wp_send_json_error([
-                'message' => __('Invalid nonce', 'wpcreativeidea-product-enquiry')
+                'message' => __('Invalid nonce', 'pingly-product-enquiry')
             ], 403);
         }
 
         if (!current_user_can('manage_options')) {
             wp_send_json_error([
-                'message' => __('Unauthorized access', 'wpcreativeidea-product-enquiry')
+                'message' => __('Unauthorized access', 'pingly-product-enquiry')
             ], 403);
         }
 
-        $WPCreativeIdeaProductEnquiry = new WPCreativeIdeaProductEnquiry();
-        $details        = $WPCreativeIdeaProductEnquiry->getDetails($request);
+        $PinglyProductEnquiry = new PinglyProductEnquiry();
+        $details        = $PinglyProductEnquiry->getDetails($request);
 
         wp_send_json_success([
-            'message' => __('WPCreativeIdea Product Enquiry details get successfully.', 'wpcreativeidea-product-enquiry'),
+            'message' => __('Pingly Product Enquiry details get successfully.', 'pingly-product-enquiry'),
             'data'    => $details,
         ], 200);
     }
 
     public function getDetailView($request)
     {
-        if (!check_ajax_referer('wpcipe_nonce', 'nonce', false)) {
+        if (!check_ajax_referer('pingly_nonce', 'nonce', false)) {
             wp_send_json_error([
-                'message' => __('Invalid nonce', 'wpcreativeidea-product-enquiry')
+                'message' => __('Invalid nonce', 'pingly-product-enquiry')
             ], 403);
         }
 
         if (!current_user_can('manage_options')) {
             wp_send_json_error([
-                'message' => __('Unauthorized access', 'wpcreativeidea-product-enquiry')
+                'message' => __('Unauthorized access', 'pingly-product-enquiry')
             ], 403);
         }
 
@@ -317,30 +317,30 @@ class AdminAjaxHandler
 
         if (!$detailId) {
             wp_send_json_error([
-                'message' => __('Invalid detail id', 'wpcreativeidea-product-enquiry')
+                'message' => __('Invalid detail id', 'pingly-product-enquiry')
             ], 400);
         }
 
-        $WPCreativeIdeaProductEnquiry = new WPCreativeIdeaProductEnquiry();
-        $detail         = $WPCreativeIdeaProductEnquiry->getDetail($detailId);
+        $PinglyProductEnquiry = new PinglyProductEnquiry();
+        $detail         = $PinglyProductEnquiry->getDetail($detailId);
 
         wp_send_json_success([
-            'message' => __('Product Enquiry detail get successfully.', 'wpcreativeidea-product-enquiry'),
+            'message' => __('Product Enquiry detail get successfully.', 'pingly-product-enquiry'),
             'detail'  => $detail,
         ], 200);
     }
 
     public function maybeDeleteDetails($request)
     {
-        if (!check_ajax_referer('wpcipe_nonce', 'nonce', false)) {
+        if (!check_ajax_referer('pingly_nonce', 'nonce', false)) {
             wp_send_json_error([
-                'message' => __('Invalid nonce', 'wpcreativeidea-product-enquiry')
+                'message' => __('Invalid nonce', 'pingly-product-enquiry')
             ], 403);
         }
 
         if (!current_user_can('manage_options')) {
             wp_send_json_error([
-                'message' => __('Unauthorized access', 'wpcreativeidea-product-enquiry')
+                'message' => __('Unauthorized access', 'pingly-product-enquiry')
             ], 403);
         }
 
@@ -348,7 +348,7 @@ class AdminAjaxHandler
 
         if ($actionType !== 'delete') {
             wp_send_json_error([
-                'message' => __('Invalid action type', 'wpcreativeidea-product-enquiry')
+                'message' => __('Invalid action type', 'pingly-product-enquiry')
             ], 400);
         }
 
@@ -363,15 +363,15 @@ class AdminAjaxHandler
 
         if (empty($detailsIds)) {
             wp_send_json_error([
-                'message' => __('No enquiry selected', 'wpcreativeidea-product-enquiry')
+                'message' => __('No enquiry selected', 'pingly-product-enquiry')
             ], 400);
         }
 
-        $WPCreativeIdeaProductEnquiry = new WPCreativeIdeaProductEnquiry();
-        $WPCreativeIdeaProductEnquiry->deleteInfo($detailsIds);
+        $PinglyProductEnquiry = new PinglyProductEnquiry();
+        $PinglyProductEnquiry->deleteInfo($detailsIds);
 
         wp_send_json_success([
-            'message' => __('Selected enquiry successfully deleted', 'wpcreativeidea-product-enquiry')
+            'message' => __('Selected enquiry successfully deleted', 'pingly-product-enquiry')
         ], 200);
     }
 }

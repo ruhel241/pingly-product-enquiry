@@ -1,3 +1,3 @@
-import WPCIPEPlugin from './Bits/WPCIPEPlugin.js';
+import PINGLYPlugin from './Bits/PINGLYPlugin.js';
 
-window.WPCIPEPlugin = new WPCIPEPlugin();
+window.PINGLYPlugin = new PINGLYPlugin();

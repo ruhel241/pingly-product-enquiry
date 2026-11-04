@@ -13,7 +13,7 @@ mix.webpackConfig({
         ]
     },
     output: {
-        publicPath: Mix.isUsing('hmr') ? '/' : '/wp-content/plugins/wpcreativeidea-product-enquiry/assets/',
+        publicPath: Mix.isUsing('hmr') ? '/' : '/wp-content/plugins/pingly-product-enquiry/assets/',
         chunkFilename: 'admin/js/[name].js'
     },
     plugins: [
@@ -37,6 +37,6 @@ mix.sass('resources/scss/admin.scss', 'assets/admin/css/admin.css');
 mix.copy('node_modules/element-ui/lib/theme-chalk/fonts', 'assets/admin/css/fonts');
 mix.copy('resources/public/images', 'assets/public/images');
 
-// WPCreativeIdea Product Enquiry js
-mix.js('resources/public/js/wpcipe.js', 'assets/public/js/wpcreativeidea-product-enquiry.js');
-mix.sass('resources/scss/public-wpcipe.scss', 'assets/public/css/wpcreativeidea-product-enquiry.css');
+// Pingly Product Enquiry js
+mix.js('resources/public/js/pingly.js', 'assets/public/js/pingly-product-enquiry.js');
+mix.sass('resources/scss/public-pingly.scss', 'assets/public/css/pingly-product-enquiry.css');
