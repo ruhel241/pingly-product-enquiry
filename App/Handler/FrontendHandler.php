@@ -277,30 +277,32 @@ class FrontendHandler
             ], 403);
         }
 
-        // Nonce verified above via check_ajax_referer().
-        // phpcs:ignore WordPress.Security.NonceVerification.Missing, WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
-        $rawData = wp_unslash($_POST);
-
-        $route = isset($rawData['route']) ? sanitize_key($rawData['route']) : '';
+        // phpcs:disable WordPress.Security.NonceVerification.Recommended.
+        $route = isset($_REQUEST['route']) ? sanitize_key(wp_unslash($_REQUEST['route'])) : '';
+        // phpcs:enable WordPress.Security.NonceVerification.Recommended
 
         if (!$route) {
-            wp_send_json_error(['message' => 'Invalid route'], 400);
+            wp_send_json_error([
+                'message' => __('Invalid route', 'pingly-product-enquiry')
+            ], 400);
         }
 
         $validRoutes = [
-            'pingly_details' => 'PinglyProductEnquiryDetails',
+            'pingly_details' => 'savePinglyProductEnquiryDetails',
             'pingly_form'    => 'PinglyProductEnquiryModalForm'
         ];
 
+    
         if (!isset($validRoutes[$route])) {
-            wp_send_json_error(['message' => 'Invalid route'], 400);
+            wp_send_json_error([
+                'message' => __('Invalid route', 'pingly-product-enquiry')
+            ], 400);
         }
 
-        $validatedData = (new SanitizeValidation)->validateRequestData($rawData);
-
+        // Must run before the handler, because handlers end the request with wp_send_json_*().
         do_action('pingly_public_ajax_handler_catch', $route);
 
-        $this->{$validRoutes[$route]}($validatedData);
+        $this->{$validRoutes[$route]}();
 
         wp_die();
     }
@@ -339,7 +341,7 @@ class FrontendHandler
         ]);
     }
 
-    public function PinglyProductEnquiryModalForm($request)
+    public function PinglyProductEnquiryModalForm()
     {
         if (!check_ajax_referer('pingly_public_nonce', 'nonce', false)) {
             wp_send_json_error([
@@ -347,8 +349,11 @@ class FrontendHandler
             ], 403);
         }
 
-        $productId   = $request['product_id'] ?? null;
-        $productSlug = $request['product_slug'] ?? null;
+       // Nonce is verified at the top of this method.
+        // phpcs:disable WordPress.Security.NonceVerification.Recommended
+        $productId   = isset($_REQUEST['product_id'])   ? absint($_REQUEST['product_id']) : 0;
+        $productSlug = isset($_REQUEST['product_slug']) ? sanitize_title(wp_unslash($_REQUEST['product_slug'])) : '';
+        // phpcs:enable WordPress.Security.NonceVerification.Recommended
 
         $product = $this->resolveProduct($productId, $productSlug);
 
@@ -359,7 +364,6 @@ class FrontendHandler
             ],
         ]);
     }
-
 
     /**
      * Modal HTML Output
@@ -383,7 +387,6 @@ class FrontendHandler
 
     public function enquiryUsHtml($product = null) 
     {
-        
         $PinglyProductEnquirySettings = get_option('pingly_settings', []);
         $settings      =  $PinglyProductEnquirySettings['settings'];
 
@@ -687,7 +690,7 @@ class FrontendHandler
     /**
      * Handle form submission
      */
-    public function PinglyProductEnquiryDetails($request)
+    public function savePinglyProductEnquiryDetails()
     {
         if (!check_ajax_referer('pingly_public_nonce', 'nonce', false)) {
             wp_send_json_error([
@@ -698,12 +701,21 @@ class FrontendHandler
         $PinglyProductEnquiry = new PinglyProductEnquiry();
         $PinglyProductEnquirySettings = get_option('pingly_settings', []);
         $settings      =  $PinglyProductEnquirySettings['settings'];
-        
-        // If you stringified in JS, decode here
-        $details = Arr::get($request, 'details', []);
 
-        if (is_string($details)) {
-            $details = json_decode(stripslashes($details), true);
+        // If you stringified in JS, decode here
+        // Nonce is verified at the top of this method.
+        // phpcs:disable WordPress.Security.NonceVerification.Recommended
+        $details = (isset($_REQUEST['details']) && is_string($_REQUEST['details']))
+            ? sanitize_text_field(wp_unslash($_REQUEST['details']))
+            : '';
+        // phpcs:enable WordPress.Security.NonceVerification.Recommended
+
+        $details = json_decode($details, true);
+
+        if (!is_array($details)) {
+            wp_send_json_error([
+                'message' => __('Invalid request.', 'pingly-product-enquiry'),
+            ], 400);
         }
 
         $type = sanitize_text_field(Arr::get($details, 'type'));
@@ -713,14 +725,6 @@ class FrontendHandler
             if (empty($details['name']) || empty($details['email']) || empty($details['enquiry'])) {
                 wp_send_json_error([
                     'message' => __('Name, Email and Enquiry are required.', 'pingly-product-enquiry'),
-                ]);
-            }
-        }
-
-        if ($type === 'sms') {
-            if (empty($details['name']) || empty($details['phone_number']) || empty($details['enquiry'])) {
-                wp_send_json_error([
-                    'message' => __('Name, Phone number and Enquiry are required.', 'pingly-product-enquiry'),
                 ]);
             }
         }
@@ -739,10 +743,10 @@ class FrontendHandler
 
         /* DATA PREPARE */
         $data = [
-            'name'         => sanitize_text_field(Arr::get($details, 'name')),
-            'email'        => sanitize_email(Arr::get($details, 'email')),
+            'name'         => sanitize_text_field(Arr::get($details, 'name', '')),
+            'email'        => sanitize_email(Arr::get($details, 'email', '')),
             'phone_number' => $phonNumberWithCountryCode,
-            'enquiry'      => sanitize_textarea_field(Arr::get($details, 'enquiry')),
+            'enquiry'      => sanitize_textarea_field(Arr::get($details, 'enquiry', '')),
             'type'         => $type,
             'subscribe'    => sanitize_text_field(Arr::get($details, 'subscribe', 'no')),
             'settings'     => wp_json_encode([
@@ -750,10 +754,11 @@ class FrontendHandler
                 'title'      => $title,
                 'product_url'=> get_permalink($productId),
             ]),
-            'created_at' => gmdate('Y-m-d H:i:s'),
-            'updated_at' => gmdate('Y-m-d H:i:s'),
+            'created_at'   => gmdate('Y-m-d H:i:s'),
+            'updated_at'   => gmdate('Y-m-d H:i:s'),
         ];
 
+       
         /* INSERT DATABASE */
         $insertId = $PinglyProductEnquiry->insertGetId($data);
 
@@ -765,7 +770,7 @@ class FrontendHandler
 
         $getEnquiry = $PinglyProductEnquiry->getDetail($insertId);
       
-        // SMS status
+        // default status
         $status = 'not_sent';
 
         /* SEND EMAIL */
