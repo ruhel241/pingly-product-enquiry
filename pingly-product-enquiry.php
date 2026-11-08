@@ -3,7 +3,7 @@
 /*
 Plugin Name: Pingly Product Enquiry
 Description: A simple product enquiry plugin for WooCommerce with WhatsApp, SMS, and enquiry form support.
-Version: 1.0.2
+Version: 1.0.3
 Requires at least: 6.0
 Requires PHP: 7.4
 Requires Plugins: woocommerce
@@ -20,7 +20,7 @@ Domain Path: /languages
 defined("ABSPATH") or die;
 define('PINGLY_PLUGIN_DIR_URL', plugin_dir_url(__FILE__));
 define('PINGLY_PLUGIN_DIR_PATH', plugin_dir_path(__FILE__));
-define('PINGLY_PLUGIN_VERSION', '1.0.2');
+define('PINGLY_PLUGIN_VERSION', '1.0.3');
 define('PINGLY_LITE', 'pingly-product-enquiry');
 
 class PinglyProductEnquiryLite

@@ -8,7 +8,7 @@ if (!defined('ABSPATH')) exit; // Exit if accessed directly
  /**
  * Settings class
  *
- * @since 1.0.2
+ * @since 1.0.3
  */
 class PinglyProductEnquirySettings extends WC_Settings_Page
 {

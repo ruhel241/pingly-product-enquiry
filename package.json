@@ -1,7 +1,7 @@
 
 {
   "name": "pingly-product-enquiry",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Pingly Product Enquiry",
   "main": "index.js",
   "scripts": {

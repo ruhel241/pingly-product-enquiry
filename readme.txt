@@ -5,7 +5,7 @@ Requires at least: 6.0
 Tested up to: 7.1
 Requires PHP: 7.4
 Requires Plugins: woocommerce
-Stable tag: 1.0.2
+Stable tag: 1.0.3
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -222,5 +222,5 @@ Yes. All plugin text uses the `pingly-product-enquiry` text domain.
 
 == Upgrade Notice ==
 
-= 1.0.2 =
-Plugin renamed, text domain and prefixes updated, and security improvements.
+= 1.0.3 =
+Plugin nonce issue fix, and Requires Plugins: woocommerce
